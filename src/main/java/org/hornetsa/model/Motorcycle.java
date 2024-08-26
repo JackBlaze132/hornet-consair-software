@@ -4,8 +4,8 @@ public class Motorcycle extends Vehicle implements IAplicable{
     private String forkType;
     private boolean helmetIncluded;
 
-    public Motorcycle(int idVehicle, String brand, float price, String model, int capacity, String brakeType, boolean abs, String forkType, boolean helmetIncluded) {
-        super(idVehicle, brand, price, model, capacity, brakeType, abs);
+    public Motorcycle(int idVehicle, String brand, float price, String model, boolean abs, String forkType, boolean helmetIncluded) {
+        super(idVehicle, brand, price, model, abs);
         this.forkType = forkType;
         this.helmetIncluded = helmetIncluded;
     }
@@ -24,6 +24,11 @@ public class Motorcycle extends Vehicle implements IAplicable{
 
     public void setHelmetIncluded(boolean helmetIncluded) {
         this.helmetIncluded = helmetIncluded;
+    }
+
+    @Override
+    public float calculateInsurance() {
+        return getPrice() * 0.02f + (isHelmetIncluded() ? 50 : 100);
     }
 
     @Override

@@ -5,17 +5,13 @@ public abstract class Vehicle {
     private String brand;
     private float price;
     private String model;
-    private int capacity;
-    private String brakeType;
     private boolean abs;
 
-    public Vehicle(int idVehicle, String brand, float price, String model, int capacity, String brakeType, boolean abs) {
+    public Vehicle(int idVehicle, String brand, float price, String model, boolean abs) {
         this.idVehicle = idVehicle;
         this.brand = brand;
         this.price = price;
         this.model = model;
-        this.capacity = capacity;
-        this.brakeType = brakeType;
         this.abs = abs;
     }
 
@@ -51,22 +47,6 @@ public abstract class Vehicle {
         this.model = model;
     }
 
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
-
-    public String getBrakeType() {
-        return brakeType;
-    }
-
-    public void setBrakeType(String brakeType) {
-        this.brakeType = brakeType;
-    }
-
     public boolean isAbs() {
         return abs;
     }
@@ -74,4 +54,6 @@ public abstract class Vehicle {
     public void setAbs(boolean abs) {
         this.abs = abs;
     }
+
+    public abstract float calculateInsurance();
 }
