@@ -28,7 +28,7 @@ public class Motorcycle extends Vehicle implements IAplicable{
 
     @Override
     public float calculateInsurance() {
-        return getPrice() * 0.02f + (isHelmetIncluded() ? 50 : 100);
+        return getPrice() * 0.04f;
     }
 
     @Override
