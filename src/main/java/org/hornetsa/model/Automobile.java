@@ -37,7 +37,7 @@ public class Automobile extends Vehicle{
     }
 
     @Override
-    public float calculateInsurance() {
-        return getPrice() * 0.04f + (getAirbagCount() * 50000);
+    public double calculateInsurance() {
+        return getPrice() * 0.04 + (getAirbagCount() * 50000);
     }
 }

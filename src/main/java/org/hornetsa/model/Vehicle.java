@@ -55,5 +55,5 @@ public abstract class Vehicle {
         this.abs = abs;
     }
 
-    public abstract float calculateInsurance();
+    public abstract double calculateInsurance();
 }
