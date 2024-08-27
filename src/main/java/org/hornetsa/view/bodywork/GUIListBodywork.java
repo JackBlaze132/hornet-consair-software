@@ -5,7 +5,6 @@
 package org.hornetsa.view.bodywork;
 
 import org.hornetsa.Main;
-import org.hornetsa.controller.BodyworkController;
 
 import javax.swing.*;
 
