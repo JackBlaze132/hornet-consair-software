@@ -286,6 +286,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private void jMenuItemDeleteAutomobileActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         GUIDeleteAutomobile guiDeleteAutomobile = new GUIDeleteAutomobile();
+        AutomobileController automobileController = new AutomobileController(guiDeleteAutomobile, vehicleService, bodyworks);
         guiDeleteAutomobile.setVisible(true);
     }
 

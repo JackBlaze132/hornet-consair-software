@@ -4,7 +4,9 @@ import org.hornetsa.model.Automobile;
 import org.hornetsa.model.Bodywork;
 import org.hornetsa.services.VehicleService;
 import org.hornetsa.view.automobile.GUIAddAutomobile;
+import org.hornetsa.view.automobile.GUIDeleteAutomobile;
 import org.hornetsa.view.automobile.GUIListAutomobile;
+import org.hornetsa.view.bodywork.GUIListBodywork;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -17,6 +19,7 @@ public class AutomobileController implements ActionListener {
     private VehicleService vehicleService;
     private GUIAddAutomobile guiAddAutomobile;
     private GUIListAutomobile guiListAutomobile;
+    private GUIDeleteAutomobile guiDeleteAutomobile;
     private ArrayList<Bodywork> bodyworks;
 
 
@@ -33,6 +36,15 @@ public class AutomobileController implements ActionListener {
         this.bodyworks = bodyworks;
         this.guiListAutomobile.getBtnList().addActionListener(this);
     }
+
+    public AutomobileController(GUIDeleteAutomobile guiDeleteAutomobile, VehicleService vehicleService, ArrayList<Bodywork> bodyworks) {
+        this.guiDeleteAutomobile = guiDeleteAutomobile;
+        this.vehicleService = vehicleService;
+        this.bodyworks = bodyworks;
+        this.guiDeleteAutomobile.getBtnList().addActionListener(this);
+        this.guiDeleteAutomobile.getjBtnDelete().addActionListener(this);
+    }
+
 
     private void addAutomobile() {
 
@@ -124,6 +136,36 @@ public class AutomobileController implements ActionListener {
         }
     }
 
+    private void updateAutomobileTable2() {
+        DefaultTableModel model = (DefaultTableModel) guiDeleteAutomobile.getjTable1().getModel();
+        model.setRowCount(0); // Limpiar filas existentes
+
+        for (Automobile automobile : vehicleService.getAutomobiles()) {
+            model.addRow(new Object[]{
+                    automobile.getIdVehicle(),
+                    automobile.getBrand(),
+                    automobile.getPrice(),
+                    automobile.getModel(),
+                    automobile.isAbs(),
+                    automobile.getDoorCount(),
+                    automobile.getAirbagCount(),
+                    automobile.getBodywork().getDescription() // O el atributo que desees mostrar
+            });
+        }
+    }
+
+    private void deleteAutomobile() {
+        int selectedRow = guiDeleteAutomobile.getjTable1().getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(guiDeleteAutomobile, "Please select a row to delete.");
+            return;
+        }
+        int id = (int) guiDeleteAutomobile.getjTable1().getValueAt(selectedRow, 0);
+        vehicleService.removeVehicle(id);
+        updateAutomobileTable2();
+        JOptionPane.showMessageDialog(guiDeleteAutomobile, "Automobile deleted successfully.");
+    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -133,6 +175,12 @@ public class AutomobileController implements ActionListener {
         if (guiListAutomobile != null && e.getSource() == guiListAutomobile.getBtnList()) {
             System.out.println("List button clicked");
             updateAutomobileTable();
+        }
+        if (guiDeleteAutomobile != null && e.getSource() == guiDeleteAutomobile.getjBtnDelete()) {
+            deleteAutomobile();
+        }
+        if (guiDeleteAutomobile != null && e.getSource() == guiDeleteAutomobile.getBtnList()) {
+            updateAutomobileTable2();
         }
     }
 }

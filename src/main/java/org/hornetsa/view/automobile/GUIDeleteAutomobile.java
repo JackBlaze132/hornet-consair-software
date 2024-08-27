@@ -120,7 +120,6 @@ public class GUIDeleteAutomobile extends javax.swing.JFrame {
 
     private void btnListActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Holasss");
     }
 
     private void jBtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,4 +135,19 @@ public class GUIDeleteAutomobile extends javax.swing.JFrame {
     private javax.swing.JTable jTableCar;
     // End of variables declaration
 
+    public JTable getjTable1() {
+        return jTableCar;
+    }
+
+    public void setjTable1(JTable jTable1) {
+        this.jTableCar = jTable1;
+    }
+
+    public JButton getjBtnDelete() {
+        return jBtnDelete;
+    }
+
+    public JButton getBtnList() {
+        return btnList;
+    }
 }

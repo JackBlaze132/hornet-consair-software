@@ -234,4 +234,36 @@ public class GUIAddMotorcycle extends javax.swing.JFrame {
     private javax.swing.JTextField jTxtModel;
     private javax.swing.JTextField jTxtPrice;
     // End of variables declaration
+
+    public JButton getBtnAdd() {
+        return btnAdd;
+    }
+
+    public JTextField getjTxtIdMotorcycle() {
+        return jTxtIdMotorcycle;
+    }
+
+    public JTextField getjTxtBrand() {
+        return jTxtBrand;
+    }
+
+    public JTextField getjTxtPrice() {
+        return jTxtPrice;
+    }
+
+    public JTextField getjTxtModel() {
+        return jTxtModel;
+    }
+
+    public JCheckBox getjBoxABS() {
+        return jBoxABS;
+    }
+
+    public JTextField getjTxtForkType() {
+        return jTxtForkType;
+    }
+
+    public JCheckBox getjBoxHelmet() {
+        return jBoxHelmet;
+    }
 }
