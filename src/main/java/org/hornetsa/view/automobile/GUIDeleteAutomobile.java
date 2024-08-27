@@ -43,11 +43,6 @@ public class GUIDeleteAutomobile extends javax.swing.JFrame {
 
         btnList.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnList.setText("List");
-        btnList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListActionPerformed(evt);
-            }
-        });
 
         jTableCar.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
@@ -118,13 +113,6 @@ public class GUIDeleteAutomobile extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
-    private void btnListActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void jBtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
 
 
     // Variables declaration - do not modify

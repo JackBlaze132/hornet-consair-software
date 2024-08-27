@@ -41,11 +41,6 @@ public class GUIListMotorcycle extends javax.swing.JFrame {
         LblTitle.setText("List Motorcycle");
 
         btnList.setText("List");
-        btnList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListActionPerformed(evt);
-            }
-        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
@@ -111,10 +106,6 @@ public class GUIListMotorcycle extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
-    private void btnListActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Holasss");
-    }
 
 
 
@@ -124,4 +115,12 @@ public class GUIListMotorcycle extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration
+
+    public JButton getBtnList() {
+        return btnList;
+    }
+
+    public JTable getTable() {
+        return jTable1;
+    }
 }

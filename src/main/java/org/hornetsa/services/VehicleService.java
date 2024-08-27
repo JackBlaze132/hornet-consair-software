@@ -1,6 +1,7 @@
 package org.hornetsa.services;
 
 import org.hornetsa.model.Automobile;
+import org.hornetsa.model.Motorcycle;
 import org.hornetsa.model.Vehicle;
 
 import java.util.ArrayList;
@@ -52,5 +53,16 @@ public class VehicleService {
         }
         return automobiles;
     }
+
+    public List<Motorcycle> getMotorcycles() {
+        List<Motorcycle> motorcycles = new ArrayList<>();
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle instanceof Motorcycle) {
+                motorcycles.add((Motorcycle) vehicle);
+            }
+        }
+        return motorcycles;
+    }
+
 
 }

@@ -53,11 +53,6 @@ public class GUIAddMotorcycle extends javax.swing.JFrame {
         LblTitle.setText("Add Motorcycle");
 
         btnAdd.setText("Add");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
-            }
-        });
 
         jTxtIdMotorcycle.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTxtIdMotorcycle.addActionListener(new java.awt.event.ActionListener() {
@@ -203,10 +198,6 @@ public class GUIAddMotorcycle extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Holasss");
-    }
 
     private void jTxtIdMotorcycleActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:

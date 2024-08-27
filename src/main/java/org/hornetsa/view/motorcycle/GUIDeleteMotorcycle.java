@@ -120,7 +120,6 @@ public class GUIDeleteMotorcycle extends javax.swing.JFrame {
 
     private void btnListActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Holasss");
     }
 
     private void jBtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,4 +137,16 @@ public class GUIDeleteMotorcycle extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration
+
+    public JButton getBtnList() {
+        return btnList;
+    }
+
+    public JButton getjBtnDelete() {
+        return jBtnDelete;
+    }
+
+    public JTable getjTable1() {
+        return jTable1;
+    }
 }
