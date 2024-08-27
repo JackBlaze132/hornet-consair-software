@@ -8,6 +8,7 @@ import org.hornetsa.view.automobile.GUIAddAutomobile;
 import org.hornetsa.view.automobile.GUIListAutomobile;
 import org.hornetsa.view.automobile.GUISearchAutomobile;
 import org.hornetsa.view.motorcycle.GUIAddMotorcycle;
+import org.hornetsa.view.motorcycle.GUIDeleteMotorcycle;
 import org.hornetsa.view.motorcycle.GUIListMotorcycle;
 import org.hornetsa.view.motorcycle.GUISearchMotorcycle;
 
@@ -246,6 +247,8 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemDeleteMotorcylceActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        GUIDeleteMotorcycle guiDeleteMotorcycle = new GUIDeleteMotorcycle();
+        guiDeleteMotorcycle.setVisible(true);
     }
 
     private void jMenuItemSearchAutomobileActionPerformed(java.awt.event.ActionEvent evt) {

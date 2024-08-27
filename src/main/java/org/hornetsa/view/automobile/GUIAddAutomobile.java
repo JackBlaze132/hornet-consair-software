@@ -207,6 +207,10 @@ public class GUIAddAutomobile extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
+    private void jBtnAddActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
     /**
      * @param args the command line arguments
      */
