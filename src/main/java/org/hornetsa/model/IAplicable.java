@@ -1,6 +1,6 @@
 package org.hornetsa.model;
 
 public interface IAplicable {
-    public float calculateDiscount();
+    public double calculateDiscount();
     public void applyDiscont();
 }

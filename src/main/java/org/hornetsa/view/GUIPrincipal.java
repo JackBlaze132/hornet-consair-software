@@ -56,6 +56,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jMenuItemDeleteMotorcylce = new javax.swing.JMenuItem();
         jMenuItemListMotorcylce = new javax.swing.JMenuItem();
         jMenuItemInsuranceMotorcylce = new javax.swing.JMenuItem();
+        jMenuItemDiscountMotorcycle = new javax.swing.JMenuItem();
         jMenuBodywork = new javax.swing.JMenu();
         jMenuItemAddBodywork = new javax.swing.JMenuItem();
         jMenuItemListBodywork = new javax.swing.JMenuItem();
@@ -160,13 +161,21 @@ public class GUIPrincipal extends javax.swing.JFrame {
         });
         jMenuMotorcycle.add(jMenuItemListMotorcylce);
 
-        jMenuItemInsuranceMotorcylce.setText("Delete Motorcycle");
+        jMenuItemInsuranceMotorcylce.setText("Calculate Insurance");
         jMenuItemInsuranceMotorcylce.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemInsuranceMotorcylceActionPerformed(evt);
             }
         });
         jMenuMotorcycle.add(jMenuItemInsuranceMotorcylce);
+
+        jMenuItemDiscountMotorcycle.setText("Calculate Discount");
+        jMenuItemDiscountMotorcycle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemDiscountMotorcycleActionPerformed(evt);
+            }
+        });
+        jMenuMotorcycle.add(jMenuItemDiscountMotorcycle);
 
         jMenuBar1.add(jMenuMotorcycle);
 
@@ -298,6 +307,10 @@ public class GUIPrincipal extends javax.swing.JFrame {
         guiListBodywork.setVisible(true);
     }
 
+    private void jMenuItemDiscountMotorcycleActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
 
 
     // Variables declaration - do not modify
@@ -317,6 +330,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemListMotorcylce;
     private javax.swing.JMenuItem jMenuItemSearchAutomobile;
     private javax.swing.JMenuItem jMenuItemSearchMotorcylce;
+    private javax.swing.JMenuItem jMenuItemDiscountMotorcycle;
     private javax.swing.JMenu jMenuMotorcycle;
     private javax.swing.JMenuItem mnuAcercaDe;
     private javax.swing.JMenu mnuArchivo;
