@@ -5,7 +5,10 @@
 
 package org.hornetsa.view.automobile;
 
+import org.hornetsa.Main;
+
 import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -17,7 +20,9 @@ public class GUIListAutomobile extends javax.swing.JFrame {
     public GUIListAutomobile() {
         initComponents();
         setLocationRelativeTo(this);
+        setTitle("Hornet Corsair | Delete Automobile");
         setSize(800, 500);
+        setIconImage(new ImageIcon(Main.class.getClassLoader().getResource("img/favicon.png")).getImage());
     }
 
     /** This method is called from within the constructor to
@@ -37,12 +42,14 @@ public class GUIListAutomobile extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Listar B");
 
-        LblTitle.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
+        LblTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         LblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LblTitle.setText("List Automobile");
 
         btnList.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnList.setText("List");
+        btnList.setBackground(Color.BLACK);
+        btnList.setForeground(Color.WHITE);
         jTableCar.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
                         {null, null, null, null, null, null, null, null},

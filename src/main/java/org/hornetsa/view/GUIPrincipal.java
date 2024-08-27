@@ -4,6 +4,7 @@
  */
 package org.hornetsa.view;
 
+import org.hornetsa.Main;
 import org.hornetsa.controller.AutomobileController;
 import org.hornetsa.controller.BodyworkController;
 import org.hornetsa.controller.MotorcycleController;
@@ -40,8 +41,9 @@ public class GUIPrincipal extends javax.swing.JFrame {
     public GUIPrincipal() {
         icon = new ImageIcon(getClass().getClassLoader().getResource("img/favicon.png"));
         initComponents();
-        setLocationRelativeTo(this);
+        setTitle("Hornet Corsair");
         setSize(800, 500);
+        setIconImage(new ImageIcon(Main.class.getClassLoader().getResource("img/favicon.png")).getImage());
 
     }
 

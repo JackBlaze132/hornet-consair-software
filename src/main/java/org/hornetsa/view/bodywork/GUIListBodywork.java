@@ -4,6 +4,7 @@
  */
 package org.hornetsa.view.bodywork;
 
+import org.hornetsa.Main;
 import org.hornetsa.controller.BodyworkController;
 
 import javax.swing.*;
@@ -20,6 +21,9 @@ public class GUIListBodywork extends javax.swing.JFrame {
     public GUIListBodywork() {
         initComponents();
         setLocationRelativeTo(this);
+        setTitle("Hornet Corsair | List Bodywork");
+        setSize(800, 500);
+        setIconImage(new ImageIcon(Main.class.getClassLoader().getResource("img/favicon.png")).getImage());
     }
 
     /**
@@ -38,7 +42,7 @@ public class GUIListBodywork extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        LblTitle.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
+        LblTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         LblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LblTitle.setText("List Bodywork");
 

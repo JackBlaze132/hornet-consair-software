@@ -4,7 +4,10 @@
  */
 package org.hornetsa.view.motorcycle;
 
+import org.hornetsa.Main;
+
 import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -18,7 +21,9 @@ public class GUIDeleteMotorcycle extends javax.swing.JFrame {
     public GUIDeleteMotorcycle() {
         initComponents();
         setLocationRelativeTo(this);
+        setTitle("Hornet Corsair | Delete Motorcycle");
         setSize(800, 500);
+        setIconImage(new ImageIcon(Main.class.getClassLoader().getResource("img/favicon.png")).getImage());
 
     }
 
@@ -39,11 +44,13 @@ public class GUIDeleteMotorcycle extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        LblTitle.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
+        LblTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         LblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LblTitle.setText("Delete Motorcycle");
 
         btnList.setText("List");
+        btnList.setBackground(Color.BLACK);
+        btnList.setForeground(Color.WHITE);
         btnList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnListActionPerformed(evt);
@@ -79,6 +86,8 @@ public class GUIDeleteMotorcycle extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jBtnDelete.setText("Delete");
+        jBtnDelete.setBackground(Color.RED);
+        jBtnDelete.setForeground(Color.WHITE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

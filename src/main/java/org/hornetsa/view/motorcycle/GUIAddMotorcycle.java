@@ -4,7 +4,10 @@
  */
 package org.hornetsa.view.motorcycle;
 
+import org.hornetsa.Main;
+
 import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -18,7 +21,9 @@ public class GUIAddMotorcycle extends javax.swing.JFrame {
     public GUIAddMotorcycle() {
         initComponents();
         setLocationRelativeTo(this);
+        setTitle("Hornet Corsair | Add Motorcycle");
         setSize(800, 500);
+        setIconImage(new ImageIcon(Main.class.getClassLoader().getResource("img/favicon.png")).getImage());
     }
 
     /**
@@ -49,11 +54,13 @@ public class GUIAddMotorcycle extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        LblTitle.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
+        LblTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         LblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LblTitle.setText("Add Motorcycle");
 
         btnAdd.setText("Add");
+        btnAdd.setBackground(Color.BLACK);
+        btnAdd.setForeground(Color.WHITE);
 
         jTxtIdMotorcycle.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTxtIdMotorcycle.addActionListener(new java.awt.event.ActionListener() {
@@ -77,25 +84,25 @@ public class GUIAddMotorcycle extends javax.swing.JFrame {
 
         jBoxHelmet.setText("Helmet");
 
-        jLblIdMoto.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblIdMoto.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblIdMoto.setText("IdMoto");
 
-        jLblBrand.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblBrand.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblBrand.setText("Brand");
 
-        jLblPrice.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblPrice.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblPrice.setText("Price");
 
-        jLblModel.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblModel.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblModel.setText("Model");
 
-        jLblABS.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblABS.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblABS.setText("Does it have ABS?");
 
-        jLblForkType.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblForkType.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblForkType.setText("ForkType");
 
-        jLblBodyWork.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblBodyWork.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblBodyWork.setText("Does it include a helmet?");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

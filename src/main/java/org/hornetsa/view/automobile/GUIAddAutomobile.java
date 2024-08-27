@@ -4,9 +4,11 @@
  */
 package org.hornetsa.view.automobile;
 
+import org.hornetsa.Main;
 import org.hornetsa.model.Bodywork;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -25,6 +27,9 @@ public class GUIAddAutomobile extends javax.swing.JFrame {
     public GUIAddAutomobile() {
         initComponents();
         setLocationRelativeTo(this);
+        setTitle("Hornet Corsair | Add Automobile");
+        setSize(800, 500);
+        setIconImage(new ImageIcon(Main.class.getClassLoader().getResource("img/favicon.png")).getImage());
     }
 
     /**
@@ -77,35 +82,37 @@ public class GUIAddAutomobile extends javax.swing.JFrame {
 
         jListBodyWork.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLblIdCar1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblIdCar1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblIdCar1.setText("IdCar");
 
-        jLblCar.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblCar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblCar.setText("Brand");
 
-        jLblPrice.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblPrice.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblPrice.setText("Price");
 
-        jLblModel.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblModel.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblModel.setText("Model");
 
-        jLblAB.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblAB.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblAB.setText("Does it have ABS?");
 
-        jLblDoorCount.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblDoorCount.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblDoorCount.setText("Number of doors");
 
-        jLblBodyWork.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblBodyWork.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblBodyWork.setText("Bodywork");
 
-        jLblAribag.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblAribag.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblAribag.setText("Number of airbags");
 
-        LblTitle.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
+        LblTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         LblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LblTitle.setText("Add Automobile");
 
         jBtnAdd.setText("Add");
+        jBtnAdd.setBackground(Color.BLACK);
+        jBtnAdd.setForeground(Color.WHITE);
         jBtnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnAddActionPerformed(evt);

@@ -7,6 +7,7 @@ package org.hornetsa.view.automobile;
 import org.hornetsa.Main;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -20,6 +21,7 @@ public class GUISearchAutomobile extends javax.swing.JFrame {
     public GUISearchAutomobile() {
         initComponents();
         setLocationRelativeTo(this);
+        setTitle("Hornet Corsair | Search Automobile");
         setSize(800, 500);
         setIconImage(new ImageIcon(Main.class.getClassLoader().getResource("img/favicon.png")).getImage());
     }
@@ -44,11 +46,13 @@ public class GUISearchAutomobile extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        LblTitle.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
+        LblTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         LblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LblTitle.setText("Search Automobile");
 
         btnSearch.setText("Search");
+        btnSearch.setBackground(Color.BLUE);
+        btnSearch.setForeground(Color.WHITE);
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSearchActionPerformed(evt);

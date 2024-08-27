@@ -4,7 +4,10 @@
  */
 package org.hornetsa.view.motorcycle;
 
+import org.hornetsa.Main;
+
 import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -18,7 +21,9 @@ public class GUIListMotorcycle extends javax.swing.JFrame {
     public GUIListMotorcycle() {
         initComponents();
         setLocationRelativeTo(this);
+        setTitle("Hornet Corsair | List Motorcycle");
         setSize(800, 500);
+        setIconImage(new ImageIcon(Main.class.getClassLoader().getResource("img/favicon.png")).getImage());
     }
 
     /**
@@ -37,11 +42,13 @@ public class GUIListMotorcycle extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        LblTitle.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
+        LblTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         LblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LblTitle.setText("List Motorcycle");
 
         btnList.setText("List");
+        btnList.setBackground(Color.BLACK);
+        btnList.setForeground(Color.WHITE);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {

@@ -4,6 +4,7 @@
  */
 package org.hornetsa.view.bodywork;
 
+import org.hornetsa.Main;
 import org.hornetsa.controller.BodyworkController;
 
 import javax.swing.*;
@@ -21,6 +22,9 @@ public class GUIAddBodywork extends javax.swing.JFrame {
     public GUIAddBodywork() {
         initComponents();
         setLocationRelativeTo(this);
+        setTitle("Hornet Corsair | Add Bodywork");
+        setSize(800, 500);
+        setIconImage(new ImageIcon(Main.class.getClassLoader().getResource("img/favicon.png")).getImage());
     }
 
 
@@ -42,7 +46,7 @@ public class GUIAddBodywork extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        LblTitle.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
+        LblTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         LblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LblTitle.setText("Add Bodywork");
 
@@ -58,10 +62,10 @@ public class GUIAddBodywork extends javax.swing.JFrame {
         jTxtDescription.setToolTipText("");
         jTxtDescription.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
 
-        jLblIdBodywork.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblIdBodywork.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblIdBodywork.setText("IdBodywork");
 
-        jLblDescription.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblDescription.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblDescription.setText("Description");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
