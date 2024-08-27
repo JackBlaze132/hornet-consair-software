@@ -125,4 +125,16 @@ public class GUIListAutomobile extends javax.swing.JFrame {
     private javax.swing.JTable jTableCar;
     // End of variables declaration
 
+    public JTable getjTable1() {
+        return jTableCar;
+    }
+
+    public void setjTable1(JTable jTable1) {
+        this.jTableCar = jTable1;
+    }
+
+    public JButton getBtnList() {
+        return btnList;
+    }
+
 }

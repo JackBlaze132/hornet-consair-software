@@ -1,12 +1,19 @@
 package org.hornetsa.services;
 
+import org.hornetsa.model.Automobile;
 import org.hornetsa.model.Vehicle;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class VehicleService {
 
     private ArrayList<Vehicle> vehicles;
+    public VehicleService() {
+        vehicles = new ArrayList<>();
+    }
+
 
     public VehicleService(ArrayList<Vehicle> vehicles) {
         this.vehicles = vehicles;
@@ -34,6 +41,16 @@ public class VehicleService {
         if (vehicle != null) {
             vehicles.remove(vehicle);
         }
+    }
+
+    public List<Automobile> getAutomobiles() {
+        List<Automobile> automobiles = new ArrayList<>();
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle instanceof Automobile) {
+                automobiles.add((Automobile) vehicle);
+            }
+        }
+        return automobiles;
     }
 
 }

@@ -4,6 +4,10 @@
  */
 package org.hornetsa.view;
 
+import org.hornetsa.controller.AutomobileController;
+import org.hornetsa.controller.BodyworkController;
+import org.hornetsa.model.Bodywork;
+import org.hornetsa.services.VehicleService;
 import org.hornetsa.view.automobile.GUIAddAutomobile;
 import org.hornetsa.view.automobile.GUIDeleteAutomobile;
 import org.hornetsa.view.automobile.GUIListAutomobile;
@@ -16,12 +20,15 @@ import org.hornetsa.view.motorcycle.GUIListMotorcycle;
 import org.hornetsa.view.motorcycle.GUISearchMotorcycle;
 
 import javax.swing.JOptionPane;
+import java.util.ArrayList;
 
 /**
  *
  * @author ASUS
  */
 public class GUIPrincipal extends javax.swing.JFrame {
+    private ArrayList<Bodywork> bodyworks = new ArrayList<>();
+    private VehicleService vehicleService = new VehicleService();
 
     /**
      * Creates new form GUIPrincipal
@@ -248,6 +255,12 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemAddAutomobileActionPerformed(java.awt.event.ActionEvent evt) {
         GUIAddAutomobile guiAddAutomobile = new GUIAddAutomobile();
+        guiAddAutomobile.getjListBodyWork().removeAllItems();
+        guiAddAutomobile.getjListBodyWork().addItem("Select");
+        for (Bodywork bodywork : bodyworks) {
+            guiAddAutomobile.getjListBodyWork().addItem(bodywork.getDescription());
+        }
+        AutomobileController automobileController = new AutomobileController(guiAddAutomobile, vehicleService, bodyworks);
         guiAddAutomobile.setVisible(true);
     }
 
@@ -296,14 +309,14 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }
 
     private void jMenuItemAddBodyworkActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
         GUIAddBodywork guiAddBodywork = new GUIAddBodywork();
+        BodyworkController bodyworkController = new BodyworkController(guiAddBodywork, bodyworks);
         guiAddBodywork.setVisible(true);
     }
 
     private void jMenuItemListBodyworkActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
         GUIListBodywork guiListBodywork = new GUIListBodywork();
+        BodyworkController bodyworkController = new BodyworkController(guiListBodywork, bodyworks);
         guiListBodywork.setVisible(true);
     }
 
