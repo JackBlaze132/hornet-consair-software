@@ -5,8 +5,11 @@
 package org.hornetsa.view;
 
 import org.hornetsa.view.automobile.GUIAddAutomobile;
+import org.hornetsa.view.automobile.GUIDeleteAutomobile;
 import org.hornetsa.view.automobile.GUIListAutomobile;
 import org.hornetsa.view.automobile.GUISearchAutomobile;
+import org.hornetsa.view.bodywork.GUIAddBodywork;
+import org.hornetsa.view.bodywork.GUIListBodywork;
 import org.hornetsa.view.motorcycle.GUIAddMotorcycle;
 import org.hornetsa.view.motorcycle.GUIDeleteMotorcycle;
 import org.hornetsa.view.motorcycle.GUIListMotorcycle;
@@ -259,6 +262,8 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemDeleteAutomobileActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        GUIDeleteAutomobile guiDeleteAutomobile = new GUIDeleteAutomobile();
+        guiDeleteAutomobile.setVisible(true);
     }
 
     private void jMenuItemInsuranceAutomobileActionPerformed(java.awt.event.ActionEvent evt) {
@@ -283,10 +288,14 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemAddBodyworkActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        GUIAddBodywork guiAddBodywork = new GUIAddBodywork();
+        guiAddBodywork.setVisible(true);
     }
 
     private void jMenuItemListBodyworkActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        GUIListBodywork guiListBodywork = new GUIListBodywork();
+        guiListBodywork.setVisible(true);
     }
 
 
