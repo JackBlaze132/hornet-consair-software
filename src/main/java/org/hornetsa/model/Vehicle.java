@@ -3,11 +3,11 @@ package org.hornetsa.model;
 public abstract class Vehicle {
     private int idVehicle;
     private String brand;
-    private float price;
+    private double price;
     private String model;
     private boolean abs;
 
-    public Vehicle(int idVehicle, String brand, float price, String model, boolean abs) {
+    public Vehicle(int idVehicle, String brand, double price, String model, boolean abs) {
         this.idVehicle = idVehicle;
         this.brand = brand;
         this.price = price;
@@ -31,11 +31,11 @@ public abstract class Vehicle {
         this.brand = brand;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

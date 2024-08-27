@@ -42,12 +42,6 @@ public class GUIListAutomobile extends javax.swing.JFrame {
 
         btnList.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnList.setText("List");
-        btnList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListActionPerformed(evt);
-            }
-        });
-
         jTableCar.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
                         {null, null, null, null, null, null, null, null},
@@ -112,10 +106,6 @@ public class GUIListAutomobile extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
-    private void btnListActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Holasss");
-    }
 
 
     // Variables declaration - do not modify
@@ -124,5 +114,17 @@ public class GUIListAutomobile extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableCar;
     // End of variables declaration
+
+    public JTable getjTable1() {
+        return jTableCar;
+    }
+
+    public void setjTable1(JTable jTable1) {
+        this.jTableCar = jTable1;
+    }
+
+    public JButton getBtnList() {
+        return btnList;
+    }
 
 }
