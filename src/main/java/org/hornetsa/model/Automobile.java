@@ -5,7 +5,7 @@ public class Automobile extends Vehicle{
     private Bodywork bodywork;
     private int airbagCount;
 
-    public Automobile(int idVehicle, String brand, float price, String model, boolean abs, int doorCount, Bodywork bodywork, int airbagCount) {
+    public Automobile(int idVehicle, String brand, double price, String model, boolean abs, int doorCount, Bodywork bodywork, int airbagCount) {
         super(idVehicle, brand, price, model, abs);
         this.doorCount = doorCount;
         this.bodywork = bodywork;

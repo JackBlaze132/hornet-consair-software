@@ -4,6 +4,8 @@
  */
 package org.hornetsa.view.bodywork;
 
+import org.hornetsa.controller.BodyworkController;
+
 import javax.swing.*;
 
 /**
@@ -41,11 +43,7 @@ public class GUIListBodywork extends javax.swing.JFrame {
         LblTitle.setText("List Bodywork");
 
         btnList.setText("List");
-        btnList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListActionPerformed(evt);
-            }
-        });
+
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
@@ -108,11 +106,6 @@ public class GUIListBodywork extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
-    private void btnListActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Holasss");
-    }
-
     /**
      * @param args the command line arguments
      */
@@ -124,4 +117,18 @@ public class GUIListBodywork extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration
+
+
+    public JTable getjTable1() {
+        return jTable1;
+    }
+
+    public void setjTable1(JTable jTable1) {
+        this.jTable1 = jTable1;
+    }
+
+    public JButton getBtnList() {
+        return btnList;
+    }
+
 }

@@ -4,11 +4,20 @@
  */
 package org.hornetsa.view.automobile;
 
+import org.hornetsa.model.Bodywork;
+
+import javax.swing.*;
+import java.util.ArrayList;
+
 /**
  *
  * @author jaime
  */
 public class GUIAddAutomobile extends javax.swing.JFrame {
+
+    private ArrayList<Bodywork> bodyworks = new ArrayList<>();
+
+
 
     /**
      * Creates new form GUIAddAuto
@@ -44,6 +53,7 @@ public class GUIAddAutomobile extends javax.swing.JFrame {
         jLblBodyWork = new javax.swing.JLabel();
         jLblAribag = new javax.swing.JLabel();
         LblTitle = new javax.swing.JLabel();
+        jBtnAdd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -95,13 +105,25 @@ public class GUIAddAutomobile extends javax.swing.JFrame {
         LblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LblTitle.setText("Add Automobile");
 
+        jBtnAdd.setText("Add");
+        jBtnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnAddActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addGap(225, 225, 225)
-                                .addComponent(LblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(225, 225, 225)
+                                                .addComponent(LblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(319, 319, 319)
+                                                .addComponent(jBtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addContainerGap(229, Short.MAX_VALUE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
@@ -146,7 +168,9 @@ public class GUIAddAutomobile extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(LblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(453, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 395, Short.MAX_VALUE)
+                                .addComponent(jBtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
                                         .addGap(0, 96, Short.MAX_VALUE)
@@ -219,6 +243,7 @@ public class GUIAddAutomobile extends javax.swing.JFrame {
     // Variables declaration - do not modify
     private javax.swing.JLabel LblTitle;
     private javax.swing.JCheckBox jBoxABS;
+    private javax.swing.JButton jBtnAdd;
     private javax.swing.JLabel jLblAB;
     private javax.swing.JLabel jLblAribag;
     private javax.swing.JLabel jLblBodyWork;
@@ -235,4 +260,41 @@ public class GUIAddAutomobile extends javax.swing.JFrame {
     private javax.swing.JTextField jTxtModel;
     private javax.swing.JTextField jTxtPrice;
     // End of variables declaration
+
+    public JTextField getjTxtIdCar() {
+        return jTxtIdCar;
+    }
+
+    public JTextField getjTxtBrand() {
+        return jTxtBrand;
+    }
+
+    public JTextField getjTxtPrice() {
+        return jTxtPrice;
+    }
+
+    public JTextField getjTxtModel() {
+        return jTxtModel;
+    }
+
+    public JCheckBox getjBoxABS() {
+        return jBoxABS;
+    }
+
+    public JSpinner getjSpinDoorCount() {
+        return jSpinDoorCount;
+    }
+
+    public JComboBox<String> getjListBodyWork() {
+        return jListBodyWork;
+    }
+
+    public JSpinner getjSpinAirbagCount() {
+        return jSpinAirbagCount;
+    }
+
+    public JButton getjBtnAdd() {
+        return jBtnAdd;
+    }
+
 }

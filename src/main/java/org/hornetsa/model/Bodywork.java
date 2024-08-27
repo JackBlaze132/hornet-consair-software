@@ -4,6 +4,9 @@ public class Bodywork {
     private int idBody;
     private String description;
 
+    public Bodywork() {
+    }
+
     public Bodywork(int idBody, String description) {
         this.idBody = idBody;
         this.description = description;

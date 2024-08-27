@@ -53,11 +53,6 @@ public class GUIAddMotorcycle extends javax.swing.JFrame {
         LblTitle.setText("Add Motorcycle");
 
         btnAdd.setText("Add");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
-            }
-        });
 
         jTxtIdMotorcycle.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTxtIdMotorcycle.addActionListener(new java.awt.event.ActionListener() {
@@ -203,10 +198,6 @@ public class GUIAddMotorcycle extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Holasss");
-    }
 
     private void jTxtIdMotorcycleActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
@@ -234,4 +225,36 @@ public class GUIAddMotorcycle extends javax.swing.JFrame {
     private javax.swing.JTextField jTxtModel;
     private javax.swing.JTextField jTxtPrice;
     // End of variables declaration
+
+    public JButton getBtnAdd() {
+        return btnAdd;
+    }
+
+    public JTextField getjTxtIdMotorcycle() {
+        return jTxtIdMotorcycle;
+    }
+
+    public JTextField getjTxtBrand() {
+        return jTxtBrand;
+    }
+
+    public JTextField getjTxtPrice() {
+        return jTxtPrice;
+    }
+
+    public JTextField getjTxtModel() {
+        return jTxtModel;
+    }
+
+    public JCheckBox getjBoxABS() {
+        return jBoxABS;
+    }
+
+    public JTextField getjTxtForkType() {
+        return jTxtForkType;
+    }
+
+    public JCheckBox getjBoxHelmet() {
+        return jBoxHelmet;
+    }
 }
