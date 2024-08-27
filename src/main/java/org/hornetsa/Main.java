@@ -13,7 +13,6 @@ public class Main {
         GUIPrincipal guiPrincipal = new GUIPrincipal();
         guiPrincipal.setVisible(true);
         guiPrincipal.setTitle("Hornet Corsair");
-        guiPrincipal.setIconImage(img.getImage());
 
     }
 }

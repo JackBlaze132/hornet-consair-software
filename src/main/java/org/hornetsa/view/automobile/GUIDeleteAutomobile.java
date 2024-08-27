@@ -17,6 +17,7 @@ public class GUIDeleteAutomobile extends javax.swing.JFrame {
     public GUIDeleteAutomobile() {
         initComponents();
         setLocationRelativeTo(this);
+        setSize(800, 500);
     }
 
     /** This method is called from within the constructor to

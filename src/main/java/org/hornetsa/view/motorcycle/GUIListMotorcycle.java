@@ -18,6 +18,7 @@ public class GUIListMotorcycle extends javax.swing.JFrame {
     public GUIListMotorcycle() {
         initComponents();
         setLocationRelativeTo(this);
+        setSize(800, 500);
     }
 
     /**

@@ -18,6 +18,7 @@ public class GUIAddMotorcycle extends javax.swing.JFrame {
     public GUIAddMotorcycle() {
         initComponents();
         setLocationRelativeTo(this);
+        setSize(800, 500);
     }
 
     /**

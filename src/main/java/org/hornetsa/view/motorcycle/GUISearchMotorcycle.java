@@ -18,6 +18,7 @@ public class GUISearchMotorcycle extends javax.swing.JFrame {
     public GUISearchMotorcycle() {
         initComponents();
         setLocationRelativeTo(this);
+        setSize(800, 500);
     }
 
     /**

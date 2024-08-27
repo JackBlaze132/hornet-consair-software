@@ -4,7 +4,9 @@
  */
 package org.hornetsa.view.automobile;
 
-import javax.swing.JOptionPane;
+import org.hornetsa.Main;
+
+import javax.swing.*;
 
 /**
  *
@@ -18,6 +20,8 @@ public class GUISearchAutomobile extends javax.swing.JFrame {
     public GUISearchAutomobile() {
         initComponents();
         setLocationRelativeTo(this);
+        setSize(800, 500);
+        setIconImage(new ImageIcon(Main.class.getClassLoader().getResource("img/favicon.png")).getImage());
     }
 
     /**

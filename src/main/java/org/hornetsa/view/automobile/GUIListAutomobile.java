@@ -17,6 +17,7 @@ public class GUIListAutomobile extends javax.swing.JFrame {
     public GUIListAutomobile() {
         initComponents();
         setLocationRelativeTo(this);
+        setSize(800, 500);
     }
 
     /** This method is called from within the constructor to

@@ -18,6 +18,8 @@ public class GUIDeleteMotorcycle extends javax.swing.JFrame {
     public GUIDeleteMotorcycle() {
         initComponents();
         setLocationRelativeTo(this);
+        setSize(800, 500);
+
     }
 
     /**
