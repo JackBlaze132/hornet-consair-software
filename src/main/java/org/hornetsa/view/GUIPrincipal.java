@@ -15,7 +15,7 @@ import org.hornetsa.view.motorcycle.GUIDeleteMotorcycle;
 import org.hornetsa.view.motorcycle.GUIListMotorcycle;
 import org.hornetsa.view.motorcycle.GUISearchMotorcycle;
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 /**
  *
@@ -23,12 +23,17 @@ import javax.swing.JOptionPane;
  */
 public class GUIPrincipal extends javax.swing.JFrame {
 
+    private ImageIcon icon;
+
     /**
      * Creates new form GUIPrincipal
      */
     public GUIPrincipal() {
+        icon = new ImageIcon(getClass().getClassLoader().getResource("img/favicon.png"));
         initComponents();
         setLocationRelativeTo(this);
+        setSize(800, 500);
+
     }
 
     /**
@@ -238,7 +243,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }
 
     private void mnuAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {
-        JOptionPane.showMessageDialog(this, "Desarrollado por Carlos Lugo");
+        JOptionPane.showMessageDialog(this, "Desarrollado por:\n Eder Martínez\n Jaime Rodriguez\n Jhon Cardenas \n\nHornet©2024");
     }
 
     private void jMenuItemListAutomobileActionPerformed(java.awt.event.ActionEvent evt) {
