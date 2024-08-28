@@ -1,28 +1,27 @@
 package org.hornetsa.controller;
 
-import org.hornetsa.model.Automobile;
 import org.hornetsa.model.Motorcycle;
 import org.hornetsa.model.Vehicle;
 import org.hornetsa.services.VehicleService;
-import org.hornetsa.view.automobile.GUISearchAutomobile;
-import org.hornetsa.view.motorcycle.GUIAddMotorcycle;
-import org.hornetsa.view.motorcycle.GUIDeleteMotorcycle;
-import org.hornetsa.view.motorcycle.GUIListMotorcycle;
-import org.hornetsa.view.motorcycle.GUISearchMotorcycle;
+import org.hornetsa.view.motorcycle.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.NumberFormat;
 import java.util.List;
 
 public class MotorcycleController implements ActionListener{
+
+    NumberFormat formatter = NumberFormat.getCurrencyInstance();
 
     private VehicleService vehicleService;
     private GUIAddMotorcycle guiAddMotorcycle;
     private GUIListMotorcycle guiListMotorcycle;
     private GUIDeleteMotorcycle guiDeleteMotorcycle;
     private GUISearchMotorcycle guiSearchMotorcycle;
+    private GUICalculateDiscountMotorcycle guiCalculateDiscountMotorcycle;
 
     public MotorcycleController(GUIAddMotorcycle guiAddMotorcycle, VehicleService vehicleService) {
         this.guiAddMotorcycle = guiAddMotorcycle;
@@ -49,6 +48,13 @@ public class MotorcycleController implements ActionListener{
         this.guiSearchMotorcycle.getBtnSearch().addActionListener(this);
     }
 
+    public MotorcycleController(GUICalculateDiscountMotorcycle guiCalculateDiscountMotorcycle, VehicleService vehicleService) {
+        this.vehicleService = vehicleService;
+        this.guiCalculateDiscountMotorcycle = guiCalculateDiscountMotorcycle;
+        this.guiCalculateDiscountMotorcycle.getBtnSearch().addActionListener(this);
+        this.guiCalculateDiscountMotorcycle.getBtnCalculateDiscount().addActionListener(this);
+    }
+
     private void addMotorcycle() {
         try {
             int idMotorcycle = Integer.parseInt(guiAddMotorcycle.getjTxtIdMotorcycle().getText());
@@ -70,6 +76,16 @@ public class MotorcycleController implements ActionListener{
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(guiAddMotorcycle, "An error occurred while adding the motorcycle.", "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    private void clearFields() {
+        guiAddMotorcycle.getjTxtIdMotorcycle().setText("");
+        guiAddMotorcycle.getjTxtBrand().setText("");
+        guiAddMotorcycle.getjTxtPrice().setText("");
+        guiAddMotorcycle.getjTxtModel().setText("");
+        guiAddMotorcycle.getjBoxABS().setSelected(false);
+        guiAddMotorcycle.getjTxtForkType().setText("");
+        guiAddMotorcycle.getjBoxHelmet().setSelected(false);
     }
 
     private void updateMotorcycleTable() {
@@ -108,17 +124,6 @@ public class MotorcycleController implements ActionListener{
             };
             model.addRow(rowData);
         }
-    }
-
-
-    private void clearFields() {
-        guiAddMotorcycle.getjTxtIdMotorcycle().setText("");
-        guiAddMotorcycle.getjTxtBrand().setText("");
-        guiAddMotorcycle.getjTxtPrice().setText("");
-        guiAddMotorcycle.getjTxtModel().setText("");
-        guiAddMotorcycle.getjBoxABS().setSelected(false);
-        guiAddMotorcycle.getjTxtForkType().setText("");
-        guiAddMotorcycle.getjBoxHelmet().setSelected(false);
     }
 
     private void DeleteMotorcycle() {
@@ -160,7 +165,54 @@ public class MotorcycleController implements ActionListener{
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(guiSearchMotorcycle, "Invalid vehicle number format.");
         }
+    }
 
+    private void updateMotorcycleTableCalculateDiscount(){
+        DefaultTableModel model = (DefaultTableModel) guiCalculateDiscountMotorcycle.getTableCalculateDiscount().getModel();
+        model.setRowCount(0);
+
+        if (guiCalculateDiscountMotorcycle.getTxtIdMotorcycle().getText().isEmpty()){
+            JOptionPane.showMessageDialog(guiCalculateDiscountMotorcycle, "Please enter a valid number.");
+        }else try {
+            int vehicleNumber = Integer.parseInt(guiCalculateDiscountMotorcycle.getTxtIdMotorcycle().getText());
+            Vehicle vehicle = vehicleService.getVehicle(vehicleNumber);
+
+            if(vehicle instanceof Motorcycle motorcycle) {
+                Object[] rowData = {
+                        motorcycle.getIdVehicle(),
+                        motorcycle.getBrand(),
+                        motorcycle.getPrice(),
+                        motorcycle.getModel(),
+                        motorcycle.isAbs(),
+                        motorcycle.getForkType(),
+                        motorcycle.isHelmetIncluded()
+                };
+                model.addRow(rowData);
+            } else {
+                JOptionPane.showMessageDialog(guiSearchMotorcycle, "Motorcycle not found.");
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(guiSearchMotorcycle, "Invalid vehicle number format.");
+        }
+    }
+
+    public void getMotorcycleDiscount() {
+        int selectedRow = guiCalculateDiscountMotorcycle.getTableCalculateDiscount().getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(guiCalculateDiscountMotorcycle, "Please select a row to delete.");
+            return;
+        }
+        int id = (int) guiCalculateDiscountMotorcycle.getTableCalculateDiscount().getValueAt(selectedRow, 0);
+        Vehicle vehicle = vehicleService.getVehicle(id);
+        StringBuilder message = new StringBuilder();
+        if (vehicle instanceof Motorcycle motorcycle) {
+            message.append("ID: ").append(motorcycle.getIdVehicle()).append("\n")
+                    .append("Price: ").append(formatter.format(motorcycle.getPrice())).append("\n")
+                    .append("Brand: ").append(motorcycle.getBrand()).append("\n")
+                    .append("Includes Helmet: ").append(motorcycle.isHelmetIncluded()).append("\n")
+                    .append("Discount: ").append(formatter.format(motorcycle.calculateDiscount())).append("\n\n");
+        }
+        JOptionPane.showMessageDialog(null, message.toString(), "Motorcycle Discount", JOptionPane.INFORMATION_MESSAGE);
     }
 
     @Override
@@ -181,6 +233,12 @@ public class MotorcycleController implements ActionListener{
         }
         if (guiSearchMotorcycle != null && e.getSource() == guiSearchMotorcycle.getBtnSearch()) {
             updateMotorcycleTableSearch();
+        }
+        if (guiCalculateDiscountMotorcycle != null && e.getSource() == guiCalculateDiscountMotorcycle.getBtnSearch()) {
+            updateMotorcycleTableCalculateDiscount();
+        }
+        if (guiCalculateDiscountMotorcycle != null && e.getSource() == guiCalculateDiscountMotorcycle.getBtnCalculateDiscount()) {
+            getMotorcycleDiscount();
         }
     }
 }

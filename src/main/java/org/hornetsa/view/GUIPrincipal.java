@@ -16,10 +16,7 @@ import org.hornetsa.view.automobile.GUIListAutomobile;
 import org.hornetsa.view.automobile.GUISearchAutomobile;
 import org.hornetsa.view.bodywork.GUIAddBodywork;
 import org.hornetsa.view.bodywork.GUIListBodywork;
-import org.hornetsa.view.motorcycle.GUIAddMotorcycle;
-import org.hornetsa.view.motorcycle.GUIDeleteMotorcycle;
-import org.hornetsa.view.motorcycle.GUIListMotorcycle;
-import org.hornetsa.view.motorcycle.GUISearchMotorcycle;
+import org.hornetsa.view.motorcycle.*;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -337,6 +334,9 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemDiscountMotorcycleActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        GUICalculateDiscountMotorcycle guiCalculateDiscountMotorcycle = new GUICalculateDiscountMotorcycle();
+        MotorcycleController motorcycleController = new MotorcycleController(guiCalculateDiscountMotorcycle, vehicleService);
+        guiCalculateDiscountMotorcycle.setVisible(true);
     }
 
 
