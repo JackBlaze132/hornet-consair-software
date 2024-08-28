@@ -2,11 +2,12 @@ package org.hornetsa.controller;
 
 import org.hornetsa.model.Automobile;
 import org.hornetsa.model.Bodywork;
+import org.hornetsa.model.Vehicle;
 import org.hornetsa.services.VehicleService;
 import org.hornetsa.view.automobile.GUIAddAutomobile;
 import org.hornetsa.view.automobile.GUIDeleteAutomobile;
 import org.hornetsa.view.automobile.GUIListAutomobile;
-import org.hornetsa.view.bodywork.GUIListBodywork;
+import org.hornetsa.view.automobile.GUISearchAutomobile;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -20,6 +21,7 @@ public class AutomobileController implements ActionListener {
     private GUIAddAutomobile guiAddAutomobile;
     private GUIListAutomobile guiListAutomobile;
     private GUIDeleteAutomobile guiDeleteAutomobile;
+    private GUISearchAutomobile guiSearchAutomobile;
     private ArrayList<Bodywork> bodyworks;
 
 
@@ -45,6 +47,13 @@ public class AutomobileController implements ActionListener {
         this.guiDeleteAutomobile.getjBtnDelete().addActionListener(this);
     }
 
+    public AutomobileController(GUISearchAutomobile guiSearchAutomobile, VehicleService vehicleService, ArrayList<Bodywork> bodyworks) {
+        this.guiSearchAutomobile = guiSearchAutomobile;
+        this.vehicleService = vehicleService;
+        this.bodyworks = bodyworks;
+        this.guiSearchAutomobile.getBtnSearch().addActionListener(this);
+    }
+
 
     private void addAutomobile() {
 
@@ -53,10 +62,7 @@ public class AutomobileController implements ActionListener {
         for (Bodywork bodywork : bodyworks) {
             guiAddAutomobile.getjListBodyWork().addItem(bodywork.getDescription());
         }
-        // Obtener el Bodywork seleccionado del JComboBox
         Bodywork selectedBodywork = bodyworks.get(guiAddAutomobile.getjListBodyWork().getSelectedIndex());
-
-        // Verificar si se ha seleccionado un Bodywork
         if (selectedBodywork == null) {
             JOptionPane.showMessageDialog(guiAddAutomobile, "Please select a bodywork.");
             return;
@@ -71,14 +77,10 @@ public class AutomobileController implements ActionListener {
             boolean hasABS = guiAddAutomobile.getjBoxABS().isSelected();
             int doorCount = (Integer) guiAddAutomobile.getjSpinDoorCount().getValue();
             int airbagCount = (Integer) guiAddAutomobile.getjSpinAirbagCount().getValue();
-
-            // Validar que los campos no estén vacíos
             if (idCar.isEmpty() || brand.isEmpty() || model.isEmpty()) {
                 JOptionPane.showMessageDialog(guiAddAutomobile, "Please fill in all required fields.");
                 return;
             }
-
-            // Crear el nuevo objeto Automobile
             Automobile automobile = new Automobile(
                     Integer.parseInt(idCar),
                     brand,
@@ -89,18 +91,11 @@ public class AutomobileController implements ActionListener {
                     selectedBodywork,
                     airbagCount
             );
-
-            // Agregar el nuevo automóvil al servicio
             vehicleService.addVehicle(automobile);
-
-            // Mostrar mensaje de éxito
             JOptionPane.showMessageDialog(guiAddAutomobile, "Automobile added successfully.");
-
-            // Limpiar los campos del formulario si es necesario
             clearForm();
 
         } catch (NumberFormatException ex) {
-            // Manejar el caso donde el precio no es un número válido
             JOptionPane.showMessageDialog(guiAddAutomobile, "Invalid price format.");
         }
     }
@@ -120,7 +115,7 @@ public class AutomobileController implements ActionListener {
 
     private void updateAutomobileTable() {
         DefaultTableModel model = (DefaultTableModel) guiListAutomobile.getjTable1().getModel();
-        model.setRowCount(0); // Limpiar filas existentes
+        model.setRowCount(0);
 
         for (Automobile automobile : vehicleService.getAutomobiles()) {
             model.addRow(new Object[]{
@@ -131,14 +126,14 @@ public class AutomobileController implements ActionListener {
                     automobile.isAbs(),
                     automobile.getDoorCount(),
                     automobile.getAirbagCount(),
-                    automobile.getBodywork().getDescription() // O el atributo que desees mostrar
+                    automobile.getBodywork().getDescription()
             });
         }
     }
 
-    private void updateAutomobileTable2() {
-        DefaultTableModel model = (DefaultTableModel) guiDeleteAutomobile.getjTable1().getModel();
-        model.setRowCount(0); // Limpiar filas existentes
+    private void updateAutomobileTableDelete() {
+        DefaultTableModel model = (DefaultTableModel) guiDeleteAutomobile.getjTableDeleteAutomobile().getModel();
+        model.setRowCount(0);
 
         for (Automobile automobile : vehicleService.getAutomobiles()) {
             model.addRow(new Object[]{
@@ -149,20 +144,50 @@ public class AutomobileController implements ActionListener {
                     automobile.isAbs(),
                     automobile.getDoorCount(),
                     automobile.getAirbagCount(),
-                    automobile.getBodywork().getDescription() // O el atributo que desees mostrar
+                    automobile.getBodywork().getDescription()
             });
         }
+    }
+
+    private void updateAutomobileTableSearch(){
+        DefaultTableModel model = (DefaultTableModel) guiSearchAutomobile.getjTableCar().getModel();
+        model.setRowCount(0);
+
+        if (guiSearchAutomobile.getjTxtIdCar().getText().isEmpty()){
+            JOptionPane.showMessageDialog(guiSearchAutomobile, "Please enter a valid number.");
+        }else try {
+            int vehicleNumber = Integer.parseInt(guiSearchAutomobile.getjTxtIdCar().getText());
+            Vehicle vehicle = vehicleService.getVehicle(vehicleNumber);
+
+            if(vehicle instanceof Automobile automobile) {
+                model.addRow(new Object[]{
+                        automobile.getIdVehicle(),
+                        automobile.getBrand(),
+                        automobile.getPrice(),
+                        automobile.getModel(),
+                        automobile.isAbs(),
+                        automobile.getDoorCount(),
+                        automobile.getAirbagCount(),
+                        automobile.getBodywork().getDescription()
+                });
+            } else {
+                JOptionPane.showMessageDialog(guiSearchAutomobile, "Automobile not found.");
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(guiSearchAutomobile, "Invalid vehicle number format.");
+        }
+
     }
 
     private void deleteAutomobile() {
-        int selectedRow = guiDeleteAutomobile.getjTable1().getSelectedRow();
+        int selectedRow = guiDeleteAutomobile.getjTableDeleteAutomobile().getSelectedRow();
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(guiDeleteAutomobile, "Please select a row to delete.");
             return;
         }
-        int id = (int) guiDeleteAutomobile.getjTable1().getValueAt(selectedRow, 0);
+        int id = (int) guiDeleteAutomobile.getjTableDeleteAutomobile().getValueAt(selectedRow, 0);
         vehicleService.removeVehicle(id);
-        updateAutomobileTable2();
+        updateAutomobileTableDelete();
         JOptionPane.showMessageDialog(guiDeleteAutomobile, "Automobile deleted successfully.");
     }
 
@@ -180,7 +205,10 @@ public class AutomobileController implements ActionListener {
             deleteAutomobile();
         }
         if (guiDeleteAutomobile != null && e.getSource() == guiDeleteAutomobile.getBtnList()) {
-            updateAutomobileTable2();
+            updateAutomobileTableDelete();
+        }
+        if (guiSearchAutomobile != null && e.getSource() == guiSearchAutomobile.getBtnSearch()) {
+            updateAutomobileTableSearch();
         }
     }
 }

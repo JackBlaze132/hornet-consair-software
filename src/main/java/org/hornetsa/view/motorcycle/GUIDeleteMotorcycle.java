@@ -39,7 +39,7 @@ public class GUIDeleteMotorcycle extends javax.swing.JFrame {
         LblTitle = new javax.swing.JLabel();
         btnList = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableDeleteMotorcycle = new javax.swing.JTable();
         jBtnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -57,7 +57,7 @@ public class GUIDeleteMotorcycle extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableDeleteMotorcycle.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
                         {null, null, null, null, null, null, null},
                         {null, null, null, null, null, null, null},
@@ -83,7 +83,7 @@ public class GUIDeleteMotorcycle extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableDeleteMotorcycle);
 
         jBtnDelete.setText("Delete");
         jBtnDelete.setBackground(Color.RED);
@@ -146,7 +146,7 @@ public class GUIDeleteMotorcycle extends javax.swing.JFrame {
     private javax.swing.JButton btnList;
     private javax.swing.JButton jBtnDelete;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableDeleteMotorcycle;
     // End of variables declaration
 
     public JButton getBtnList() {
@@ -157,7 +157,7 @@ public class GUIDeleteMotorcycle extends javax.swing.JFrame {
         return jBtnDelete;
     }
 
-    public JTable getjTable1() {
-        return jTable1;
+    public JTable getjTableDeleteMotorcycle() {
+        return jTableDeleteMotorcycle;
     }
 }

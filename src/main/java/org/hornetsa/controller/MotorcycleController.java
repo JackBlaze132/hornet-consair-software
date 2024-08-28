@@ -1,10 +1,14 @@
 package org.hornetsa.controller;
 
+import org.hornetsa.model.Automobile;
 import org.hornetsa.model.Motorcycle;
+import org.hornetsa.model.Vehicle;
 import org.hornetsa.services.VehicleService;
+import org.hornetsa.view.automobile.GUISearchAutomobile;
 import org.hornetsa.view.motorcycle.GUIAddMotorcycle;
 import org.hornetsa.view.motorcycle.GUIDeleteMotorcycle;
 import org.hornetsa.view.motorcycle.GUIListMotorcycle;
+import org.hornetsa.view.motorcycle.GUISearchMotorcycle;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -18,6 +22,7 @@ public class MotorcycleController implements ActionListener{
     private GUIAddMotorcycle guiAddMotorcycle;
     private GUIListMotorcycle guiListMotorcycle;
     private GUIDeleteMotorcycle guiDeleteMotorcycle;
+    private GUISearchMotorcycle guiSearchMotorcycle;
 
     public MotorcycleController(GUIAddMotorcycle guiAddMotorcycle, VehicleService vehicleService) {
         this.guiAddMotorcycle = guiAddMotorcycle;
@@ -36,6 +41,12 @@ public class MotorcycleController implements ActionListener{
         this.guiDeleteMotorcycle = guiDeleteMotorcycle;
         this.guiDeleteMotorcycle.getBtnList().addActionListener(this);
         this.guiDeleteMotorcycle.getjBtnDelete().addActionListener(this);
+    }
+
+    public MotorcycleController(GUISearchMotorcycle guiSearchMotorcycle, VehicleService vehicleService) {
+        this.vehicleService = vehicleService;
+        this.guiSearchMotorcycle = guiSearchMotorcycle;
+        this.guiSearchMotorcycle.getBtnSearch().addActionListener(this);
     }
 
     private void addMotorcycle() {
@@ -64,7 +75,6 @@ public class MotorcycleController implements ActionListener{
     private void updateMotorcycleTable() {
         DefaultTableModel model = (DefaultTableModel) guiListMotorcycle.getTable().getModel();
         model.setRowCount(0);
-
         List<Motorcycle> motorcycles = vehicleService.getMotorcycles();
 
         for (Motorcycle motorcycle : motorcycles) {
@@ -81,10 +91,9 @@ public class MotorcycleController implements ActionListener{
         }
     }
 
-    private void updateMotorcycleTable2() {
-        DefaultTableModel model = (DefaultTableModel) guiDeleteMotorcycle.getjTable1().getModel();
+    private void updateMotorcycleDeleteTable() {
+        DefaultTableModel model = (DefaultTableModel) guiDeleteMotorcycle.getjTableDeleteMotorcycle().getModel();
         model.setRowCount(0);
-
         List<Motorcycle> motorcycles = vehicleService.getMotorcycles();
 
         for (Motorcycle motorcycle : motorcycles) {
@@ -113,15 +122,45 @@ public class MotorcycleController implements ActionListener{
     }
 
     private void DeleteMotorcycle() {
-        int selectedRow = guiDeleteMotorcycle.getjTable1().getSelectedRow();
+        int selectedRow = guiDeleteMotorcycle.getjTableDeleteMotorcycle().getSelectedRow();
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(guiDeleteMotorcycle, "Please select a row to delete.");
             return;
         }
-        int id = (int) guiDeleteMotorcycle.getjTable1().getValueAt(selectedRow, 0);
+        int id = (int) guiDeleteMotorcycle.getjTableDeleteMotorcycle().getValueAt(selectedRow, 0);
         vehicleService.removeVehicle(id);
-        updateMotorcycleTable2();
+        updateMotorcycleDeleteTable();
         JOptionPane.showMessageDialog(guiDeleteMotorcycle, "Motorbike deleted successfully.");
+    }
+
+    private void updateAutomobileTableSearch(){
+        DefaultTableModel model = (DefaultTableModel) guiSearchMotorcycle.getjTable1().getModel();
+        model.setRowCount(0);
+
+        if (guiSearchMotorcycle.getjTxtIdMotorcycle().getText().isEmpty()){
+            JOptionPane.showMessageDialog(guiSearchMotorcycle, "Please enter a valid number.");
+        }else try {
+            int vehicleNumber = Integer.parseInt(guiSearchMotorcycle.getjTxtIdMotorcycle().getText());
+            Vehicle vehicle = vehicleService.getVehicle(vehicleNumber);
+
+            if(vehicle instanceof Motorcycle motorcycle) {
+                Object[] rowData = {
+                        motorcycle.getIdVehicle(),
+                        motorcycle.getBrand(),
+                        motorcycle.getPrice(),
+                        motorcycle.getModel(),
+                        motorcycle.isAbs(),
+                        motorcycle.getForkType(),
+                        motorcycle.isHelmetIncluded()
+                };
+                model.addRow(rowData);
+            } else {
+                JOptionPane.showMessageDialog(guiSearchMotorcycle, "Automobile not found.");
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(guiSearchMotorcycle, "Invalid vehicle number format.");
+        }
+
     }
 
     @Override
@@ -138,7 +177,10 @@ public class MotorcycleController implements ActionListener{
             DeleteMotorcycle();
         }
         if (guiDeleteMotorcycle != null && e.getSource() == guiDeleteMotorcycle.getBtnList()) {
-            updateMotorcycleTable2();
+            updateMotorcycleDeleteTable();
+        }
+        if (guiSearchMotorcycle != null && e.getSource() == guiSearchMotorcycle.getBtnSearch()) {
+            updateAutomobileTableSearch();
         }
     }
 }

@@ -38,8 +38,9 @@ public class GUISearchMotorcycle extends javax.swing.JFrame {
         LblTitle = new javax.swing.JLabel();
         btnSearch = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTxtIdCar = new javax.swing.JTextField();
+        //jComboBox1 = new javax.swing.JComboBox<>();
+        jLabelIdMotorcycle = new javax.swing.JLabel();
+        jTxtIdMotorcycle = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -49,6 +50,9 @@ public class GUISearchMotorcycle extends javax.swing.JFrame {
         LblTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         LblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LblTitle.setText("Search Motorcycle");
+
+        jLabelIdMotorcycle.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        jLabelIdMotorcycle.setText("Id Motorcycle:");
 
         btnSearch.setText("Search");
         btnSearch.setBackground(Color.BLUE);
@@ -61,15 +65,9 @@ public class GUISearchMotorcycle extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(153, 204, 255));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        //jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jTxtIdCar.setEditable(false);
-        jTxtIdCar.setText("Id Moto");
-        jTxtIdCar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtIdCarActionPerformed(evt);
-            }
-        });
+        jTxtIdMotorcycle.setEditable(true);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -77,9 +75,9 @@ public class GUISearchMotorcycle extends javax.swing.JFrame {
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(16, 16, 16)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabelIdMotorcycle, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(48, 48, 48)
-                                .addComponent(jTxtIdCar, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTxtIdMotorcycle, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(11, Short.MAX_VALUE))
@@ -88,9 +86,9 @@ public class GUISearchMotorcycle extends javax.swing.JFrame {
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                                .addComponent(jLabelIdMotorcycle, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
                                 .addContainerGap())
-                        .addComponent(jTxtIdCar)
+                        .addComponent(jTxtIdMotorcycle)
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -165,7 +163,6 @@ public class GUISearchMotorcycle extends javax.swing.JFrame {
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Holasss");
     }
 
     private void jTxtIdCarActionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,11 +177,28 @@ public class GUISearchMotorcycle extends javax.swing.JFrame {
     // Variables declaration - do not modify
     private javax.swing.JLabel LblTitle;
     private javax.swing.JButton btnSearch;
-    private javax.swing.JComboBox<String> jComboBox1;
+    //private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTxtIdCar;
+    private javax.swing.JTextField jTxtIdMotorcycle;
+    private javax.swing.JLabel jLabelIdMotorcycle;
+
+    public JButton getBtnSearch() {
+        return btnSearch;
+    }
+
+    public JTable getjTable1() {
+        return jTable1;
+    }
+
+    public void setjTable1(JTable jTable1) {
+        this.jTable1 = jTable1;
+    }
+
+    public JTextField getjTxtIdMotorcycle() {
+        return jTxtIdMotorcycle;
+    }
     // End of variables declaration
 }

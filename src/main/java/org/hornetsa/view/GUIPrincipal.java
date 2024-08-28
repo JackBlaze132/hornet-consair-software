@@ -290,6 +290,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private void jMenuItemSearchAutomobileActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         GUISearchAutomobile guiSearchAutomobile = new GUISearchAutomobile();
+        AutomobileController automobileController = new AutomobileController(guiSearchAutomobile, vehicleService, bodyworks);
         guiSearchAutomobile.setVisible(true);
     }
 
@@ -307,6 +308,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private void jMenuItemSearchMotorcylceActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         GUISearchMotorcycle guiSearchMotorcycle = new GUISearchMotorcycle();
+        MotorcycleController motorcycleController = new MotorcycleController(guiSearchMotorcycle, vehicleService);
         guiSearchMotorcycle.setVisible(true);
     }
 
