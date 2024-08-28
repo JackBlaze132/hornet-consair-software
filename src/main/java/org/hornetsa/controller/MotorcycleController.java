@@ -133,7 +133,7 @@ public class MotorcycleController implements ActionListener{
         JOptionPane.showMessageDialog(guiDeleteMotorcycle, "Motorbike deleted successfully.");
     }
 
-    private void updateAutomobileTableSearch(){
+    private void updateMotorcycleTableSearch(){
         DefaultTableModel model = (DefaultTableModel) guiSearchMotorcycle.getjTable1().getModel();
         model.setRowCount(0);
 
@@ -155,7 +155,7 @@ public class MotorcycleController implements ActionListener{
                 };
                 model.addRow(rowData);
             } else {
-                JOptionPane.showMessageDialog(guiSearchMotorcycle, "Automobile not found.");
+                JOptionPane.showMessageDialog(guiSearchMotorcycle, "Motorcycle not found.");
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(guiSearchMotorcycle, "Invalid vehicle number format.");
@@ -180,7 +180,7 @@ public class MotorcycleController implements ActionListener{
             updateMotorcycleDeleteTable();
         }
         if (guiSearchMotorcycle != null && e.getSource() == guiSearchMotorcycle.getBtnSearch()) {
-            updateAutomobileTableSearch();
+            updateMotorcycleTableSearch();
         }
     }
 }
