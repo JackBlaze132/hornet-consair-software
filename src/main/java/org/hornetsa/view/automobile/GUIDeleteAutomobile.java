@@ -37,7 +37,7 @@ public class GUIDeleteAutomobile extends javax.swing.JFrame {
         LblTitle = new javax.swing.JLabel();
         btnList = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableCar = new javax.swing.JTable();
+        jTableDeleteAutomobile = new javax.swing.JTable();
         jBtnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -52,7 +52,7 @@ public class GUIDeleteAutomobile extends javax.swing.JFrame {
         btnList.setBackground(Color.BLACK);
         btnList.setForeground(Color.WHITE);
 
-        jTableCar.setModel(new javax.swing.table.DefaultTableModel(
+        jTableDeleteAutomobile.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
                         {null, null, null, null, null, null, null, null},
                         {null, null, null, null, null, null, null, null},
@@ -78,7 +78,7 @@ public class GUIDeleteAutomobile extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTableCar);
+        jScrollPane1.setViewportView(jTableDeleteAutomobile);
 
         jBtnDelete.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jBtnDelete.setText("Delete");
@@ -130,15 +130,15 @@ public class GUIDeleteAutomobile extends javax.swing.JFrame {
     private javax.swing.JButton btnList;
     private javax.swing.JButton jBtnDelete;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableCar;
+    private javax.swing.JTable jTableDeleteAutomobile;
     // End of variables declaration
 
-    public JTable getjTable1() {
-        return jTableCar;
+    public JTable getjTableDeleteAutomobile() {
+        return jTableDeleteAutomobile;
     }
 
     public void setjTable1(JTable jTable1) {
-        this.jTableCar = jTable1;
+        this.jTableDeleteAutomobile = jTable1;
     }
 
     public JButton getjBtnDelete() {
