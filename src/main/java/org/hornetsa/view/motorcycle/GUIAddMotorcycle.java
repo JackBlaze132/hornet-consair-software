@@ -4,7 +4,10 @@
  */
 package org.hornetsa.view.motorcycle;
 
+import org.hornetsa.Main;
+
 import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -18,6 +21,9 @@ public class GUIAddMotorcycle extends javax.swing.JFrame {
     public GUIAddMotorcycle() {
         initComponents();
         setLocationRelativeTo(this);
+        setTitle("Hornet Corsair | Add Motorcycle");
+        setSize(800, 500);
+        setIconImage(new ImageIcon(Main.class.getClassLoader().getResource("img/favicon.png")).getImage());
     }
 
     /**
@@ -48,16 +54,13 @@ public class GUIAddMotorcycle extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        LblTitle.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
+        LblTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         LblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LblTitle.setText("Add Motorcycle");
 
         btnAdd.setText("Add");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
-            }
-        });
+        btnAdd.setBackground(Color.BLACK);
+        btnAdd.setForeground(Color.WHITE);
 
         jTxtIdMotorcycle.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTxtIdMotorcycle.addActionListener(new java.awt.event.ActionListener() {
@@ -81,25 +84,25 @@ public class GUIAddMotorcycle extends javax.swing.JFrame {
 
         jBoxHelmet.setText("Helmet");
 
-        jLblIdMoto.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblIdMoto.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblIdMoto.setText("IdMoto");
 
-        jLblBrand.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblBrand.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblBrand.setText("Brand");
 
-        jLblPrice.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblPrice.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblPrice.setText("Price");
 
-        jLblModel.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblModel.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblModel.setText("Model");
 
-        jLblABS.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblABS.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblABS.setText("Does it have ABS?");
 
-        jLblForkType.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblForkType.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblForkType.setText("ForkType");
 
-        jLblBodyWork.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblBodyWork.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblBodyWork.setText("Does it include a helmet?");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -203,10 +206,6 @@ public class GUIAddMotorcycle extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Holasss");
-    }
 
     private void jTxtIdMotorcycleActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
@@ -234,4 +233,36 @@ public class GUIAddMotorcycle extends javax.swing.JFrame {
     private javax.swing.JTextField jTxtModel;
     private javax.swing.JTextField jTxtPrice;
     // End of variables declaration
+
+    public JButton getBtnAdd() {
+        return btnAdd;
+    }
+
+    public JTextField getjTxtIdMotorcycle() {
+        return jTxtIdMotorcycle;
+    }
+
+    public JTextField getjTxtBrand() {
+        return jTxtBrand;
+    }
+
+    public JTextField getjTxtPrice() {
+        return jTxtPrice;
+    }
+
+    public JTextField getjTxtModel() {
+        return jTxtModel;
+    }
+
+    public JCheckBox getjBoxABS() {
+        return jBoxABS;
+    }
+
+    public JTextField getjTxtForkType() {
+        return jTxtForkType;
+    }
+
+    public JCheckBox getjBoxHelmet() {
+        return jBoxHelmet;
+    }
 }

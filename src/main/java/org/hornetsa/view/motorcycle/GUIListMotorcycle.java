@@ -4,7 +4,10 @@
  */
 package org.hornetsa.view.motorcycle;
 
+import org.hornetsa.Main;
+
 import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -18,6 +21,9 @@ public class GUIListMotorcycle extends javax.swing.JFrame {
     public GUIListMotorcycle() {
         initComponents();
         setLocationRelativeTo(this);
+        setTitle("Hornet Corsair | List Motorcycle");
+        setSize(800, 500);
+        setIconImage(new ImageIcon(Main.class.getClassLoader().getResource("img/favicon.png")).getImage());
     }
 
     /**
@@ -36,16 +42,13 @@ public class GUIListMotorcycle extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        LblTitle.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
+        LblTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         LblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LblTitle.setText("List Motorcycle");
 
         btnList.setText("List");
-        btnList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListActionPerformed(evt);
-            }
-        });
+        btnList.setBackground(Color.BLACK);
+        btnList.setForeground(Color.WHITE);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
@@ -111,10 +114,6 @@ public class GUIListMotorcycle extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
-    private void btnListActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Holasss");
-    }
 
 
 
@@ -124,4 +123,12 @@ public class GUIListMotorcycle extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration
+
+    public JButton getBtnList() {
+        return btnList;
+    }
+
+    public JTable getTable() {
+        return jTable1;
+    }
 }

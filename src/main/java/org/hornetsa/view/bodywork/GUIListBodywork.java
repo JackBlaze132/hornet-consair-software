@@ -4,6 +4,8 @@
  */
 package org.hornetsa.view.bodywork;
 
+import org.hornetsa.Main;
+
 import javax.swing.*;
 
 /**
@@ -18,6 +20,9 @@ public class GUIListBodywork extends javax.swing.JFrame {
     public GUIListBodywork() {
         initComponents();
         setLocationRelativeTo(this);
+        setTitle("Hornet Corsair | List Bodywork");
+        setSize(800, 500);
+        setIconImage(new ImageIcon(Main.class.getClassLoader().getResource("img/favicon.png")).getImage());
     }
 
     /**
@@ -36,16 +41,12 @@ public class GUIListBodywork extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        LblTitle.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
+        LblTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         LblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LblTitle.setText("List Bodywork");
 
         btnList.setText("List");
-        btnList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListActionPerformed(evt);
-            }
-        });
+
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
@@ -108,11 +109,6 @@ public class GUIListBodywork extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
-    private void btnListActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Holasss");
-    }
-
     /**
      * @param args the command line arguments
      */
@@ -124,4 +120,18 @@ public class GUIListBodywork extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration
+
+
+    public JTable getjTable1() {
+        return jTable1;
+    }
+
+    public void setjTable1(JTable jTable1) {
+        this.jTable1 = jTable1;
+    }
+
+    public JButton getBtnList() {
+        return btnList;
+    }
+
 }

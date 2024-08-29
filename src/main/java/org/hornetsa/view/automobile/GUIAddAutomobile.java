@@ -4,11 +4,22 @@
  */
 package org.hornetsa.view.automobile;
 
+import org.hornetsa.Main;
+import org.hornetsa.model.Bodywork;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+
 /**
  *
  * @author jaime
  */
 public class GUIAddAutomobile extends javax.swing.JFrame {
+
+    private ArrayList<Bodywork> bodyworks = new ArrayList<>();
+
+
 
     /**
      * Creates new form GUIAddAuto
@@ -16,6 +27,9 @@ public class GUIAddAutomobile extends javax.swing.JFrame {
     public GUIAddAutomobile() {
         initComponents();
         setLocationRelativeTo(this);
+        setTitle("Hornet Corsair | Add Automobile");
+        setSize(800, 500);
+        setIconImage(new ImageIcon(Main.class.getClassLoader().getResource("img/favicon.png")).getImage());
     }
 
     /**
@@ -44,6 +58,7 @@ public class GUIAddAutomobile extends javax.swing.JFrame {
         jLblBodyWork = new javax.swing.JLabel();
         jLblAribag = new javax.swing.JLabel();
         LblTitle = new javax.swing.JLabel();
+        jBtnAdd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -67,41 +82,55 @@ public class GUIAddAutomobile extends javax.swing.JFrame {
 
         jListBodyWork.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLblIdCar1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblIdCar1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblIdCar1.setText("IdCar");
 
-        jLblCar.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblCar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblCar.setText("Brand");
 
-        jLblPrice.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblPrice.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblPrice.setText("Price");
 
-        jLblModel.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblModel.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblModel.setText("Model");
 
-        jLblAB.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblAB.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblAB.setText("Does it have ABS?");
 
-        jLblDoorCount.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblDoorCount.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblDoorCount.setText("Number of doors");
 
-        jLblBodyWork.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblBodyWork.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblBodyWork.setText("Bodywork");
 
-        jLblAribag.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblAribag.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblAribag.setText("Number of airbags");
 
-        LblTitle.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
+        LblTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         LblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LblTitle.setText("Add Automobile");
+
+        jBtnAdd.setText("Add");
+        jBtnAdd.setBackground(Color.BLACK);
+        jBtnAdd.setForeground(Color.WHITE);
+        jBtnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnAddActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addGap(225, 225, 225)
-                                .addComponent(LblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(225, 225, 225)
+                                                .addComponent(LblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(319, 319, 319)
+                                                .addComponent(jBtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addContainerGap(229, Short.MAX_VALUE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
@@ -146,7 +175,9 @@ public class GUIAddAutomobile extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(LblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(453, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 395, Short.MAX_VALUE)
+                                .addComponent(jBtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
                                         .addGap(0, 96, Short.MAX_VALUE)
@@ -219,6 +250,7 @@ public class GUIAddAutomobile extends javax.swing.JFrame {
     // Variables declaration - do not modify
     private javax.swing.JLabel LblTitle;
     private javax.swing.JCheckBox jBoxABS;
+    private javax.swing.JButton jBtnAdd;
     private javax.swing.JLabel jLblAB;
     private javax.swing.JLabel jLblAribag;
     private javax.swing.JLabel jLblBodyWork;
@@ -235,4 +267,41 @@ public class GUIAddAutomobile extends javax.swing.JFrame {
     private javax.swing.JTextField jTxtModel;
     private javax.swing.JTextField jTxtPrice;
     // End of variables declaration
+
+    public JTextField getjTxtIdCar() {
+        return jTxtIdCar;
+    }
+
+    public JTextField getjTxtBrand() {
+        return jTxtBrand;
+    }
+
+    public JTextField getjTxtPrice() {
+        return jTxtPrice;
+    }
+
+    public JTextField getjTxtModel() {
+        return jTxtModel;
+    }
+
+    public JCheckBox getjBoxABS() {
+        return jBoxABS;
+    }
+
+    public JSpinner getjSpinDoorCount() {
+        return jSpinDoorCount;
+    }
+
+    public JComboBox<String> getjListBodyWork() {
+        return jListBodyWork;
+    }
+
+    public JSpinner getjSpinAirbagCount() {
+        return jSpinAirbagCount;
+    }
+
+    public JButton getjBtnAdd() {
+        return jBtnAdd;
+    }
+
 }

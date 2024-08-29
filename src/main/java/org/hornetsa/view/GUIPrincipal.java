@@ -4,24 +4,30 @@
  */
 package org.hornetsa.view;
 
+import org.hornetsa.Main;
+import org.hornetsa.controller.AutomobileController;
+import org.hornetsa.controller.BodyworkController;
+import org.hornetsa.controller.MotorcycleController;
+import org.hornetsa.model.Bodywork;
+import org.hornetsa.services.VehicleService;
 import org.hornetsa.view.automobile.GUIAddAutomobile;
 import org.hornetsa.view.automobile.GUIDeleteAutomobile;
 import org.hornetsa.view.automobile.GUIListAutomobile;
 import org.hornetsa.view.automobile.GUISearchAutomobile;
 import org.hornetsa.view.bodywork.GUIAddBodywork;
 import org.hornetsa.view.bodywork.GUIListBodywork;
-import org.hornetsa.view.motorcycle.GUIAddMotorcycle;
-import org.hornetsa.view.motorcycle.GUIDeleteMotorcycle;
-import org.hornetsa.view.motorcycle.GUIListMotorcycle;
-import org.hornetsa.view.motorcycle.GUISearchMotorcycle;
+import org.hornetsa.view.motorcycle.*;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 /**
  *
  * @author ASUS
  */
 public class GUIPrincipal extends javax.swing.JFrame {
+    private ArrayList<Bodywork> bodyworks = new ArrayList<>();
+    private VehicleService vehicleService = new VehicleService();
 
     private ImageIcon icon;
 
@@ -31,8 +37,9 @@ public class GUIPrincipal extends javax.swing.JFrame {
     public GUIPrincipal() {
         icon = new ImageIcon(getClass().getClassLoader().getResource("img/favicon.png"));
         initComponents();
-        setLocationRelativeTo(this);
+        setTitle("Hornet Corsair");
         setSize(800, 500);
+        setIconImage(new ImageIcon(Main.class.getClassLoader().getResource("img/favicon.png")).getImage());
 
     }
 
@@ -248,35 +255,46 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemListAutomobileActionPerformed(java.awt.event.ActionEvent evt) {
         GUIListAutomobile guiListAutomobile = new GUIListAutomobile();
+        AutomobileController automobileController = new AutomobileController(guiListAutomobile, vehicleService, bodyworks);
         guiListAutomobile.setVisible(true);
     }
 
     private void jMenuItemAddAutomobileActionPerformed(java.awt.event.ActionEvent evt) {
         GUIAddAutomobile guiAddAutomobile = new GUIAddAutomobile();
+        guiAddAutomobile.getjListBodyWork().removeAllItems();
+        guiAddAutomobile.getjListBodyWork().addItem("Select");
+        for (Bodywork bodywork : bodyworks) {
+            guiAddAutomobile.getjListBodyWork().addItem(bodywork.getDescription());
+        }
+        AutomobileController automobileController = new AutomobileController(guiAddAutomobile, vehicleService, bodyworks);
         guiAddAutomobile.setVisible(true);
     }
 
     private void jMenuItemAddMotorcylceActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         GUIAddMotorcycle guiAddMotorcycle = new GUIAddMotorcycle();
+        MotorcycleController motorcycleController = new MotorcycleController(guiAddMotorcycle, vehicleService);
         guiAddMotorcycle.setVisible(true);
     }
 
     private void jMenuItemDeleteMotorcylceActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         GUIDeleteMotorcycle guiDeleteMotorcycle = new GUIDeleteMotorcycle();
+        MotorcycleController motorcycleController = new MotorcycleController(guiDeleteMotorcycle, vehicleService);
         guiDeleteMotorcycle.setVisible(true);
     }
 
     private void jMenuItemSearchAutomobileActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         GUISearchAutomobile guiSearchAutomobile = new GUISearchAutomobile();
+        AutomobileController automobileController = new AutomobileController(guiSearchAutomobile, vehicleService, bodyworks);
         guiSearchAutomobile.setVisible(true);
     }
 
     private void jMenuItemDeleteAutomobileActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         GUIDeleteAutomobile guiDeleteAutomobile = new GUIDeleteAutomobile();
+        AutomobileController automobileController = new AutomobileController(guiDeleteAutomobile, vehicleService, bodyworks);
         guiDeleteAutomobile.setVisible(true);
     }
 
@@ -287,12 +305,14 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private void jMenuItemSearchMotorcylceActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         GUISearchMotorcycle guiSearchMotorcycle = new GUISearchMotorcycle();
+        MotorcycleController motorcycleController = new MotorcycleController(guiSearchMotorcycle, vehicleService);
         guiSearchMotorcycle.setVisible(true);
     }
 
     private void jMenuItemListMotorcylceActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         GUIListMotorcycle guiListMotorcycle = new GUIListMotorcycle();
+        MotorcycleController motorcycleController = new MotorcycleController(guiListMotorcycle, vehicleService);
         guiListMotorcycle.setVisible(true);
     }
 
@@ -301,19 +321,22 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }
 
     private void jMenuItemAddBodyworkActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
         GUIAddBodywork guiAddBodywork = new GUIAddBodywork();
+        BodyworkController bodyworkController = new BodyworkController(guiAddBodywork, bodyworks);
         guiAddBodywork.setVisible(true);
     }
 
     private void jMenuItemListBodyworkActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
         GUIListBodywork guiListBodywork = new GUIListBodywork();
+        BodyworkController bodyworkController = new BodyworkController(guiListBodywork, bodyworks);
         guiListBodywork.setVisible(true);
     }
 
     private void jMenuItemDiscountMotorcycleActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        GUICalculateDiscountMotorcycle guiCalculateDiscountMotorcycle = new GUICalculateDiscountMotorcycle();
+        MotorcycleController motorcycleController = new MotorcycleController(guiCalculateDiscountMotorcycle, vehicleService);
+        guiCalculateDiscountMotorcycle.setVisible(true);
     }
 
 

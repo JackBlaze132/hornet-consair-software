@@ -4,7 +4,10 @@
  */
 package org.hornetsa.view.motorcycle;
 
+import org.hornetsa.Main;
+
 import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -18,6 +21,10 @@ public class GUIDeleteMotorcycle extends javax.swing.JFrame {
     public GUIDeleteMotorcycle() {
         initComponents();
         setLocationRelativeTo(this);
+        setTitle("Hornet Corsair | Delete Motorcycle");
+        setSize(800, 500);
+        setIconImage(new ImageIcon(Main.class.getClassLoader().getResource("img/favicon.png")).getImage());
+
     }
 
     /**
@@ -32,23 +39,25 @@ public class GUIDeleteMotorcycle extends javax.swing.JFrame {
         LblTitle = new javax.swing.JLabel();
         btnList = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableDeleteMotorcycle = new javax.swing.JTable();
         jBtnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        LblTitle.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
+        LblTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         LblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LblTitle.setText("Delete Motorcycle");
 
         btnList.setText("List");
+        btnList.setBackground(Color.BLACK);
+        btnList.setForeground(Color.WHITE);
         btnList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnListActionPerformed(evt);
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableDeleteMotorcycle.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
                         {null, null, null, null, null, null, null},
                         {null, null, null, null, null, null, null},
@@ -74,9 +83,11 @@ public class GUIDeleteMotorcycle extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableDeleteMotorcycle);
 
         jBtnDelete.setText("Delete");
+        jBtnDelete.setBackground(Color.RED);
+        jBtnDelete.setForeground(Color.WHITE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -120,7 +131,6 @@ public class GUIDeleteMotorcycle extends javax.swing.JFrame {
 
     private void btnListActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Holasss");
     }
 
     private void jBtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,6 +146,18 @@ public class GUIDeleteMotorcycle extends javax.swing.JFrame {
     private javax.swing.JButton btnList;
     private javax.swing.JButton jBtnDelete;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableDeleteMotorcycle;
     // End of variables declaration
+
+    public JButton getBtnList() {
+        return btnList;
+    }
+
+    public JButton getjBtnDelete() {
+        return jBtnDelete;
+    }
+
+    public JTable getjTableDeleteMotorcycle() {
+        return jTableDeleteMotorcycle;
+    }
 }

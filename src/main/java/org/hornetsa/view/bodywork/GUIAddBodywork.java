@@ -4,6 +4,8 @@
  */
 package org.hornetsa.view.bodywork;
 
+import org.hornetsa.Main;
+
 import javax.swing.*;
 
 /**
@@ -11,6 +13,7 @@ import javax.swing.*;
  * @author jaime
  */
 public class GUIAddBodywork extends javax.swing.JFrame {
+    ;
 
     /**
      * Creates new form GUIAddBodywork
@@ -18,7 +21,11 @@ public class GUIAddBodywork extends javax.swing.JFrame {
     public GUIAddBodywork() {
         initComponents();
         setLocationRelativeTo(this);
+        setTitle("Hornet Corsair | Add Bodywork");
+        setSize(800, 500);
+        setIconImage(new ImageIcon(Main.class.getClassLoader().getResource("img/favicon.png")).getImage());
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,26 +38,21 @@ public class GUIAddBodywork extends javax.swing.JFrame {
 
         LblTitle = new javax.swing.JLabel();
         btnAdd = new javax.swing.JButton();
-        jTxtIdBodrywork = new javax.swing.JTextField();
+        jTxtIdBodywork = new javax.swing.JTextField();
         jTxtDescription = new javax.swing.JTextField();
         jLblIdBodywork = new javax.swing.JLabel();
         jLblDescription = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        LblTitle.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
+        LblTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         LblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LblTitle.setText("Add Bodywork");
 
         btnAdd.setText("Add");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
-            }
-        });
 
-        jTxtIdBodrywork.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTxtIdBodrywork.addActionListener(new java.awt.event.ActionListener() {
+        jTxtIdBodywork.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTxtIdBodywork.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTxtIdBodryworkActionPerformed(evt);
             }
@@ -59,10 +61,10 @@ public class GUIAddBodywork extends javax.swing.JFrame {
         jTxtDescription.setToolTipText("");
         jTxtDescription.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
 
-        jLblIdBodywork.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblIdBodywork.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblIdBodywork.setText("IdBodywork");
 
-        jLblDescription.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLblDescription.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLblDescription.setText("Description");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -85,7 +87,7 @@ public class GUIAddBodywork extends javax.swing.JFrame {
                                                 .addGroup(layout.createSequentialGroup()
                                                         .addComponent(jLblIdBodywork, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addGap(107, 107, 107)
-                                                        .addComponent(jTxtIdBodrywork, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(jTxtIdBodywork, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGroup(layout.createSequentialGroup()
                                                         .addComponent(jLblDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addGap(107, 107, 107)
@@ -107,7 +109,7 @@ public class GUIAddBodywork extends javax.swing.JFrame {
                                                 .addGroup(layout.createSequentialGroup()
                                                         .addGap(10, 10, 10)
                                                         .addComponent(jLblIdBodywork, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addComponent(jTxtIdBodrywork, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(jTxtIdBodywork, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(7, 7, 7)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(layout.createSequentialGroup()
@@ -119,11 +121,6 @@ public class GUIAddBodywork extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>
-
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Holasss");
-    }
 
     private void jTxtIdBodryworkActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
@@ -138,12 +135,26 @@ public class GUIAddBodywork extends javax.swing.JFrame {
      */
 
 
+
     // Variables declaration - do not modify
     private javax.swing.JLabel LblTitle;
     private javax.swing.JButton btnAdd;
     private javax.swing.JLabel jLblDescription;
     private javax.swing.JLabel jLblIdBodywork;
     private javax.swing.JTextField jTxtDescription;
-    private javax.swing.JTextField jTxtIdBodrywork;
+    private javax.swing.JTextField jTxtIdBodywork;
     // End of variables declaration
+
+
+    public JTextField getIdBodyworkField() {
+        return jTxtIdBodywork;
+    }
+
+    public JTextField getDescriptionField() {
+        return jTxtDescription;
+    }
+
+    public JButton getBtnAdd() {
+        return btnAdd;
+    }
 }
