@@ -23,6 +23,8 @@ public class MotorcycleController implements ActionListener{
     private GUISearchMotorcycle guiSearchMotorcycle;
     private GUICalculateDiscountMotorcycle guiCalculateDiscountMotorcycle;
 
+    private GUICalculateInsuranceMotorcycle guiCalculateIsuranceMotorcycle;
+
     public MotorcycleController(GUIAddMotorcycle guiAddMotorcycle, VehicleService vehicleService) {
         this.guiAddMotorcycle = guiAddMotorcycle;
         this.vehicleService = vehicleService;
@@ -53,6 +55,13 @@ public class MotorcycleController implements ActionListener{
         this.guiCalculateDiscountMotorcycle = guiCalculateDiscountMotorcycle;
         this.guiCalculateDiscountMotorcycle.getBtnSearch().addActionListener(this);
         this.guiCalculateDiscountMotorcycle.getBtnCalculateDiscount().addActionListener(this);
+    }
+
+    public MotorcycleController(GUICalculateInsuranceMotorcycle guiCalculateInsuranceMotorcycle, VehicleService vehicleService) {
+        this.vehicleService = vehicleService;
+        this.guiCalculateIsuranceMotorcycle = guiCalculateInsuranceMotorcycle;
+        this.guiCalculateIsuranceMotorcycle.getBtnSearch().addActionListener(this);
+        this.guiCalculateIsuranceMotorcycle.getBtnCalculateInsurance().addActionListener(this);
     }
 
     private void addMotorcycle() {
@@ -172,9 +181,38 @@ public class MotorcycleController implements ActionListener{
         model.setRowCount(0);
 
         if (guiCalculateDiscountMotorcycle.getTxtIdMotorcycle().getText().isEmpty()){
-            JOptionPane.showMessageDialog(guiCalculateDiscountMotorcycle, "Please enter a valid number.");
+            JOptionPane.showMessageDialog(guiCalculateDiscountMotorcycle, "Please enter a valid number.","Error", JOptionPane.ERROR_MESSAGE);
         }else try {
             int vehicleNumber = Integer.parseInt(guiCalculateDiscountMotorcycle.getTxtIdMotorcycle().getText());
+            Vehicle vehicle = vehicleService.getVehicle(vehicleNumber);
+
+            if(vehicle instanceof Motorcycle motorcycle) {
+                Object[] rowData = {
+                        motorcycle.getIdVehicle(),
+                        motorcycle.getBrand(),
+                        motorcycle.getPrice(),
+                        motorcycle.getModel(),
+                        motorcycle.isAbs(),
+                        motorcycle.getForkType(),
+                        motorcycle.isHelmetIncluded()
+                };
+                model.addRow(rowData);
+            } else {
+                JOptionPane.showMessageDialog(guiSearchMotorcycle, "Motorcycle not found.");
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(guiSearchMotorcycle, "Invalid vehicle number format.");
+        }
+    }
+
+    private void updateMotorcycleTableCalculateInsurance(){
+        DefaultTableModel model = (DefaultTableModel) guiCalculateIsuranceMotorcycle.getjTableCalculateInsurance().getModel();
+        model.setRowCount(0);
+
+        if (guiCalculateIsuranceMotorcycle.getTxtIdMotorcycle().getText().isEmpty()){
+            JOptionPane.showMessageDialog(guiCalculateIsuranceMotorcycle, "Please enter a valid number.","Error", JOptionPane.ERROR_MESSAGE);
+        }else try {
+            int vehicleNumber = Integer.parseInt(guiCalculateIsuranceMotorcycle.getTxtIdMotorcycle().getText());
             Vehicle vehicle = vehicleService.getVehicle(vehicleNumber);
 
             if(vehicle instanceof Motorcycle motorcycle) {
@@ -199,7 +237,7 @@ public class MotorcycleController implements ActionListener{
     public void getMotorcycleDiscount() {
         int selectedRow = guiCalculateDiscountMotorcycle.getTableCalculateDiscount().getSelectedRow();
         if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(guiCalculateDiscountMotorcycle, "Please select a row to delete.");
+            JOptionPane.showMessageDialog(guiCalculateDiscountMotorcycle, "Please select a row to calculate discount.");
             return;
         }
         int id = (int) guiCalculateDiscountMotorcycle.getTableCalculateDiscount().getValueAt(selectedRow, 0);
@@ -210,9 +248,28 @@ public class MotorcycleController implements ActionListener{
                     .append("Price: ").append(formatter.format(motorcycle.getPrice())).append("\n")
                     .append("Brand: ").append(motorcycle.getBrand()).append("\n")
                     .append("Includes Helmet: ").append(motorcycle.isHelmetIncluded()).append("\n")
-                    .append("Discount: ").append(formatter.format(motorcycle.calculateDiscount())).append("\n\n");
+                    .append("Discount: ").append(formatter.format(motorcycle.calculateDiscount())).append("\n\n")
+                    .append("Total: ").append(formatter.format(motorcycle.getPrice() - motorcycle.calculateDiscount()));
         }
         JOptionPane.showMessageDialog(null, message.toString(), "Motorcycle Discount", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public void getMotorcycleInsurance(){
+        int selectedRow = guiCalculateIsuranceMotorcycle.getjTableCalculateInsurance().getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(guiCalculateIsuranceMotorcycle, "Please select a row to calculate insurance.");
+            return;
+        }
+        int id = (int) guiCalculateIsuranceMotorcycle.getjTableCalculateInsurance().getValueAt(selectedRow, 0);
+        Vehicle vehicle = vehicleService.getVehicle(id);
+        StringBuilder message = new StringBuilder();
+        if (vehicle instanceof Motorcycle motorcycle) {
+            message.append("ID: ").append(motorcycle.getIdVehicle()).append("\n")
+                    .append("Price: ").append(formatter.format(motorcycle.getPrice())).append("\n")
+                    .append("Brand: ").append(motorcycle.getBrand()).append("\n")
+                    .append("Insurance: ").append(formatter.format(motorcycle.calculateInsurance()));
+        }
+        JOptionPane.showMessageDialog(null, message.toString(), "Motorcycle Insurance", JOptionPane.INFORMATION_MESSAGE);
     }
 
     @Override
@@ -237,8 +294,14 @@ public class MotorcycleController implements ActionListener{
         if (guiCalculateDiscountMotorcycle != null && e.getSource() == guiCalculateDiscountMotorcycle.getBtnSearch()) {
             updateMotorcycleTableCalculateDiscount();
         }
+        if (guiCalculateIsuranceMotorcycle != null && e.getSource() == guiCalculateIsuranceMotorcycle.getBtnSearch()) {
+            updateMotorcycleTableCalculateInsurance();
+        }
         if (guiCalculateDiscountMotorcycle != null && e.getSource() == guiCalculateDiscountMotorcycle.getBtnCalculateDiscount()) {
             getMotorcycleDiscount();
+        }
+        if (guiCalculateIsuranceMotorcycle != null && e.getSource() == guiCalculateIsuranceMotorcycle.getBtnCalculateInsurance()) {
+            getMotorcycleInsurance();
         }
     }
 }

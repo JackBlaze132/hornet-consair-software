@@ -318,6 +318,9 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemInsuranceMotorcylceActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        GUICalculateInsuranceMotorcycle guiCalculateInsuranceMotorcycle = new GUICalculateInsuranceMotorcycle();
+        MotorcycleController motorcycleController = new MotorcycleController(guiCalculateInsuranceMotorcycle, vehicleService);
+        guiCalculateInsuranceMotorcycle.setVisible(true);
     }
 
     private void jMenuItemAddBodyworkActionPerformed(java.awt.event.ActionEvent evt) {
