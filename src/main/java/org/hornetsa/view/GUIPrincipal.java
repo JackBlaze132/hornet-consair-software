@@ -10,10 +10,7 @@ import org.hornetsa.controller.BodyworkController;
 import org.hornetsa.controller.MotorcycleController;
 import org.hornetsa.model.Bodywork;
 import org.hornetsa.services.VehicleService;
-import org.hornetsa.view.automobile.GUIAddAutomobile;
-import org.hornetsa.view.automobile.GUIDeleteAutomobile;
-import org.hornetsa.view.automobile.GUIListAutomobile;
-import org.hornetsa.view.automobile.GUISearchAutomobile;
+import org.hornetsa.view.automobile.*;
 import org.hornetsa.view.bodywork.GUIAddBodywork;
 import org.hornetsa.view.bodywork.GUIListBodywork;
 import org.hornetsa.view.motorcycle.*;
@@ -80,6 +77,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setVerticalAlignment(SwingConstants.CENTER);
         jLabel1.setText("HORNET CORSAIR");
 
         mnuArchivo.setText("Archivo");
@@ -250,7 +248,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }
 
     private void mnuAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {
-        JOptionPane.showMessageDialog(this, "Desarrollado por:\n Eder Martínez\n Jaime Rodriguez\n Jhon Cardenas \n\nHornet©2024");
+        JOptionPane.showMessageDialog(this, "Desarrollado por:\n\n Eder Martínez\n Jaime Rodriguez\n Jhon Cardenas \n\nHornet©2024");
     }
 
     private void jMenuItemListAutomobileActionPerformed(java.awt.event.ActionEvent evt) {
@@ -300,6 +298,9 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemInsuranceAutomobileActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        GUICalculateInsuranceAutomobile guiCalculateInsuranceAutomobile = new GUICalculateInsuranceAutomobile();
+        AutomobileController automobileController = new AutomobileController(guiCalculateInsuranceAutomobile, vehicleService, bodyworks);
+        guiCalculateInsuranceAutomobile.setVisible(true);
     }
 
     private void jMenuItemSearchMotorcylceActionPerformed(java.awt.event.ActionEvent evt) {

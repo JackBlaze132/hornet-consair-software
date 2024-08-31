@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package org.hornetsa.view.motorcycle;
+package org.hornetsa.view.automobile;
 
 import javax.swing.*;
 
@@ -10,12 +10,12 @@ import javax.swing.*;
  *
  * @author jaime
  */
-public class GUICalculateInsuranceMotorcycle extends javax.swing.JFrame {
+public class GUICalculateInsuranceAutomobile extends javax.swing.JFrame {
 
     /**
      * Creates new form GUISearchMotorcycle
      */
-    public GUICalculateInsuranceMotorcycle() {
+    public GUICalculateInsuranceAutomobile() {
         initComponents();
         setLocationRelativeTo(this);
     }
@@ -34,7 +34,7 @@ public class GUICalculateInsuranceMotorcycle extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         //jComboBox1 = new javax.swing.JComboBox<>();
         jLabelIdMotorcycle = new javax.swing.JLabel();
-        jTxtIdMotorcycle = new javax.swing.JTextField();
+        jTxtIdAutomobile = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableCalculateInsurance = new javax.swing.JTable();
@@ -44,10 +44,10 @@ public class GUICalculateInsuranceMotorcycle extends javax.swing.JFrame {
 
         LblTitle.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
         LblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LblTitle.setText("Calculate Insurance Motorcycle");
+        LblTitle.setText("Calculate Insurance Automobile");
 
         jLabelIdMotorcycle.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        jLabelIdMotorcycle.setText("Id Motorcycle:");
+        jLabelIdMotorcycle.setText("Id automobile:");
 
         btnSearch.setText("Search");
 
@@ -55,7 +55,7 @@ public class GUICalculateInsuranceMotorcycle extends javax.swing.JFrame {
 
         //jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jTxtIdMotorcycle.setEditable(true);
+        jTxtIdAutomobile.setEditable(true);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -65,7 +65,7 @@ public class GUICalculateInsuranceMotorcycle extends javax.swing.JFrame {
                                 .addGap(16, 16, 16)
                                 .addComponent(jLabelIdMotorcycle, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(48, 48, 48)
-                                .addComponent(jTxtIdMotorcycle, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTxtIdAutomobile, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(11, Short.MAX_VALUE))
@@ -76,26 +76,26 @@ public class GUICalculateInsuranceMotorcycle extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addComponent(jLabelIdMotorcycle, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
                                 .addContainerGap())
-                        .addComponent(jTxtIdMotorcycle)
+                        .addComponent(jTxtIdAutomobile)
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jTableCalculateInsurance.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null}
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null}
                 },
                 new String [] {
-                        "Id", "Brand", "Price", "Model", "Abs", "ForkType", "HelmetIncluded"
+                        "Id", "Brand", "Model", "Price", "Abs", "BodyWork", "DoorCount", "AirbagCount"
                 }
         ) {
             Class[] types = new Class [] {
-                    java.lang.Integer.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class, java.lang.Boolean.class, java.lang.String.class, java.lang.Boolean.class
+                    java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                    false, true, true, true, true, true, true
+                    false, true, true, true, true, true, true, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -177,7 +177,7 @@ public class GUICalculateInsuranceMotorcycle extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableCalculateInsurance;
-    private javax.swing.JTextField jTxtIdMotorcycle;
+    private javax.swing.JTextField jTxtIdAutomobile;
     private javax.swing.JLabel jLabelIdMotorcycle;
     // End of variables declaration
 
@@ -189,8 +189,8 @@ public class GUICalculateInsuranceMotorcycle extends javax.swing.JFrame {
         return jBtnCalculateInsurance;
     }
 
-    public JTextField getTxtIdMotorcycle() {
-        return jTxtIdMotorcycle;
+    public JTextField getTxtIdAutomobile() {
+        return jTxtIdAutomobile;
     }
 
     public JTable getjTableCalculateInsurance() {
