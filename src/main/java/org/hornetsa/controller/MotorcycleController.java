@@ -100,7 +100,7 @@ public class MotorcycleController implements ActionListener{
     private void updateMotorcycleTable() {
         DefaultTableModel model = (DefaultTableModel) guiListMotorcycle.getTable().getModel();
         model.setRowCount(0);
-        List<Motorcycle> motorcycles = vehicleService.getMotorcycles();
+        List<Motorcycle> motorcycles = vehicleService.getMotorcyclesList();
 
         for (Motorcycle motorcycle : motorcycles) {
             Object[] rowData = {
@@ -119,7 +119,7 @@ public class MotorcycleController implements ActionListener{
     private void updateMotorcycleDeleteTable() {
         DefaultTableModel model = (DefaultTableModel) guiDeleteMotorcycle.getjTableDeleteMotorcycle().getModel();
         model.setRowCount(0);
-        List<Motorcycle> motorcycles = vehicleService.getMotorcycles();
+        List<Motorcycle> motorcycles = vehicleService.getMotorcyclesList();
 
         for (Motorcycle motorcycle : motorcycles) {
             Object[] rowData = {
@@ -155,7 +155,7 @@ public class MotorcycleController implements ActionListener{
             JOptionPane.showMessageDialog(guiSearchMotorcycle, "Please enter a valid number.");
         }else try {
             int vehicleNumber = Integer.parseInt(guiSearchMotorcycle.getjTxtIdMotorcycle().getText());
-            Vehicle vehicle = vehicleService.getVehicle(vehicleNumber);
+            Vehicle vehicle = vehicleService.getMotorcycle(vehicleNumber);
 
             if(vehicle instanceof Motorcycle motorcycle) {
                 Object[] rowData = {
@@ -184,7 +184,7 @@ public class MotorcycleController implements ActionListener{
             JOptionPane.showMessageDialog(guiCalculateDiscountMotorcycle, "Please enter a valid number.","Error", JOptionPane.ERROR_MESSAGE);
         }else try {
             int vehicleNumber = Integer.parseInt(guiCalculateDiscountMotorcycle.getTxtIdMotorcycle().getText());
-            Vehicle vehicle = vehicleService.getVehicle(vehicleNumber);
+            Vehicle vehicle = vehicleService.getMotorcycle(vehicleNumber);
 
             if(vehicle instanceof Motorcycle motorcycle) {
                 Object[] rowData = {
@@ -213,7 +213,7 @@ public class MotorcycleController implements ActionListener{
             JOptionPane.showMessageDialog(guiCalculateIsuranceMotorcycle, "Please enter a valid number.","Error", JOptionPane.ERROR_MESSAGE);
         }else try {
             int vehicleNumber = Integer.parseInt(guiCalculateIsuranceMotorcycle.getTxtIdMotorcycle().getText());
-            Vehicle vehicle = vehicleService.getVehicle(vehicleNumber);
+            Vehicle vehicle = vehicleService.getMotorcycle(vehicleNumber);
 
             if(vehicle instanceof Motorcycle motorcycle) {
                 Object[] rowData = {
@@ -241,7 +241,7 @@ public class MotorcycleController implements ActionListener{
             return;
         }
         int id = (int) guiCalculateDiscountMotorcycle.getTableCalculateDiscount().getValueAt(selectedRow, 0);
-        Vehicle vehicle = vehicleService.getVehicle(id);
+        Vehicle vehicle = vehicleService.getMotorcycle(id);
         StringBuilder message = new StringBuilder();
         if (vehicle instanceof Motorcycle motorcycle) {
             message.append("ID: ").append(motorcycle.getIdVehicle()).append("\n")
@@ -261,7 +261,7 @@ public class MotorcycleController implements ActionListener{
             return;
         }
         int id = (int) guiCalculateIsuranceMotorcycle.getjTableCalculateInsurance().getValueAt(selectedRow, 0);
-        Vehicle vehicle = vehicleService.getVehicle(id);
+        Vehicle vehicle = vehicleService.getMotorcycle(id);
         StringBuilder message = new StringBuilder();
         if (vehicle instanceof Motorcycle motorcycle) {
             message.append("ID: ").append(motorcycle.getIdVehicle()).append("\n")

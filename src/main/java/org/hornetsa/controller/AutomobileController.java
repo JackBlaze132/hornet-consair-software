@@ -167,7 +167,7 @@ public class AutomobileController implements ActionListener {
             JOptionPane.showMessageDialog(guiSearchAutomobile, "Please enter a valid number.");
         }else try {
             int vehicleNumber = Integer.parseInt(guiSearchAutomobile.getjTxtIdCar().getText());
-            Vehicle vehicle = vehicleService.getVehicle(vehicleNumber);
+            Vehicle vehicle = vehicleService.getAutomobile(vehicleNumber);
 
             if(vehicle instanceof Automobile automobile) {
                 model.addRow(new Object[]{
@@ -197,7 +197,7 @@ public class AutomobileController implements ActionListener {
             JOptionPane.showMessageDialog(guiCalculateInsuranceAutomobile, "Please enter a valid number.","Error", JOptionPane.ERROR_MESSAGE);
         }else try {
             int vehicleNumber = Integer.parseInt(guiCalculateInsuranceAutomobile.getTxtIdAutomobile().getText());
-            Vehicle vehicle = vehicleService.getVehicle(vehicleNumber);
+            Vehicle vehicle = vehicleService.getAutomobile(vehicleNumber);
 
             if(vehicle instanceof Automobile automobile) {
                 Object[] rowData = {
@@ -239,7 +239,7 @@ public class AutomobileController implements ActionListener {
             return;
         }
         int id = (int) guiCalculateInsuranceAutomobile.getjTableCalculateInsurance().getValueAt(selectedRow, 0);
-        Vehicle vehicle = vehicleService.getVehicle(id);
+        Vehicle vehicle = vehicleService.getAutomobile(id);
         StringBuilder message = new StringBuilder();
         if (vehicle instanceof Automobile automobile) {
             message.append("ID: ").append(automobile.getIdVehicle()).append("\n")
