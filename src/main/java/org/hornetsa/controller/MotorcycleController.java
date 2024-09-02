@@ -137,10 +137,17 @@ public class MotorcycleController implements ActionListener{
                         motorcycle.isHelmetIncluded()
                 };
                 model.addRow(rowData);
+            }else {
+                JOptionPane.showMessageDialog(guiSearchMotorcycle, "Motorcycle not found.");
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(guiDeleteMotorcycle, "Invalid vehicle number format.");
         }
+    }
+
+    private void resetDeleteTable() {
+        DefaultTableModel model = (DefaultTableModel) guiDeleteMotorcycle.getjTableDeleteMotorcycle().getModel();
+        model.setRowCount(0);
     }
 
     private void DeleteMotorcycle() {
@@ -151,7 +158,7 @@ public class MotorcycleController implements ActionListener{
         }
         int id = (int) guiDeleteMotorcycle.getjTableDeleteMotorcycle().getValueAt(selectedRow, 0);
         vehicleService.removeVehicle(id);
-        updateMotorcycleDeleteTable();
+        resetDeleteTable();
         JOptionPane.showMessageDialog(guiDeleteMotorcycle, "Motorbike deleted successfully.");
     }
 

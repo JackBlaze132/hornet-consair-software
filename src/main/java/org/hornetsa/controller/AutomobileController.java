@@ -44,7 +44,7 @@ public class AutomobileController implements ActionListener {
         this.guiDeleteAutomobile = guiDeleteAutomobile;
         this.vehicleService = vehicleService;
         this.bodyworks = bodyworks;
-        this.guiDeleteAutomobile.getBtnList().addActionListener(this);
+        this.guiDeleteAutomobile.getjBtnSearch().addActionListener(this);
         this.guiDeleteAutomobile.getjBtnDelete().addActionListener(this);
     }
 
@@ -263,7 +263,7 @@ public class AutomobileController implements ActionListener {
         if (guiDeleteAutomobile != null && e.getSource() == guiDeleteAutomobile.getjBtnDelete()) {
             deleteAutomobile();
         }
-        if (guiDeleteAutomobile != null && e.getSource() == guiDeleteAutomobile.getBtnList()) {
+        if (guiDeleteAutomobile != null && e.getSource() == guiDeleteAutomobile.getjBtnSearch()) {
             updateAutomobileTableDelete();
         }
         if (guiSearchAutomobile != null && e.getSource() == guiSearchAutomobile.getBtnSearch()) {
