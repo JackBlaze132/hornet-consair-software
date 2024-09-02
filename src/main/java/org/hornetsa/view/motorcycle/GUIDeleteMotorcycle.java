@@ -16,15 +16,14 @@ import java.awt.*;
 public class GUIDeleteMotorcycle extends javax.swing.JFrame {
 
     /**
-     * Creates new form GUIListMotorcycle
+     * Creates new form GUISearchMotorcycle
      */
     public GUIDeleteMotorcycle() {
         initComponents();
         setLocationRelativeTo(this);
         setTitle("Hornet Corsair | Delete Motorcycle");
-        setSize(800, 500);
-        setIconImage(new ImageIcon(Main.class.getClassLoader().getResource("img/favicon.png")).getImage());
 
+        setIconImage(new ImageIcon(Main.class.getClassLoader().getResource("img/favicon.png")).getImage());
     }
 
     /**
@@ -37,10 +36,15 @@ public class GUIDeleteMotorcycle extends javax.swing.JFrame {
     private void initComponents() {
 
         LblTitle = new javax.swing.JLabel();
-        btnList = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        //jComboBox1 = new javax.swing.JComboBox<>();
+        jLabelIdMotorcycle = new javax.swing.JLabel();
+        jTxtIdMotorcycle = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableDeleteMotorcycle = new javax.swing.JTable();
-        jBtnDelete = new javax.swing.JButton();
+        jTableDelete = new javax.swing.JTable();
+        jgetjBtnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -48,22 +52,44 @@ public class GUIDeleteMotorcycle extends javax.swing.JFrame {
         LblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LblTitle.setText("Delete Motorcycle");
 
-        btnList.setText("List");
-        btnList.setBackground(Color.BLACK);
-        btnList.setForeground(Color.WHITE);
-        btnList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListActionPerformed(evt);
-            }
-        });
+        jLabelIdMotorcycle.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        jLabelIdMotorcycle.setText("Id Motorcycle:");
 
-        jTableDeleteMotorcycle.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null}
-                },
+        btnSearch.setText("Search");
+        btnSearch.setBackground(Color.BLACK);
+        btnSearch.setForeground(Color.WHITE);
+
+        jPanel1.setBackground(new java.awt.Color(153, 204, 255));
+
+        //jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jTxtIdMotorcycle.setEditable(true);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(jLabelIdMotorcycle, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(48, 48, 48)
+                                .addComponent(jTxtIdMotorcycle, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(11, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabelIdMotorcycle, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                                .addContainerGap())
+                        .addComponent(jTxtIdMotorcycle)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jTableDelete.setModel(new javax.swing.table.DefaultTableModel(
+                new Object [][] {},
                 new String [] {
                         "Id", "Brand", "Price", "Model", "Abs", "ForkType", "HelmetIncluded"
                 }
@@ -72,7 +98,7 @@ public class GUIDeleteMotorcycle extends javax.swing.JFrame {
                     java.lang.Integer.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class, java.lang.Boolean.class, java.lang.String.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                    false, true, true, true, true, true, true
+                    false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -83,57 +109,63 @@ public class GUIDeleteMotorcycle extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTableDeleteMotorcycle);
 
-        jBtnDelete.setText("Delete");
-        jBtnDelete.setBackground(Color.RED);
-        jBtnDelete.setForeground(Color.WHITE);
+        jScrollPane1.setViewportView(jTableDelete);
+
+        jgetjBtnDelete.setText("Delete");
+        jgetjBtnDelete.setBackground(Color.RED);
+        jgetjBtnDelete.setForeground(Color.WHITE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addGap(272, 272, 272)
-                                .addComponent(btnList, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(93, 93, 93)
-                                .addComponent(jBtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(230, Short.MAX_VALUE))
+                                .addGap(238, 238, 238)
+                                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(76, 76, 76)
+                                .addComponent(jgetjBtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(261, Short.MAX_VALUE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
                                         .addGap(0, 0, Short.MAX_VALUE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(layout.createSequentialGroup()
-                                                        .addGap(260, 260, 260)
-                                                        .addComponent(LblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGap(150, 150, 150)
+                                                        .addComponent(LblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 770, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(415, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(btnList, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jBtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(42, 42, 42))
+                                .addContainerGap(444, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jgetjBtnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                                .addContainerGap())
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
-                                        .addGap(0, 4, Short.MAX_VALUE)
-                                        .addComponent(LblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(4, 4, 4)
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(LblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(layout.createSequentialGroup()
+                                                        .addGap(40, 40, 40)
+                                                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(21, 21, 21)
                                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 103, Short.MAX_VALUE)))
+                                        .addGap(0, 50, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>
 
-    private void btnListActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
-    private void jBtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {
+    private void jTxtIdCarActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
@@ -141,23 +173,33 @@ public class GUIDeleteMotorcycle extends javax.swing.JFrame {
      * @param args the command line arguments
      */
 
+
     // Variables declaration - do not modify
     private javax.swing.JLabel LblTitle;
-    private javax.swing.JButton btnList;
-    private javax.swing.JButton jBtnDelete;
+    private javax.swing.JButton btnSearch;
+    private javax.swing.JButton jgetjBtnDelete;
+    //private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableDeleteMotorcycle;
+    private javax.swing.JTable jTableDelete;
+    private javax.swing.JTextField jTxtIdMotorcycle;
+    private javax.swing.JLabel jLabelIdMotorcycle;
     // End of variables declaration
 
-    public JButton getBtnList() {
-        return btnList;
+    public JButton getBtnSearch() {
+        return btnSearch;
     }
 
     public JButton getjBtnDelete() {
-        return jBtnDelete;
+        return jgetjBtnDelete;
+    }
+
+    public JTextField getTxtIdMotorcycle() {
+        return jTxtIdMotorcycle;
     }
 
     public JTable getjTableDeleteMotorcycle() {
-        return jTableDeleteMotorcycle;
+        return jTableDelete;
     }
 }

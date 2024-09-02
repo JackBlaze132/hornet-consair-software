@@ -35,7 +35,7 @@ public class GUIDeleteAutomobile extends javax.swing.JFrame {
     private void initComponents() {
 
         LblTitle = new javax.swing.JLabel();
-        btnList = new javax.swing.JButton();
+        jBtnSearch = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableDeleteAutomobile = new javax.swing.JTable();
         jBtnDelete = new javax.swing.JButton();
@@ -47,10 +47,15 @@ public class GUIDeleteAutomobile extends javax.swing.JFrame {
         LblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LblTitle.setText("Delete Automobile");
 
-        btnList.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnList.setText("List");
-        btnList.setBackground(Color.BLACK);
-        btnList.setForeground(Color.WHITE);
+        jBtnSearch.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jBtnSearch.setText("List");
+        jBtnSearch.setBackground(Color.BLACK);
+        jBtnSearch.setForeground(Color.WHITE);
+
+        jBtnDelete.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jBtnDelete.setText("Delete");
+        jBtnDelete.setBackground(Color.RED);
+        jBtnDelete.setForeground(Color.WHITE);
 
         jTableDeleteAutomobile.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
@@ -80,11 +85,6 @@ public class GUIDeleteAutomobile extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableDeleteAutomobile);
 
-        jBtnDelete.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jBtnDelete.setText("Delete");
-        jBtnDelete.setBackground(Color.RED);
-        jBtnDelete.setForeground(Color.WHITE);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -94,7 +94,7 @@ public class GUIDeleteAutomobile extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(LblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addComponent(btnList, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jBtnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(99, 99, 99)
                                                 .addComponent(jBtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(238, 238, 238))
@@ -110,7 +110,7 @@ public class GUIDeleteAutomobile extends javax.swing.JFrame {
                                 .addComponent(LblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 378, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(btnList, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jBtnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jBtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(19, 19, 19))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,7 +127,7 @@ public class GUIDeleteAutomobile extends javax.swing.JFrame {
 
     // Variables declaration - do not modify
     private javax.swing.JLabel LblTitle;
-    private javax.swing.JButton btnList;
+    private javax.swing.JButton jBtnSearch;
     private javax.swing.JButton jBtnDelete;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableDeleteAutomobile;
@@ -145,7 +145,7 @@ public class GUIDeleteAutomobile extends javax.swing.JFrame {
         return jBtnDelete;
     }
 
-    public JButton getBtnList() {
-        return btnList;
+    public JButton getjBtnSearch() {
+        return jBtnSearch;
     }
 }

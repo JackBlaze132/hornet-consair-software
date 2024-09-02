@@ -81,12 +81,7 @@ public class GUICalculateInsuranceMotorcycle extends javax.swing.JFrame {
         );
 
         jTableCalculateInsurance.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null}
-                },
+                new Object [][] {},
                 new String [] {
                         "Id", "Brand", "Price", "Model", "Abs", "ForkType", "HelmetIncluded"
                 }

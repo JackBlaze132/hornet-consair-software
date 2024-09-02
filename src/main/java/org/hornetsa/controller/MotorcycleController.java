@@ -40,7 +40,7 @@ public class MotorcycleController implements ActionListener{
     public MotorcycleController(GUIDeleteMotorcycle guiDeleteMotorcycle, VehicleService vehicleService) {
         this.vehicleService = vehicleService;
         this.guiDeleteMotorcycle = guiDeleteMotorcycle;
-        this.guiDeleteMotorcycle.getBtnList().addActionListener(this);
+        this.guiDeleteMotorcycle.getBtnSearch().addActionListener(this);
         this.guiDeleteMotorcycle.getjBtnDelete().addActionListener(this);
     }
 
@@ -119,19 +119,27 @@ public class MotorcycleController implements ActionListener{
     private void updateMotorcycleDeleteTable() {
         DefaultTableModel model = (DefaultTableModel) guiDeleteMotorcycle.getjTableDeleteMotorcycle().getModel();
         model.setRowCount(0);
-        List<Motorcycle> motorcycles = vehicleService.getMotorcyclesList();
 
-        for (Motorcycle motorcycle : motorcycles) {
-            Object[] rowData = {
-                    motorcycle.getIdVehicle(),
-                    motorcycle.getBrand(),
-                    motorcycle.getPrice(),
-                    motorcycle.getModel(),
-                    motorcycle.isAbs(),
-                    motorcycle.getForkType(),
-                    motorcycle.isHelmetIncluded()
-            };
-            model.addRow(rowData);
+        if (guiDeleteMotorcycle.getTxtIdMotorcycle().getText().isEmpty()){
+            JOptionPane.showMessageDialog(guiDeleteMotorcycle, "Please enter a valid number.","Error", JOptionPane.ERROR_MESSAGE);
+        }else try {
+            int vehicleNumber = Integer.parseInt(guiDeleteMotorcycle.getTxtIdMotorcycle().getText());
+            Vehicle vehicle = vehicleService.getMotorcycle(vehicleNumber);
+
+            if(vehicle instanceof Motorcycle motorcycle) {
+                Object[] rowData = {
+                        motorcycle.getIdVehicle(),
+                        motorcycle.getBrand(),
+                        motorcycle.getPrice(),
+                        motorcycle.getModel(),
+                        motorcycle.isAbs(),
+                        motorcycle.getForkType(),
+                        motorcycle.isHelmetIncluded()
+                };
+                model.addRow(rowData);
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(guiDeleteMotorcycle, "Invalid vehicle number format.");
         }
     }
 
@@ -285,7 +293,7 @@ public class MotorcycleController implements ActionListener{
         if (guiDeleteMotorcycle != null && e.getSource() == guiDeleteMotorcycle.getjBtnDelete()) {
             DeleteMotorcycle();
         }
-        if (guiDeleteMotorcycle != null && e.getSource() == guiDeleteMotorcycle.getBtnList()) {
+        if (guiDeleteMotorcycle != null && e.getSource() == guiDeleteMotorcycle.getBtnSearch()) {
             updateMotorcycleDeleteTable();
         }
         if (guiSearchMotorcycle != null && e.getSource() == guiSearchMotorcycle.getBtnSearch()) {

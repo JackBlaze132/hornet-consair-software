@@ -81,12 +81,7 @@ public class GUICalculateDiscountMotorcycle extends javax.swing.JFrame {
         );
 
         jTableCalculateDiscount.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null}
-                },
+                new Object [][] {},
                 new String [] {
                         "Id", "Brand", "Price", "Model", "Abs", "ForkType", "HelmetIncluded"
                 }
