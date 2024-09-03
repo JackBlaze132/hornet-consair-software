@@ -20,7 +20,7 @@ public class GUIListAutomobile extends javax.swing.JFrame {
     public GUIListAutomobile() {
         initComponents();
         setLocationRelativeTo(this);
-        setTitle("Hornet Corsair | Delete Automobile");
+        setTitle("Hornet Corsair | List Automobiles");
         setSize(800, 500);
         setIconImage(new ImageIcon(Main.class.getClassLoader().getResource("img/favicon.png")).getImage());
     }
@@ -44,7 +44,7 @@ public class GUIListAutomobile extends javax.swing.JFrame {
 
         LblTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         LblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LblTitle.setText("List Automobile");
+        LblTitle.setText("List Automobiles");
 
         btnList.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnList.setText("List");
