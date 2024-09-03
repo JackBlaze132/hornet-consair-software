@@ -3,6 +3,7 @@ package org.hornetsa.controller;
 import org.hornetsa.model.Bodywork;
 import org.hornetsa.view.bodywork.GUIAddBodywork;
 import org.hornetsa.view.bodywork.GUIListBodywork;
+import org.hornetsa.services.BodyworkService;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -12,21 +13,21 @@ import java.util.ArrayList;
 
 public class BodyworkController implements ActionListener {
 
-    private ArrayList<Bodywork> bodyworks;
+    private BodyworkService bodyworkService;
     private GUIAddBodywork guiAddBodywork;
     private GUIListBodywork guiListBodywork;
 
     // Constructor para GUIAddBodywork
-    public BodyworkController(GUIAddBodywork guiAddBodywork, ArrayList<Bodywork> bodyworks) {
+    public BodyworkController(GUIAddBodywork guiAddBodywork, BodyworkService bodyworkService) {
         this.guiAddBodywork = guiAddBodywork;
-        this.bodyworks = bodyworks;
+        this.bodyworkService = bodyworkService;
         this.guiAddBodywork.getBtnAdd().addActionListener(this);
     }
 
     // Constructor para GUIListBodywork
-    public BodyworkController(GUIListBodywork guiListBodywork, ArrayList<Bodywork> bodyworks) {
+    public BodyworkController(GUIListBodywork guiListBodywork, BodyworkService bodyworkService) {
         this.guiListBodywork = guiListBodywork;
-        this.bodyworks = bodyworks;
+        this.bodyworkService = bodyworkService;
         this.guiListBodywork.getBtnList().addActionListener(this);
     }
 
@@ -38,7 +39,7 @@ public class BodyworkController implements ActionListener {
             try {
                 int id = Integer.parseInt(idText);
                 Bodywork bodywork = new Bodywork(id, description);
-                bodyworks.add(bodywork);
+                bodyworkService.addBodywork(bodywork);
                 JOptionPane.showMessageDialog(guiAddBodywork, "Bodywork added successfully");
                 clearAddBodyworkFields();
             } catch (NumberFormatException e) {
@@ -52,7 +53,7 @@ public class BodyworkController implements ActionListener {
     private void updateBodyworkTable() {
         DefaultTableModel model = (DefaultTableModel) guiListBodywork.getjTable1().getModel();
         model.setRowCount(0); // Clear existing rows
-        for (Bodywork bodywork : bodyworks) {
+        for (Bodywork bodywork : bodyworkService.getBodyworks()) {
             model.addRow(new Object[]{bodywork.getIdBody(), bodywork.getDescription()});
         }
     }
