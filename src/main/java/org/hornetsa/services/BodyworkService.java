@@ -43,5 +43,9 @@ public class BodyworkService {
         }
     }
 
+    public void clearBodyworks() {
+        bodyworks.clear();
+    }
+
 
 }
