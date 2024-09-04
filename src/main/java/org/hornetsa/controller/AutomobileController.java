@@ -243,7 +243,7 @@ public class AutomobileController implements ActionListener {
             return;
         }
         int id = (int) guiDeleteAutomobile.getjTableDeleteAutomobile().getValueAt(selectedRow, 0);
-        vehicleService.removeVehicle(id);
+        vehicleService.removeAutomobile(id);
         resetDeleteTable();
         JOptionPane.showMessageDialog(guiDeleteAutomobile, "Automobile deleted successfully.");
     }

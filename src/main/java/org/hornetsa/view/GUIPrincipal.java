@@ -9,6 +9,7 @@ import org.hornetsa.controller.AutomobileController;
 import org.hornetsa.controller.BodyworkController;
 import org.hornetsa.controller.MotorcycleController;
 import org.hornetsa.model.Bodywork;
+import org.hornetsa.services.BodyworkService;
 import org.hornetsa.services.VehicleService;
 import org.hornetsa.view.automobile.*;
 import org.hornetsa.view.bodywork.GUIAddBodywork;
@@ -343,15 +344,18 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemAddBodyworkActionPerformed(java.awt.event.ActionEvent evt) {
         GUIAddBodywork guiAddBodywork = new GUIAddBodywork();
-        BodyworkController bodyworkController = new BodyworkController(guiAddBodywork, bodyworks);
+        BodyworkService bodyworkService = new BodyworkService(bodyworks);
+        BodyworkController bodyworkController = new BodyworkController(guiAddBodywork, bodyworkService);
         guiAddBodywork.setVisible(true);
     }
 
     private void jMenuItemListBodyworkActionPerformed(java.awt.event.ActionEvent evt) {
         GUIListBodywork guiListBodywork = new GUIListBodywork();
-        BodyworkController bodyworkController = new BodyworkController(guiListBodywork, bodyworks);
+        BodyworkService bodyworkService = new BodyworkService(bodyworks);
+        BodyworkController bodyworkController = new BodyworkController(guiListBodywork, bodyworkService);
         guiListBodywork.setVisible(true);
     }
+
 
     private void jMenuItemDiscountMotorcycleActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
