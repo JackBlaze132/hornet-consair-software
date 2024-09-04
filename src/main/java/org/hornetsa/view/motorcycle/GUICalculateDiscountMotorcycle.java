@@ -43,7 +43,7 @@ public class GUICalculateDiscountMotorcycle extends javax.swing.JFrame {
         jTxtIdMotorcycle = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableCalculateDiscount = new javax.swing.JTable();
+        jTableCalculateDiscountMotorcycle = new javax.swing.JTable();
         jBtnCalculateDiscount = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -54,6 +54,7 @@ public class GUICalculateDiscountMotorcycle extends javax.swing.JFrame {
 
         jLabelIdMotorcycle.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         jLabelIdMotorcycle.setText("Id Motorcycle:");
+        jLabelIdMotorcycle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         btnSearch.setText("Search");
         btnSearch.setBackground(Color.BLACK);
@@ -69,7 +70,7 @@ public class GUICalculateDiscountMotorcycle extends javax.swing.JFrame {
 
         jTxtIdMotorcycle.setEditable(true);
 
-        jTableCalculateDiscount.setModel(new javax.swing.table.DefaultTableModel(
+        jTableCalculateDiscountMotorcycle.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {},
                 new String [] {
                         "Id", "Brand", "Price", "Model", "Abs", "ForkType", "HelmetIncluded"
@@ -90,7 +91,7 @@ public class GUICalculateDiscountMotorcycle extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTableCalculateDiscount);
+        jScrollPane1.setViewportView(jTableCalculateDiscountMotorcycle);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -165,7 +166,7 @@ public class GUICalculateDiscountMotorcycle extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableCalculateDiscount;
+    private javax.swing.JTable jTableCalculateDiscountMotorcycle;
     private javax.swing.JTextField jTxtIdMotorcycle;
     private javax.swing.JLabel jLabelIdMotorcycle;
     // End of variables declaration
@@ -182,7 +183,7 @@ public class GUICalculateDiscountMotorcycle extends javax.swing.JFrame {
         return jTxtIdMotorcycle;
     }
 
-    public JTable getTableCalculateDiscount() {
-        return jTableCalculateDiscount;
+    public JTable getTableCalculateDiscountMotorcycle() {
+        return jTableCalculateDiscountMotorcycle;
     }
 }

@@ -43,7 +43,7 @@ public class GUISearchAutomobile extends javax.swing.JFrame {
         jTxtIdAutomobile = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableCar = new javax.swing.JTable();
+        jTableSearchAutomobile = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -53,9 +53,10 @@ public class GUISearchAutomobile extends javax.swing.JFrame {
 
         jLblIdAutomobile.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         jLblIdAutomobile.setText("Id Automobile:");
+        jLblIdAutomobile.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         btnSearch.setText("Search");
-        btnSearch.setBackground(Color.BLUE);
+        btnSearch.setBackground(Color.BLACK);
         btnSearch.setForeground(Color.WHITE);
 
         jPanel1.setBackground(new java.awt.Color(153, 204, 255));
@@ -64,7 +65,7 @@ public class GUISearchAutomobile extends javax.swing.JFrame {
 
         jTxtIdAutomobile.setEditable(true);
 
-        jTableCar.setModel(new javax.swing.table.DefaultTableModel(
+        jTableSearchAutomobile.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {},
                 new String [] {
                         "Id", "Brand", "Price", "Model", "Abs", "DoorCount", "BodyWork", "AirbagCount"
@@ -85,7 +86,7 @@ public class GUISearchAutomobile extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTableCar);
+        jScrollPane1.setViewportView(jTableSearchAutomobile);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -155,17 +156,17 @@ public class GUISearchAutomobile extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableCar;
+    private javax.swing.JTable jTableSearchAutomobile;
     private javax.swing.JTextField jTxtIdAutomobile;
     private javax.swing.JLabel jLblIdAutomobile;
     // End of variables declaration
 
-    public JTable getjTableCar() {
-        return jTableCar;
+    public JTable getjTableSearchAutomobile() {
+        return jTableSearchAutomobile;
     }
 
-    public void setjTableCar(JTable jTableCar) {
-        this.jTableCar = jTableCar;
+    public void setjTableSearchAutomobile(JTable jTableSearchAutomobile) {
+        this.jTableSearchAutomobile = jTableSearchAutomobile;
     }
 
     public JButton getBtnSearch() {

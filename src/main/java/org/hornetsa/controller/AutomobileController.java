@@ -176,7 +176,7 @@ public class AutomobileController implements ActionListener {
     }
 
     private void updateAutomobileTableSearch(){
-        DefaultTableModel model = (DefaultTableModel) guiSearchAutomobile.getjTableCar().getModel();
+        DefaultTableModel model = (DefaultTableModel) guiSearchAutomobile.getjTableSearchAutomobile().getModel();
         model.setRowCount(0);
 
         if (guiSearchAutomobile.getjTxtIdAutomobile().getText().isEmpty()){
@@ -206,7 +206,7 @@ public class AutomobileController implements ActionListener {
     }
 
     private void updateAutomobileTableCalculateInsurance(){
-        DefaultTableModel model = (DefaultTableModel) guiCalculateInsuranceAutomobile.getjTableCalculateInsurance().getModel();
+        DefaultTableModel model = (DefaultTableModel) guiCalculateInsuranceAutomobile.getjTableCalculateInsuranceAutomobile().getModel();
         model.setRowCount(0);
 
         if (guiCalculateInsuranceAutomobile.getTxtIdAutomobile().getText().isEmpty()){
@@ -249,12 +249,12 @@ public class AutomobileController implements ActionListener {
     }
 
     public void getAutomobileInsurance(){
-        int selectedRow = guiCalculateInsuranceAutomobile.getjTableCalculateInsurance().getSelectedRow();
+        int selectedRow = guiCalculateInsuranceAutomobile.getjTableCalculateInsuranceAutomobile().getSelectedRow();
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(guiCalculateInsuranceAutomobile, "Please select a row to calculate insurance.");
             return;
         }
-        int id = (int) guiCalculateInsuranceAutomobile.getjTableCalculateInsurance().getValueAt(selectedRow, 0);
+        int id = (int) guiCalculateInsuranceAutomobile.getjTableCalculateInsuranceAutomobile().getValueAt(selectedRow, 0);
         Vehicle vehicle = vehicleService.getAutomobile(id);
         StringBuilder message = new StringBuilder();
         if (vehicle instanceof Automobile automobile) {

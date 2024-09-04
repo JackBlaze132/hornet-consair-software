@@ -43,7 +43,7 @@ public class GUIDeleteMotorcycle extends javax.swing.JFrame {
         jTxtIdMotorcycle = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableDelete = new javax.swing.JTable();
+        jTableDeleteMotorcycle = new javax.swing.JTable();
         jBtnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -54,6 +54,7 @@ public class GUIDeleteMotorcycle extends javax.swing.JFrame {
 
         jLabelIdMotorcycle.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         jLabelIdMotorcycle.setText("Id Motorcycle:");
+        jLabelIdMotorcycle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         btnSearch.setText("Search");
         btnSearch.setBackground(Color.BLACK);
@@ -67,7 +68,7 @@ public class GUIDeleteMotorcycle extends javax.swing.JFrame {
 
 
 
-        jTableDelete.setModel(new javax.swing.table.DefaultTableModel(
+        jTableDeleteMotorcycle.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {},
                 new String [] {
                         "Id", "Brand", "Price", "Model", "Abs", "ForkType", "HelmetIncluded"
@@ -89,7 +90,7 @@ public class GUIDeleteMotorcycle extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane1.setViewportView(jTableDelete);
+        jScrollPane1.setViewportView(jTableDeleteMotorcycle);
 
         jBtnDelete.setText("Delete");
         jBtnDelete.setBackground(Color.RED);
@@ -168,7 +169,7 @@ public class GUIDeleteMotorcycle extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableDelete;
+    private javax.swing.JTable jTableDeleteMotorcycle;
     private javax.swing.JTextField jTxtIdMotorcycle;
     private javax.swing.JLabel jLabelIdMotorcycle;
     // End of variables declaration
@@ -186,6 +187,6 @@ public class GUIDeleteMotorcycle extends javax.swing.JFrame {
     }
 
     public JTable getjTableDeleteMotorcycle() {
-        return jTableDelete;
+        return jTableDeleteMotorcycle;
     }
 }

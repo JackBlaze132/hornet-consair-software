@@ -43,7 +43,7 @@ public class GUICalculateInsuranceMotorcycle extends javax.swing.JFrame {
         jTxtIdMotorcycle = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableCalculateInsurance = new javax.swing.JTable();
+        jTableCalculateInsuranceMotorcycle = new javax.swing.JTable();
         jBtnCalculateInsurance = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -54,6 +54,7 @@ public class GUICalculateInsuranceMotorcycle extends javax.swing.JFrame {
 
         jLabelIdMotorcycle.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         jLabelIdMotorcycle.setText("Id Motorcycle:");
+        jLabelIdMotorcycle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         btnSearch.setText("Search");
         btnSearch.setBackground(Color.BLACK);
@@ -70,7 +71,7 @@ public class GUICalculateInsuranceMotorcycle extends javax.swing.JFrame {
         jTxtIdMotorcycle.setEditable(true);
 
 
-        jTableCalculateInsurance.setModel(new javax.swing.table.DefaultTableModel(
+        jTableCalculateInsuranceMotorcycle.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {},
                 new String [] {
                         "Id", "Brand", "Price", "Model", "Abs", "ForkType", "HelmetIncluded"
@@ -91,7 +92,7 @@ public class GUICalculateInsuranceMotorcycle extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTableCalculateInsurance);
+        jScrollPane1.setViewportView(jTableCalculateInsuranceMotorcycle);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -166,7 +167,7 @@ public class GUICalculateInsuranceMotorcycle extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableCalculateInsurance;
+    private javax.swing.JTable jTableCalculateInsuranceMotorcycle;
     private javax.swing.JTextField jTxtIdMotorcycle;
     private javax.swing.JLabel jLabelIdMotorcycle;
     // End of variables declaration
@@ -183,7 +184,7 @@ public class GUICalculateInsuranceMotorcycle extends javax.swing.JFrame {
         return jTxtIdMotorcycle;
     }
 
-    public JTable getjTableCalculateInsurance() {
-        return jTableCalculateInsurance;
+    public JTable getjTableCalculateInsuranceMotorcycle() {
+        return jTableCalculateInsuranceMotorcycle;
     }
 }

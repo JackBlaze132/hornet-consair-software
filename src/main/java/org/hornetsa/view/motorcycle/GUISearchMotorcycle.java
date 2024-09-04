@@ -43,7 +43,7 @@ public class GUISearchMotorcycle extends javax.swing.JFrame {
         jTxtIdMotorcycle = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableSearchMotorcyvle = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -53,6 +53,7 @@ public class GUISearchMotorcycle extends javax.swing.JFrame {
 
         jLabelIdMotorcycle.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         jLabelIdMotorcycle.setText("Id Motorcycle:");
+        jLabelIdMotorcycle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         btnSearch.setText("Search");
         btnSearch.setBackground(Color.BLACK);
@@ -69,7 +70,7 @@ public class GUISearchMotorcycle extends javax.swing.JFrame {
 
         jTxtIdMotorcycle.setEditable(true);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableSearchMotorcyvle.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {},
                 new String [] {
                         "Id", "Brand", "Price", "Model", "Abs", "ForkType", "HelmetIncluded"
@@ -90,7 +91,7 @@ public class GUISearchMotorcycle extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableSearchMotorcyvle);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -161,7 +162,7 @@ public class GUISearchMotorcycle extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableSearchMotorcyvle;
     private javax.swing.JTextField jTxtIdMotorcycle;
     private javax.swing.JLabel jLabelIdMotorcycle;
 
@@ -169,12 +170,12 @@ public class GUISearchMotorcycle extends javax.swing.JFrame {
         return btnSearch;
     }
 
-    public JTable getjTable1() {
-        return jTable1;
+    public JTable getjTableSearchMotorcyvle() {
+        return jTableSearchMotorcyvle;
     }
 
-    public void setjTable1(JTable jTable1) {
-        this.jTable1 = jTable1;
+    public void setjTableSearchMotorcyvle(JTable jTableSearchMotorcyvle) {
+        this.jTableSearchMotorcyvle = jTableSearchMotorcyvle;
     }
 
     public JTextField getjTxtIdMotorcycle() {

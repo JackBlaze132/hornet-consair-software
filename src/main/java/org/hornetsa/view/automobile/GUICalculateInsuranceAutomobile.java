@@ -37,11 +37,11 @@ public class GUICalculateInsuranceAutomobile extends javax.swing.JFrame {
         btnSearch = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         //jComboBox1 = new javax.swing.JComboBox<>();
-        jLabelIdMotorcycle = new javax.swing.JLabel();
+        jLabelIdAutomobile = new javax.swing.JLabel();
         jTxtIdAutomobile = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableCalculateInsurance = new javax.swing.JTable();
+        jTableCalculateInsuranceAutomobile = new javax.swing.JTable();
         jBtnCalculateInsurance = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -50,8 +50,9 @@ public class GUICalculateInsuranceAutomobile extends javax.swing.JFrame {
         LblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LblTitle.setText("Calculate Insurance Automobile");
 
-        jLabelIdMotorcycle.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        jLabelIdMotorcycle.setText("Id automobile:");
+        jLabelIdAutomobile.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        jLabelIdAutomobile.setText("Id automobile:");
+        jLabelIdAutomobile.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         btnSearch.setText("Search");
         btnSearch.setBackground(Color.BLACK);
@@ -68,7 +69,7 @@ public class GUICalculateInsuranceAutomobile extends javax.swing.JFrame {
         jTxtIdAutomobile.setEditable(true);
 
 
-        jTableCalculateInsurance.setModel(new javax.swing.table.DefaultTableModel(
+        jTableCalculateInsuranceAutomobile.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {},
                 new String [] {
                         "Id", "Brand", "Model", "Price", "Abs", "BodyWork", "DoorCount", "AirbagCount"
@@ -89,7 +90,7 @@ public class GUICalculateInsuranceAutomobile extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTableCalculateInsurance);
+        jScrollPane1.setViewportView(jTableCalculateInsuranceAutomobile);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,7 +103,7 @@ public class GUICalculateInsuranceAutomobile extends javax.swing.JFrame {
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(jScrollPane1)
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(jLabelIdMotorcycle, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addComponent(jLabelIdAutomobile, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                 .addComponent(jTxtIdAutomobile, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -127,7 +128,7 @@ public class GUICalculateInsuranceAutomobile extends javax.swing.JFrame {
                                 .addComponent(LblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabelIdMotorcycle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabelIdAutomobile, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                 .addComponent(jTxtIdAutomobile, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -164,9 +165,9 @@ public class GUICalculateInsuranceAutomobile extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableCalculateInsurance;
+    private javax.swing.JTable jTableCalculateInsuranceAutomobile;
     private javax.swing.JTextField jTxtIdAutomobile;
-    private javax.swing.JLabel jLabelIdMotorcycle;
+    private javax.swing.JLabel jLabelIdAutomobile;
     // End of variables declaration
 
     public JButton getBtnSearch() {
@@ -181,7 +182,7 @@ public class GUICalculateInsuranceAutomobile extends javax.swing.JFrame {
         return jTxtIdAutomobile;
     }
 
-    public JTable getjTableCalculateInsurance() {
-        return jTableCalculateInsurance;
+    public JTable getjTableCalculateInsuranceAutomobile() {
+        return jTableCalculateInsuranceAutomobile;
     }
 }

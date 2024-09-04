@@ -163,7 +163,7 @@ public class MotorcycleController implements ActionListener{
     }
 
     private void updateMotorcycleTableSearch(){
-        DefaultTableModel model = (DefaultTableModel) guiSearchMotorcycle.getjTable1().getModel();
+        DefaultTableModel model = (DefaultTableModel) guiSearchMotorcycle.getjTableSearchMotorcyvle().getModel();
         model.setRowCount(0);
 
         if (guiSearchMotorcycle.getjTxtIdMotorcycle().getText().isEmpty()){
@@ -192,7 +192,7 @@ public class MotorcycleController implements ActionListener{
     }
 
     private void updateMotorcycleTableCalculateDiscount(){
-        DefaultTableModel model = (DefaultTableModel) guiCalculateDiscountMotorcycle.getTableCalculateDiscount().getModel();
+        DefaultTableModel model = (DefaultTableModel) guiCalculateDiscountMotorcycle.getTableCalculateDiscountMotorcycle().getModel();
         model.setRowCount(0);
 
         if (guiCalculateDiscountMotorcycle.getTxtIdMotorcycle().getText().isEmpty()){
@@ -221,7 +221,7 @@ public class MotorcycleController implements ActionListener{
     }
 
     private void updateMotorcycleTableCalculateInsurance(){
-        DefaultTableModel model = (DefaultTableModel) guiCalculateIsuranceMotorcycle.getjTableCalculateInsurance().getModel();
+        DefaultTableModel model = (DefaultTableModel) guiCalculateIsuranceMotorcycle.getjTableCalculateInsuranceMotorcycle().getModel();
         model.setRowCount(0);
 
         if (guiCalculateIsuranceMotorcycle.getTxtIdMotorcycle().getText().isEmpty()){
@@ -250,12 +250,12 @@ public class MotorcycleController implements ActionListener{
     }
 
     public void getMotorcycleDiscount() {
-        int selectedRow = guiCalculateDiscountMotorcycle.getTableCalculateDiscount().getSelectedRow();
+        int selectedRow = guiCalculateDiscountMotorcycle.getTableCalculateDiscountMotorcycle().getSelectedRow();
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(guiCalculateDiscountMotorcycle, "Please select a row to calculate discount.");
             return;
         }
-        int id = (int) guiCalculateDiscountMotorcycle.getTableCalculateDiscount().getValueAt(selectedRow, 0);
+        int id = (int) guiCalculateDiscountMotorcycle.getTableCalculateDiscountMotorcycle().getValueAt(selectedRow, 0);
         Vehicle vehicle = vehicleService.getMotorcycle(id);
         StringBuilder message = new StringBuilder();
         if (vehicle instanceof Motorcycle motorcycle) {
@@ -270,12 +270,12 @@ public class MotorcycleController implements ActionListener{
     }
 
     public void getMotorcycleInsurance(){
-        int selectedRow = guiCalculateIsuranceMotorcycle.getjTableCalculateInsurance().getSelectedRow();
+        int selectedRow = guiCalculateIsuranceMotorcycle.getjTableCalculateInsuranceMotorcycle().getSelectedRow();
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(guiCalculateIsuranceMotorcycle, "Please select a row to calculate insurance.");
             return;
         }
-        int id = (int) guiCalculateIsuranceMotorcycle.getjTableCalculateInsurance().getValueAt(selectedRow, 0);
+        int id = (int) guiCalculateIsuranceMotorcycle.getjTableCalculateInsuranceMotorcycle().getValueAt(selectedRow, 0);
         Vehicle vehicle = vehicleService.getMotorcycle(id);
         StringBuilder message = new StringBuilder();
         if (vehicle instanceof Motorcycle motorcycle) {
