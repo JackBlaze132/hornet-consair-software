@@ -9,17 +9,20 @@ import org.hornetsa.controller.AutomobileController;
 import org.hornetsa.controller.BodyworkController;
 import org.hornetsa.controller.MotorcycleController;
 import org.hornetsa.model.Bodywork;
+import org.hornetsa.services.BodyworkService;
 import org.hornetsa.services.VehicleService;
-import org.hornetsa.view.automobile.GUIAddAutomobile;
-import org.hornetsa.view.automobile.GUIDeleteAutomobile;
-import org.hornetsa.view.automobile.GUIListAutomobile;
-import org.hornetsa.view.automobile.GUISearchAutomobile;
+import org.hornetsa.view.automobile.*;
 import org.hornetsa.view.bodywork.GUIAddBodywork;
 import org.hornetsa.view.bodywork.GUIListBodywork;
 import org.hornetsa.view.motorcycle.*;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -41,6 +44,17 @@ public class GUIPrincipal extends javax.swing.JFrame {
         setSize(800, 500);
         setIconImage(new ImageIcon(Main.class.getClassLoader().getResource("img/favicon.png")).getImage());
 
+    }
+
+    public static ImageIcon createIcon(String imagePath) {
+        try {
+            BufferedImage originalImage = ImageIO.read(new File(imagePath));
+            Image resizedImage = originalImage.getScaledInstance(64, 64, Image.SCALE_SMOOTH);
+            return new ImageIcon(resizedImage);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
@@ -78,13 +92,14 @@ public class GUIPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Principal");
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setVerticalAlignment(SwingConstants.CENTER);
         jLabel1.setText("HORNET CORSAIR");
 
-        mnuArchivo.setText("Archivo");
+        mnuArchivo.setText("File");
 
-        mnuSalir.setText("Salir");
+        mnuSalir.setText("Close");
         mnuSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuSalirActionPerformed(evt);
@@ -211,9 +226,9 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuBodywork);
 
-        mnuAyuda.setText("Ayuda");
+        mnuAyuda.setText("Help");
 
-        mnuAcercaDe.setText("Acerca de...");
+        mnuAcercaDe.setText("About...");
         mnuAcercaDe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuAcercaDeActionPerformed(evt);
@@ -230,15 +245,15 @@ public class GUIPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addGap(115, 115, 115)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(240, 240, 240)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(125, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addGap(104, 104, 104)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(180, 180, 180)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(125, Short.MAX_VALUE))
         );
 
@@ -250,7 +265,8 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }
 
     private void mnuAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {
-        JOptionPane.showMessageDialog(this, "Desarrollado por:\n Eder Martínez\n Jaime Rodriguez\n Jhon Cardenas \n\nHornet©2024");
+        ImageIcon about = createIcon("src/main/resources/img/favicon.png");
+        JOptionPane.showMessageDialog(this, "Desarrollado por:\n\n Eder Martínez\n Jaime Rodriguez\n Jhon Cardenas \n\nHornet©2024", "About", JOptionPane.INFORMATION_MESSAGE, about);
     }
 
     private void jMenuItemListAutomobileActionPerformed(java.awt.event.ActionEvent evt) {
@@ -300,6 +316,9 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemInsuranceAutomobileActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        GUICalculateInsuranceAutomobile guiCalculateInsuranceAutomobile = new GUICalculateInsuranceAutomobile();
+        AutomobileController automobileController = new AutomobileController(guiCalculateInsuranceAutomobile, vehicleService, bodyworks);
+        guiCalculateInsuranceAutomobile.setVisible(true);
     }
 
     private void jMenuItemSearchMotorcylceActionPerformed(java.awt.event.ActionEvent evt) {
@@ -318,19 +337,25 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemInsuranceMotorcylceActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        GUICalculateInsuranceMotorcycle guiCalculateInsuranceMotorcycle = new GUICalculateInsuranceMotorcycle();
+        MotorcycleController motorcycleController = new MotorcycleController(guiCalculateInsuranceMotorcycle, vehicleService);
+        guiCalculateInsuranceMotorcycle.setVisible(true);
     }
 
     private void jMenuItemAddBodyworkActionPerformed(java.awt.event.ActionEvent evt) {
         GUIAddBodywork guiAddBodywork = new GUIAddBodywork();
-        BodyworkController bodyworkController = new BodyworkController(guiAddBodywork, bodyworks);
+        BodyworkService bodyworkService = new BodyworkService(bodyworks);
+        BodyworkController bodyworkController = new BodyworkController(guiAddBodywork, bodyworkService);
         guiAddBodywork.setVisible(true);
     }
 
     private void jMenuItemListBodyworkActionPerformed(java.awt.event.ActionEvent evt) {
         GUIListBodywork guiListBodywork = new GUIListBodywork();
-        BodyworkController bodyworkController = new BodyworkController(guiListBodywork, bodyworks);
+        BodyworkService bodyworkService = new BodyworkService(bodyworks);
+        BodyworkController bodyworkController = new BodyworkController(guiListBodywork, bodyworkService);
         guiListBodywork.setVisible(true);
     }
+
 
     private void jMenuItemDiscountMotorcycleActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
