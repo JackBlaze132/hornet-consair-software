@@ -157,7 +157,7 @@ public class MotorcycleController implements ActionListener{
             return;
         }
         int id = (int) guiDeleteMotorcycle.getjTableDeleteMotorcycle().getValueAt(selectedRow, 0);
-        vehicleService.removeVehicle(id);
+        vehicleService.removeMotorcycle(id);
         resetDeleteTable();
         JOptionPane.showMessageDialog(guiDeleteMotorcycle, "Motorbike deleted successfully.");
     }
