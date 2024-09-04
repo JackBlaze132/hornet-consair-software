@@ -38,7 +38,7 @@ public class GUIListMotorcycle extends javax.swing.JFrame {
         LblTitle = new javax.swing.JLabel();
         btnList = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableMotorcycles = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -50,13 +50,8 @@ public class GUIListMotorcycle extends javax.swing.JFrame {
         btnList.setBackground(Color.BLACK);
         btnList.setForeground(Color.WHITE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null}
-                },
+        jTableMotorcycles.setModel(new javax.swing.table.DefaultTableModel(
+                new Object [][] {},
                 new String [] {
                         "Id", "Brand", "Price", "Model", "Abs", "ForkType", "HelmetIncluded"
                 }
@@ -76,39 +71,38 @@ public class GUIListMotorcycle extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableMotorcycles);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(352, Short.MAX_VALUE)
-                                .addComponent(btnList, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(326, 326, 326))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                        .addGap(260, 260, 260)
-                                                        .addComponent(LblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 770, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addComponent(jScrollPane1))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGap(352, 352, 352)
+                                                                .addComponent(btnList, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGap(149, 149, 149)
+                                                                .addComponent(LblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addGap(0, 145, Short.MAX_VALUE)))
+                                .addContainerGap())
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(420, Short.MAX_VALUE)
+                                .addGap(23, 23, 23)
+                                .addComponent(LblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
                                 .addComponent(btnList, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(37, 37, 37))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                        .addGap(0, 4, Short.MAX_VALUE)
-                                        .addComponent(LblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(4, 4, 4)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 103, Short.MAX_VALUE)))
         );
 
         pack();
@@ -121,7 +115,7 @@ public class GUIListMotorcycle extends javax.swing.JFrame {
     private javax.swing.JLabel LblTitle;
     private javax.swing.JButton btnList;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableMotorcycles;
     // End of variables declaration
 
     public JButton getBtnList() {
@@ -129,6 +123,6 @@ public class GUIListMotorcycle extends javax.swing.JFrame {
     }
 
     public JTable getTable() {
-        return jTable1;
+        return jTableMotorcycles;
     }
 }

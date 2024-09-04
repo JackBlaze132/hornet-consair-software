@@ -4,24 +4,25 @@ import org.hornetsa.model.Automobile;
 import org.hornetsa.model.Bodywork;
 import org.hornetsa.model.Vehicle;
 import org.hornetsa.services.VehicleService;
-import org.hornetsa.view.automobile.GUIAddAutomobile;
-import org.hornetsa.view.automobile.GUIDeleteAutomobile;
-import org.hornetsa.view.automobile.GUIListAutomobile;
-import org.hornetsa.view.automobile.GUISearchAutomobile;
+import org.hornetsa.view.automobile.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class AutomobileController implements ActionListener {
+
+    NumberFormat formatter = NumberFormat.getCurrencyInstance();
 
     private VehicleService vehicleService;
     private GUIAddAutomobile guiAddAutomobile;
     private GUIListAutomobile guiListAutomobile;
     private GUIDeleteAutomobile guiDeleteAutomobile;
     private GUISearchAutomobile guiSearchAutomobile;
+    private GUICalculateInsuranceAutomobile guiCalculateInsuranceAutomobile;
     private ArrayList<Bodywork> bodyworks;
 
 
@@ -43,7 +44,7 @@ public class AutomobileController implements ActionListener {
         this.guiDeleteAutomobile = guiDeleteAutomobile;
         this.vehicleService = vehicleService;
         this.bodyworks = bodyworks;
-        this.guiDeleteAutomobile.getBtnList().addActionListener(this);
+        this.guiDeleteAutomobile.getBtnSearch().addActionListener(this);
         this.guiDeleteAutomobile.getjBtnDelete().addActionListener(this);
     }
 
@@ -52,6 +53,14 @@ public class AutomobileController implements ActionListener {
         this.vehicleService = vehicleService;
         this.bodyworks = bodyworks;
         this.guiSearchAutomobile.getBtnSearch().addActionListener(this);
+    }
+
+    public AutomobileController(GUICalculateInsuranceAutomobile guiCalculateInsuranceAutomobile, VehicleService vehicleService, ArrayList<Bodywork> bodyworks) {
+        this.guiCalculateInsuranceAutomobile = guiCalculateInsuranceAutomobile;
+        this.vehicleService = vehicleService;
+        this.bodyworks = bodyworks;
+        this.guiCalculateInsuranceAutomobile.getBtnSearch().addActionListener(this);
+        this.guiCalculateInsuranceAutomobile.getBtnCalculateInsurance().addActionListener(this);
     }
 
 
@@ -125,8 +134,8 @@ public class AutomobileController implements ActionListener {
                     automobile.getModel(),
                     automobile.isAbs(),
                     automobile.getDoorCount(),
-                    automobile.getAirbagCount(),
-                    automobile.getBodywork().getDescription()
+                    automobile.getBodywork().getDescription(),
+                    automobile.getAirbagCount()
             });
         }
     }
@@ -135,29 +144,46 @@ public class AutomobileController implements ActionListener {
         DefaultTableModel model = (DefaultTableModel) guiDeleteAutomobile.getjTableDeleteAutomobile().getModel();
         model.setRowCount(0);
 
-        for (Automobile automobile : vehicleService.getAutomobiles()) {
-            model.addRow(new Object[]{
-                    automobile.getIdVehicle(),
-                    automobile.getBrand(),
-                    automobile.getPrice(),
-                    automobile.getModel(),
-                    automobile.isAbs(),
-                    automobile.getDoorCount(),
-                    automobile.getAirbagCount(),
-                    automobile.getBodywork().getDescription()
-            });
+        if (guiDeleteAutomobile.getjTxtIdAutomobile().getText().isEmpty()){
+            JOptionPane.showMessageDialog(guiDeleteAutomobile, "Please enter a valid number.","Error", JOptionPane.ERROR_MESSAGE);
+        }else try {
+            int vehicleNumber = Integer.parseInt(guiDeleteAutomobile.getjTxtIdAutomobile().getText());
+            Vehicle vehicle = vehicleService.getAutomobile(vehicleNumber);
+
+            if(vehicle instanceof Automobile automobile) {
+                Object[] rowData = {
+                        automobile.getIdVehicle(),
+                        automobile.getBrand(),
+                        automobile.getModel(),
+                        automobile.getPrice(),
+                        automobile.isAbs(),
+                        automobile.getBodywork().getDescription(),
+                        automobile.getDoorCount(),
+                        automobile.getAirbagCount()
+                };
+                model.addRow(rowData);
+            }else {
+                JOptionPane.showMessageDialog(guiDeleteAutomobile, "Motorcycle not found.");
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(guiDeleteAutomobile, "Invalid vehicle number format.");
         }
     }
 
+    private void resetDeleteTable() {
+        DefaultTableModel model = (DefaultTableModel) guiDeleteAutomobile.getjTableDeleteAutomobile().getModel();
+        model.setRowCount(0);
+    }
+
     private void updateAutomobileTableSearch(){
-        DefaultTableModel model = (DefaultTableModel) guiSearchAutomobile.getjTableCar().getModel();
+        DefaultTableModel model = (DefaultTableModel) guiSearchAutomobile.getjTableSearchAutomobile().getModel();
         model.setRowCount(0);
 
-        if (guiSearchAutomobile.getjTxtIdCar().getText().isEmpty()){
+        if (guiSearchAutomobile.getjTxtIdAutomobile().getText().isEmpty()){
             JOptionPane.showMessageDialog(guiSearchAutomobile, "Please enter a valid number.");
         }else try {
-            int vehicleNumber = Integer.parseInt(guiSearchAutomobile.getjTxtIdCar().getText());
-            Vehicle vehicle = vehicleService.getVehicle(vehicleNumber);
+            int vehicleNumber = Integer.parseInt(guiSearchAutomobile.getjTxtIdAutomobile().getText());
+            Vehicle vehicle = vehicleService.getAutomobile(vehicleNumber);
 
             if(vehicle instanceof Automobile automobile) {
                 model.addRow(new Object[]{
@@ -179,6 +205,37 @@ public class AutomobileController implements ActionListener {
 
     }
 
+    private void updateAutomobileTableCalculateInsurance(){
+        DefaultTableModel model = (DefaultTableModel) guiCalculateInsuranceAutomobile.getjTableCalculateInsuranceAutomobile().getModel();
+        model.setRowCount(0);
+
+        if (guiCalculateInsuranceAutomobile.getTxtIdAutomobile().getText().isEmpty()){
+            JOptionPane.showMessageDialog(guiCalculateInsuranceAutomobile, "Please enter a valid number.","Error", JOptionPane.ERROR_MESSAGE);
+        }else try {
+            int vehicleNumber = Integer.parseInt(guiCalculateInsuranceAutomobile.getTxtIdAutomobile().getText());
+            Vehicle vehicle = vehicleService.getAutomobile(vehicleNumber);
+
+            if(vehicle instanceof Automobile automobile) {
+                Object[] rowData = {
+                        automobile.getIdVehicle(),
+                        automobile.getBrand(),
+                        automobile.getModel(),
+                        automobile.getPrice(),
+                        automobile.isAbs(),
+                        automobile.getBodywork().getDescription(),
+                        automobile.getDoorCount(),
+                        automobile.getAirbagCount()
+
+                };
+                model.addRow(rowData);
+            } else {
+                JOptionPane.showMessageDialog(guiSearchAutomobile, "Automobile not found.");
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(guiSearchAutomobile, "Invalid vehicle number format.");
+        }
+    }
+
     private void deleteAutomobile() {
         int selectedRow = guiDeleteAutomobile.getjTableDeleteAutomobile().getSelectedRow();
         if (selectedRow == -1) {
@@ -187,8 +244,26 @@ public class AutomobileController implements ActionListener {
         }
         int id = (int) guiDeleteAutomobile.getjTableDeleteAutomobile().getValueAt(selectedRow, 0);
         vehicleService.removeVehicle(id);
-        updateAutomobileTableDelete();
+        resetDeleteTable();
         JOptionPane.showMessageDialog(guiDeleteAutomobile, "Automobile deleted successfully.");
+    }
+
+    public void getAutomobileInsurance(){
+        int selectedRow = guiCalculateInsuranceAutomobile.getjTableCalculateInsuranceAutomobile().getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(guiCalculateInsuranceAutomobile, "Please select a row to calculate insurance.");
+            return;
+        }
+        int id = (int) guiCalculateInsuranceAutomobile.getjTableCalculateInsuranceAutomobile().getValueAt(selectedRow, 0);
+        Vehicle vehicle = vehicleService.getAutomobile(id);
+        StringBuilder message = new StringBuilder();
+        if (vehicle instanceof Automobile automobile) {
+            message.append("ID: ").append(automobile.getIdVehicle()).append("\n")
+                    .append("Price: ").append(formatter.format(automobile.getPrice())).append("\n")
+                    .append("Brand: ").append(automobile.getBrand()).append("\n")
+                    .append("Insurance: ").append(formatter.format(automobile.calculateInsurance()));
+        }
+        JOptionPane.showMessageDialog(null, message.toString(), "Motorcycle Insurance", JOptionPane.INFORMATION_MESSAGE);
     }
 
 
@@ -204,11 +279,17 @@ public class AutomobileController implements ActionListener {
         if (guiDeleteAutomobile != null && e.getSource() == guiDeleteAutomobile.getjBtnDelete()) {
             deleteAutomobile();
         }
-        if (guiDeleteAutomobile != null && e.getSource() == guiDeleteAutomobile.getBtnList()) {
+        if (guiDeleteAutomobile != null && e.getSource() == guiDeleteAutomobile.getBtnSearch()) {
             updateAutomobileTableDelete();
         }
         if (guiSearchAutomobile != null && e.getSource() == guiSearchAutomobile.getBtnSearch()) {
             updateAutomobileTableSearch();
+        }
+        if (guiCalculateInsuranceAutomobile != null && e.getSource() == guiCalculateInsuranceAutomobile.getBtnSearch()) {
+            updateAutomobileTableCalculateInsurance();
+        }
+        if (guiCalculateInsuranceAutomobile != null && e.getSource() == guiCalculateInsuranceAutomobile.getBtnCalculateInsurance()) {
+            getAutomobileInsurance();
         }
     }
 }
