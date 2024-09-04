@@ -37,9 +37,41 @@ public class VehicleService {
         return null;
     }
 
+    public Vehicle getAutomobile( int idVehicle){
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle.getIdVehicle() == idVehicle && vehicle instanceof Automobile) {
+                return vehicle;
+            }
+        }
+        return null;
+    }
+
+    public Vehicle getMotorcycle( int idVehicle){
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle.getIdVehicle() == idVehicle && vehicle instanceof Motorcycle) {
+                return vehicle;
+            }
+        }
+        return null;
+    }
+
     public void removeVehicle(int idVehicle) {
         Vehicle vehicle = getVehicle(idVehicle);
         if (vehicle != null) {
+            vehicles.remove(vehicle);
+        }
+    }
+
+    public void removeAutomobile(int idVehicle) {
+        Vehicle vehicle = getVehicle(idVehicle);
+        if (vehicle != null && vehicle instanceof Automobile) {
+            vehicles.remove(vehicle);
+        }
+    }
+
+    public void removeMotorcycle(int idVehicle) {
+        Vehicle vehicle = getVehicle(idVehicle);
+        if (vehicle != null && vehicle instanceof Motorcycle) {
             vehicles.remove(vehicle);
         }
     }
@@ -54,7 +86,7 @@ public class VehicleService {
         return automobiles;
     }
 
-    public List<Motorcycle> getMotorcycles() {
+    public List<Motorcycle> getMotorcyclesList() {
         List<Motorcycle> motorcycles = new ArrayList<>();
         for (Vehicle vehicle : vehicles) {
             if (vehicle instanceof Motorcycle) {
