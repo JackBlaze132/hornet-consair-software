@@ -1,15 +1,16 @@
 package org.hornetsa.services;
 
+import org.hornetsa.IIntersetedGUI;
 import org.hornetsa.model.Automobile;
 import org.hornetsa.model.Motorcycle;
 import org.hornetsa.model.Vehicle;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class VehicleService {
 
+    private ArrayList<IIntersetedGUI> interestedTables = new ArrayList<>();
     private ArrayList<Vehicle> vehicles;
     public VehicleService() {
         vehicles = new ArrayList<>();
@@ -22,11 +23,13 @@ public class VehicleService {
 
     public void addVehicle(Vehicle vehicle) {
         vehicles.add(vehicle);
+        notifyGUI();
     }
 
     public ArrayList<Vehicle> getVehicles() {
         return vehicles;
     }
+
 
     public Vehicle getVehicle( int idVehicle){
         for (Vehicle vehicle : vehicles) {
@@ -66,6 +69,7 @@ public class VehicleService {
         Vehicle vehicle = getVehicle(idVehicle);
         if (vehicle != null && vehicle instanceof Automobile) {
             vehicles.remove(vehicle);
+            notifyGUI();
         }
     }
 
@@ -73,6 +77,7 @@ public class VehicleService {
         Vehicle vehicle = getVehicle(idVehicle);
         if (vehicle != null && vehicle instanceof Motorcycle) {
             vehicles.remove(vehicle);
+            notifyGUI();
         }
     }
 
@@ -94,6 +99,22 @@ public class VehicleService {
             }
         }
         return motorcycles;
+    }
+
+    public void addGUIInterested(IIntersetedGUI intersestedGUI) {
+        interestedTables.add(intersestedGUI);
+        System.out.println("GUI's interested: " + interestedTables.size());
+    }
+
+    public void removeGUIInterested(IIntersetedGUI intersestedGUI) {
+        interestedTables.remove(intersestedGUI);
+        System.out.println("GUI's interested: " + interestedTables.size());
+    }
+
+    public void notifyGUI() {
+        for (IIntersetedGUI interestedTable : interestedTables) {
+            interestedTable.changeTable();
+        }
     }
 
 

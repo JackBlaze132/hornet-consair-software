@@ -4,26 +4,36 @@
  */
 package org.hornetsa.view.motorcycle;
 
+import org.hornetsa.IIntersetedGUI;
 import org.hornetsa.Main;
+import org.hornetsa.model.Motorcycle;
+import org.hornetsa.services.VehicleService;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.util.List;
 
 /**
  *
  * @author jaime
  */
-public class GUIListMotorcycle extends javax.swing.JFrame {
+public class GUIListMotorcycle extends javax.swing.JFrame implements IIntersetedGUI {
 
     /**
      * Creates new form GUIListMotorcycle
      */
-    public GUIListMotorcycle() {
+
+    VehicleService vehicleService;
+
+    public GUIListMotorcycle(VehicleService vehicleService) {
         initComponents();
         setLocationRelativeTo(this);
         setTitle("Hornet Corsair | List Motorcycle");
         setSize(800, 500);
         setIconImage(new ImageIcon(Main.class.getClassLoader().getResource("img/favicon.png")).getImage());
+        this.vehicleService = vehicleService;
+        vehicleService.addGUIInterested(this);
     }
 
     /**
@@ -124,5 +134,31 @@ public class GUIListMotorcycle extends javax.swing.JFrame {
 
     public JTable getTable() {
         return jTableMotorcycles;
+    }
+
+    @Override
+    public void changeTable() {
+        DefaultTableModel model = (DefaultTableModel) getTable().getModel();
+        model.setRowCount(0);
+        List<Motorcycle> motorcycles = vehicleService.getMotorcyclesList();
+
+        for (Motorcycle motorcycle : motorcycles) {
+            Object[] rowData = {
+                    motorcycle.getIdVehicle(),
+                    motorcycle.getBrand(),
+                    motorcycle.getPrice(),
+                    motorcycle.getModel(),
+                    motorcycle.isAbs(),
+                    motorcycle.getForkType(),
+                    motorcycle.isHelmetIncluded()
+            };
+            model.addRow(rowData);
+        }
+    }
+
+    @Override
+    public void dispose() {
+        vehicleService.removeGUIInterested(this);
+        super.dispose();
     }
 }

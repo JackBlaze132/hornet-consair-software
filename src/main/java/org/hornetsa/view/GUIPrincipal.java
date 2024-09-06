@@ -29,21 +29,21 @@ import javax.imageio.ImageIO;
  * @author ASUS
  */
 public class GUIPrincipal extends javax.swing.JFrame {
-    private ArrayList<Bodywork> bodyworks = new ArrayList<>();
-    private VehicleService vehicleService = new VehicleService();
-
+    private VehicleService vehicleService;
+    private BodyworkService bodyworkService;
     private ImageIcon icon;
 
     /**
      * Creates new form GUIPrincipal
      */
-    public GUIPrincipal() {
+    public GUIPrincipal(VehicleService vehicleService, BodyworkService bodyworkService) {
         icon = new ImageIcon(getClass().getClassLoader().getResource("img/favicon.png"));
         initComponents();
         setTitle("Hornet Corsair");
         setSize(800, 500);
         setIconImage(new ImageIcon(Main.class.getClassLoader().getResource("img/favicon.png")).getImage());
-
+        this.vehicleService = vehicleService;
+        this.bodyworkService = bodyworkService;
     }
 
     public static ImageIcon createIcon(String imagePath) {
@@ -270,19 +270,15 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }
 
     private void jMenuItemListAutomobileActionPerformed(java.awt.event.ActionEvent evt) {
-        GUIListAutomobile guiListAutomobile = new GUIListAutomobile();
-        AutomobileController automobileController = new AutomobileController(guiListAutomobile, vehicleService, bodyworks);
+        GUIListAutomobile guiListAutomobile = new GUIListAutomobile(vehicleService);
+        AutomobileController automobileController = new AutomobileController(guiListAutomobile, vehicleService, bodyworkService);
         guiListAutomobile.setVisible(true);
     }
 
     private void jMenuItemAddAutomobileActionPerformed(java.awt.event.ActionEvent evt) {
         GUIAddAutomobile guiAddAutomobile = new GUIAddAutomobile();
-        guiAddAutomobile.getjListBodyWork().removeAllItems();
-        guiAddAutomobile.getjListBodyWork().addItem("Select");
-        for (Bodywork bodywork : bodyworks) {
-            guiAddAutomobile.getjListBodyWork().addItem(bodywork.getDescription());
-        }
-        AutomobileController automobileController = new AutomobileController(guiAddAutomobile, vehicleService, bodyworks);
+        AutomobileController automobileController = new AutomobileController(guiAddAutomobile, vehicleService, bodyworkService);
+        automobileController.populateBodyworkComboBox();
         guiAddAutomobile.setVisible(true);
     }
 
@@ -303,21 +299,21 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private void jMenuItemSearchAutomobileActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         GUISearchAutomobile guiSearchAutomobile = new GUISearchAutomobile();
-        AutomobileController automobileController = new AutomobileController(guiSearchAutomobile, vehicleService, bodyworks);
+        AutomobileController automobileController = new AutomobileController(guiSearchAutomobile, vehicleService, bodyworkService);
         guiSearchAutomobile.setVisible(true);
     }
 
     private void jMenuItemDeleteAutomobileActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         GUIDeleteAutomobile guiDeleteAutomobile = new GUIDeleteAutomobile();
-        AutomobileController automobileController = new AutomobileController(guiDeleteAutomobile, vehicleService, bodyworks);
+        AutomobileController automobileController = new AutomobileController(guiDeleteAutomobile, vehicleService, bodyworkService);
         guiDeleteAutomobile.setVisible(true);
     }
 
     private void jMenuItemInsuranceAutomobileActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         GUICalculateInsuranceAutomobile guiCalculateInsuranceAutomobile = new GUICalculateInsuranceAutomobile();
-        AutomobileController automobileController = new AutomobileController(guiCalculateInsuranceAutomobile, vehicleService, bodyworks);
+        AutomobileController automobileController = new AutomobileController(guiCalculateInsuranceAutomobile, vehicleService, bodyworkService);
         guiCalculateInsuranceAutomobile.setVisible(true);
     }
 
@@ -330,7 +326,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemListMotorcylceActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        GUIListMotorcycle guiListMotorcycle = new GUIListMotorcycle();
+        GUIListMotorcycle guiListMotorcycle = new GUIListMotorcycle(vehicleService);
         MotorcycleController motorcycleController = new MotorcycleController(guiListMotorcycle, vehicleService);
         guiListMotorcycle.setVisible(true);
     }
@@ -344,14 +340,12 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemAddBodyworkActionPerformed(java.awt.event.ActionEvent evt) {
         GUIAddBodywork guiAddBodywork = new GUIAddBodywork();
-        BodyworkService bodyworkService = new BodyworkService(bodyworks);
         BodyworkController bodyworkController = new BodyworkController(guiAddBodywork, bodyworkService);
         guiAddBodywork.setVisible(true);
     }
 
     private void jMenuItemListBodyworkActionPerformed(java.awt.event.ActionEvent evt) {
-        GUIListBodywork guiListBodywork = new GUIListBodywork();
-        BodyworkService bodyworkService = new BodyworkService(bodyworks);
+        GUIListBodywork guiListBodywork = new GUIListBodywork(bodyworkService);
         BodyworkController bodyworkController = new BodyworkController(guiListBodywork, bodyworkService);
         guiListBodywork.setVisible(true);
     }

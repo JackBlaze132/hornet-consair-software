@@ -6,6 +6,7 @@ package org.hornetsa.view.automobile;
 
 import org.hornetsa.Main;
 import org.hornetsa.model.Bodywork;
+import org.hornetsa.services.BodyworkService;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,10 +17,6 @@ import java.util.ArrayList;
  * @author jaime
  */
 public class GUIAddAutomobile extends javax.swing.JFrame {
-
-    private ArrayList<Bodywork> bodyworks = new ArrayList<>();
-
-
 
     /**
      * Creates new form GUIAddAuto
