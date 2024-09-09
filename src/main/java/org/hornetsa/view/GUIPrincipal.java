@@ -88,6 +88,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jMenuItemListMotorcylce = new javax.swing.JMenuItem();
         jMenuItemInsuranceMotorcylce = new javax.swing.JMenuItem();
         jMenuItemDiscountMotorcycle = new javax.swing.JMenuItem();
+        jMenuItemUpdateMotorcycle = new javax.swing.JMenuItem();
         jMenuBodywork = new javax.swing.JMenu();
         jMenuItemAddBodywork = new javax.swing.JMenuItem();
         jMenuItemListBodywork = new javax.swing.JMenuItem();
@@ -157,7 +158,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         });
         jMenuAutomobile.add(jMenuItemInsuranceAutomobile);
 
-        jMenuItemUpdateAutomobile.setText("Calculate Update");
+        jMenuItemUpdateAutomobile.setText("Update");
         jMenuItemUpdateAutomobile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemUpdateAutomobileActionPerformed(evt);
@@ -217,6 +218,15 @@ public class GUIPrincipal extends javax.swing.JFrame {
             }
         });
         jMenuMotorcycle.add(jMenuItemDiscountMotorcycle);
+
+
+        jMenuItemUpdateMotorcycle.setText("Update");
+        jMenuItemUpdateMotorcycle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemUpdateMotorcycleActionPerformed(evt);
+            }
+        });
+        jMenuMotorcycle.add(jMenuItemUpdateMotorcycle);
 
         jMenuBar1.add(jMenuMotorcycle);
 
@@ -376,6 +386,13 @@ public class GUIPrincipal extends javax.swing.JFrame {
         guiCalculateInsuranceMotorcycle.setVisible(true);
     }
 
+    private void jMenuItemUpdateMotorcycleActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+        GUIUpdateMotorcycle guiUpdateMotorcycle = new GUIUpdateMotorcycle();
+        MotorcycleController MotorcycleController = new MotorcycleController(guiUpdateMotorcycle, vehicleService);
+        guiUpdateMotorcycle.setVisible(true);
+    }
+
     private void jMenuItemAddBodyworkActionPerformed(java.awt.event.ActionEvent evt) {
         GUIAddBodywork guiAddBodywork = new GUIAddBodywork();
         BodyworkService bodyworkService = new BodyworkService(bodyworks);
@@ -418,6 +435,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemSearchAutomobile;
     private javax.swing.JMenuItem jMenuItemSearchMotorcylce;
     private javax.swing.JMenuItem jMenuItemDiscountMotorcycle;
+    private javax.swing.JMenuItem jMenuItemUpdateMotorcycle;
     private javax.swing.JMenu jMenuMotorcycle;
     private javax.swing.JMenuItem mnuAcercaDe;
     private javax.swing.JMenuItem mnuContactenos;
