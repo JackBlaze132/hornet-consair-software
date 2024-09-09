@@ -1,7 +1,9 @@
 package org.hornetsa.services;
 
 import org.hornetsa.IIntersetedGUI;
+import org.hornetsa.model.Automobile;
 import org.hornetsa.model.Bodywork;
+import org.hornetsa.model.Vehicle;
 
 import java.util.ArrayList;
 
@@ -22,6 +24,20 @@ public class BodyworkService {
     public void addBodywork(Bodywork bodywork) {
         bodyworks.add(bodywork);
         notifyGUI();
+    }
+
+    public void updateBodywork(Bodywork updatedBodywork) {
+        // Buscar el automóvil existente por su ID
+        Bodywork existingBodywork = getBodywork(updatedBodywork.getIdBody());
+
+        if (existingBodywork != null) {
+            // Actualizar los atributos del automóvil
+            Bodywork bodywork = existingBodywork;
+            bodywork.setDescription(updatedBodywork.getDescription());
+
+        } else {
+            throw new IllegalArgumentException("Automobile with ID " + updatedBodywork.getIdBody() + " not found.");
+        }
     }
 
     public ArrayList<Bodywork> getBodyworks() {
