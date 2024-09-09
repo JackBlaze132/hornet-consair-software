@@ -5,6 +5,7 @@
 package org.hornetsa.view.bodywork;
 
 import org.hornetsa.Main;
+import org.hornetsa.services.BodyworkService;
 
 import javax.swing.*;
 
@@ -13,7 +14,7 @@ import javax.swing.*;
  * @author jaime
  */
 public class GUIAddBodywork extends javax.swing.JFrame {
-    ;
+
 
     /**
      * Creates new form GUIAddBodywork

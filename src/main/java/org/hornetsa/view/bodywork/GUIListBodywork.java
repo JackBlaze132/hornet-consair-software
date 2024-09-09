@@ -4,26 +4,34 @@
  */
 package org.hornetsa.view.bodywork;
 
+import org.hornetsa.IIntersetedGUI;
 import org.hornetsa.Main;
+import org.hornetsa.model.Bodywork;
+import org.hornetsa.services.BodyworkService;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 /**
  *
  * @author jaime
  */
-public class GUIListBodywork extends javax.swing.JFrame {
+public class GUIListBodywork extends javax.swing.JFrame implements IIntersetedGUI {
 
     /**
      * Creates new form GUIListBodywork
      */
-    public GUIListBodywork() {
+    BodyworkService bodyworkService;
+
+    public GUIListBodywork(BodyworkService bodyworkService) {
         initComponents();
         setLocationRelativeTo(this);
         setTitle("Hornet Corsair | List Bodywork");
         setSize(800, 500);
         setIconImage(new ImageIcon(Main.class.getClassLoader().getResource("img/favicon.png")).getImage());
+        this.bodyworkService = bodyworkService;
+        bodyworkService.addGUIInterested(this);
     }
 
     /**
@@ -134,4 +142,18 @@ public class GUIListBodywork extends javax.swing.JFrame {
         return btnList;
     }
 
+    @Override
+    public void changeTable() {
+        DefaultTableModel model = (DefaultTableModel) getjTable1().getModel();
+        model.setRowCount(0); // Clear existing rows
+        for (Bodywork bodywork : bodyworkService.getBodyworks()) {
+            model.addRow(new Object[]{bodywork.getIdBody(), bodywork.getDescription()});
+        }
+    }
+
+    @Override
+    public void dispose() {
+        bodyworkService.removeGUIInterested(this);
+        super.dispose();
+    }
 }

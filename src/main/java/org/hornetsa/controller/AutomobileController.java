@@ -3,6 +3,7 @@ package org.hornetsa.controller;
 import org.hornetsa.model.Automobile;
 import org.hornetsa.model.Bodywork;
 import org.hornetsa.model.Vehicle;
+import org.hornetsa.services.BodyworkService;
 import org.hornetsa.services.VehicleService;
 import org.hornetsa.view.automobile.*;
 
@@ -18,6 +19,7 @@ public class AutomobileController implements ActionListener {
     NumberFormat formatter = NumberFormat.getCurrencyInstance();
 
     private VehicleService vehicleService;
+    private BodyworkService bodyworkService;
     private GUIAddAutomobile guiAddAutomobile;
     private GUIListAutomobile guiListAutomobile;
     private GUIDeleteAutomobile guiDeleteAutomobile;
@@ -27,39 +29,39 @@ public class AutomobileController implements ActionListener {
     private ArrayList<Bodywork> bodyworks;
 
 
-    public AutomobileController(GUIAddAutomobile guiAddAutomobile, VehicleService vehicleService, ArrayList<Bodywork> bodyworks) {
+    public AutomobileController(GUIAddAutomobile guiAddAutomobile, VehicleService vehicleService, BodyworkService bodyworkService) {
         this.guiAddAutomobile = guiAddAutomobile;
         this.vehicleService = vehicleService;
-        this.bodyworks = bodyworks;
+        this.bodyworkService = bodyworkService;
         this.guiAddAutomobile.getjBtnAdd().addActionListener(this);
     }
 
-    public AutomobileController(GUIListAutomobile guiListAutomobile, VehicleService vehicleService, ArrayList<Bodywork> bodyworks) {
+    public AutomobileController(GUIListAutomobile guiListAutomobile, VehicleService vehicleService, BodyworkService bodyworkService) {
         this.guiListAutomobile = guiListAutomobile;
         this.vehicleService = vehicleService;
-        this.bodyworks = bodyworks;
+        this.bodyworkService = bodyworkService;
         this.guiListAutomobile.getBtnList().addActionListener(this);
     }
 
-    public AutomobileController(GUIDeleteAutomobile guiDeleteAutomobile, VehicleService vehicleService, ArrayList<Bodywork> bodyworks) {
+    public AutomobileController(GUIDeleteAutomobile guiDeleteAutomobile, VehicleService vehicleService, BodyworkService bodyworkService) {
         this.guiDeleteAutomobile = guiDeleteAutomobile;
         this.vehicleService = vehicleService;
-        this.bodyworks = bodyworks;
+        this.bodyworkService = bodyworkService;
         this.guiDeleteAutomobile.getBtnSearch().addActionListener(this);
         this.guiDeleteAutomobile.getjBtnDelete().addActionListener(this);
     }
 
-    public AutomobileController(GUISearchAutomobile guiSearchAutomobile, VehicleService vehicleService, ArrayList<Bodywork> bodyworks) {
+    public AutomobileController(GUISearchAutomobile guiSearchAutomobile, VehicleService vehicleService, BodyworkService bodyworkService) {
         this.guiSearchAutomobile = guiSearchAutomobile;
         this.vehicleService = vehicleService;
-        this.bodyworks = bodyworks;
+        this.bodyworkService = bodyworkService;
         this.guiSearchAutomobile.getBtnSearch().addActionListener(this);
     }
 
-    public AutomobileController(GUICalculateInsuranceAutomobile guiCalculateInsuranceAutomobile, VehicleService vehicleService, ArrayList<Bodywork> bodyworks) {
+    public AutomobileController(GUICalculateInsuranceAutomobile guiCalculateInsuranceAutomobile, VehicleService vehicleService, BodyworkService bodyworkService) {
         this.guiCalculateInsuranceAutomobile = guiCalculateInsuranceAutomobile;
         this.vehicleService = vehicleService;
-        this.bodyworks = bodyworks;
+        this.bodyworkService = bodyworkService;
         this.guiCalculateInsuranceAutomobile.getBtnSearch().addActionListener(this);
         this.guiCalculateInsuranceAutomobile.getBtnCalculateInsurance().addActionListener(this);
     }
@@ -76,10 +78,10 @@ public class AutomobileController implements ActionListener {
 
         guiAddAutomobile.getjListBodyWork().removeAllItems();
         guiAddAutomobile.getjListBodyWork().addItem("Select");
-        for (Bodywork bodywork : bodyworks) {
+        for (Bodywork bodywork : bodyworkService.getBodyworks()) {
             guiAddAutomobile.getjListBodyWork().addItem(bodywork.getDescription());
         }
-        Bodywork selectedBodywork = bodyworks.get(guiAddAutomobile.getjListBodyWork().getSelectedIndex());
+        Bodywork selectedBodywork = bodyworkService.getBodyworks().get(guiAddAutomobile.getjListBodyWork().getSelectedIndex());
         if (selectedBodywork == null) {
             JOptionPane.showMessageDialog(guiAddAutomobile, "Please select a bodywork.");
             return;
@@ -325,6 +327,14 @@ public class AutomobileController implements ActionListener {
                     .append("Insurance: ").append(formatter.format(automobile.calculateInsurance()));
         }
         JOptionPane.showMessageDialog(null, message.toString(), "Motorcycle Insurance", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public void populateBodyworkComboBox(){
+        guiAddAutomobile.getjListBodyWork().removeAllItems();
+        guiAddAutomobile.getjListBodyWork().addItem("Select");
+        for (Bodywork bodywork : bodyworkService.getBodyworks()) {
+            guiAddAutomobile.getjListBodyWork().addItem(bodywork.getDescription());
+        }
     }
 
 

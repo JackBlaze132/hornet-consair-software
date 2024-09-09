@@ -5,24 +5,32 @@
 
 package org.hornetsa.view.automobile;
 
+import org.hornetsa.IIntersetedGUI;
 import org.hornetsa.Main;
+import org.hornetsa.model.Automobile;
+import org.hornetsa.services.BodyworkService;
+import org.hornetsa.services.VehicleService;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 /**
  *
  * @author ASUS
  */
-public class GUIListAutomobile extends javax.swing.JFrame {
+public class GUIListAutomobile extends javax.swing.JFrame implements IIntersetedGUI {
 
+    VehicleService vehicleService;
     /** Creates new form GUIListarB */
-    public GUIListAutomobile() {
+    public GUIListAutomobile(VehicleService vehicleService) {
         initComponents();
         setLocationRelativeTo(this);
         setTitle("Hornet Corsair | List Automobiles");
         setSize(800, 500);
         setIconImage(new ImageIcon(Main.class.getClassLoader().getResource("img/favicon.png")).getImage());
+        this.vehicleService = vehicleService;
+        vehicleService.addGUIInterested(this);
     }
 
     /** This method is called from within the constructor to
@@ -129,4 +137,22 @@ public class GUIListAutomobile extends javax.swing.JFrame {
         return btnList;
     }
 
+    @Override
+    public void changeTable() {
+        DefaultTableModel model = (DefaultTableModel) getjTable1().getModel();
+        model.setRowCount(0);
+
+        for (Automobile automobile : vehicleService.getAutomobiles()) {
+            model.addRow(new Object[]{
+                    automobile.getIdVehicle(),
+                    automobile.getBrand(),
+                    automobile.getPrice(),
+                    automobile.getModel(),
+                    automobile.isAbs(),
+                    automobile.getDoorCount(),
+                    automobile.getBodywork().getDescription(),
+                    automobile.getAirbagCount()
+            });
+        }
+    }
 }
