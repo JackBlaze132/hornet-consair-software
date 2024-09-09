@@ -3,6 +3,7 @@ package org.hornetsa.controller;
 import org.hornetsa.model.Motorcycle;
 import org.hornetsa.model.Vehicle;
 import org.hornetsa.services.VehicleService;
+import org.hornetsa.view.automobile.GUIUpdateAutomobile;
 import org.hornetsa.view.motorcycle.*;
 
 import javax.swing.*;
@@ -21,6 +22,8 @@ public class MotorcycleController implements ActionListener{
     private GUIListMotorcycle guiListMotorcycle;
     private GUIDeleteMotorcycle guiDeleteMotorcycle;
     private GUISearchMotorcycle guiSearchMotorcycle;
+
+    private GUIUpdateMotorcycle guiUpdateMotorcycle;
     private GUICalculateDiscountMotorcycle guiCalculateDiscountMotorcycle;
 
     private GUICalculateInsuranceMotorcycle guiCalculateIsuranceMotorcycle;
@@ -62,6 +65,13 @@ public class MotorcycleController implements ActionListener{
         this.guiCalculateIsuranceMotorcycle = guiCalculateInsuranceMotorcycle;
         this.guiCalculateIsuranceMotorcycle.getBtnSearch().addActionListener(this);
         this.guiCalculateIsuranceMotorcycle.getBtnCalculateInsurance().addActionListener(this);
+    }
+
+    public MotorcycleController(GUIUpdateMotorcycle guiUpdateMotorcycle, VehicleService vehicleService) {
+        this.vehicleService = vehicleService;
+        this.guiUpdateMotorcycle = guiUpdateMotorcycle;
+        this.guiUpdateMotorcycle.getBtnSearch().addActionListener(this);
+        this.guiUpdateMotorcycle.getBtnUpdate().addActionListener(this);
     }
 
     private void addMotorcycle() {
@@ -286,6 +296,55 @@ public class MotorcycleController implements ActionListener{
         }
         JOptionPane.showMessageDialog(null, message.toString(), "Motorcycle Insurance", JOptionPane.INFORMATION_MESSAGE);
     }
+    private void updateMotorcycleTableUpdate() {
+        DefaultTableModel model = (DefaultTableModel) guiUpdateMotorcycle.getjTableUpdateMotorcycle().getModel();
+        model.setRowCount(0);
+
+        if (guiUpdateMotorcycle.getTxtIdMotorcycle().getText().isEmpty()){
+            JOptionPane.showMessageDialog(guiUpdateMotorcycle, "Please enter a valid number.","Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            try {
+                int vehicleNumber = Integer.parseInt(guiUpdateMotorcycle.getTxtIdMotorcycle().getText());
+                Vehicle vehicle = vehicleService.getMotorcycle(vehicleNumber);
+
+                if(vehicle instanceof Motorcycle motorcycle) {
+                    model.addRow(new Object[]{
+                            motorcycle.getIdVehicle(),
+                            motorcycle.getBrand(),
+                            motorcycle.getModel(),
+                            motorcycle.getPrice(),
+                            motorcycle.isAbs(),
+                            motorcycle.getForkType(),
+                            motorcycle.isHelmetIncluded()
+                    });
+                } else {
+                    JOptionPane.showMessageDialog(guiUpdateMotorcycle, "Motorcycle not found.");
+                }
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(guiUpdateMotorcycle, "Invalid vehicle number format.");
+            }
+        }
+    }
+
+    private void updateMotorcycle() {
+        int selectedRow = guiUpdateMotorcycle.getjTableUpdateMotorcycle().getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(guiUpdateMotorcycle, "Please select a row to update.");
+            return;
+        }
+
+        int idMotorcycle = (int) guiUpdateMotorcycle.getjTableUpdateMotorcycle().getValueAt(selectedRow, 0);
+        String brand = (String) guiUpdateMotorcycle.getjTableUpdateMotorcycle().getValueAt(selectedRow, 1);
+        String model = (String) guiUpdateMotorcycle.getjTableUpdateMotorcycle().getValueAt(selectedRow, 2);
+        double price = (double) guiUpdateMotorcycle.getjTableUpdateMotorcycle().getValueAt(selectedRow, 3);
+        boolean hasAbs = (boolean) guiUpdateMotorcycle.getjTableUpdateMotorcycle().getValueAt(selectedRow, 4);
+        String forkType = (String) guiUpdateMotorcycle.getjTableUpdateMotorcycle().getValueAt(selectedRow, 5);
+        boolean helmetIncluded = (boolean) guiUpdateMotorcycle.getjTableUpdateMotorcycle().getValueAt(selectedRow, 6);
+
+        GUIEditMotorcycle guiEditMotorcycle = new GUIEditMotorcycle(idMotorcycle, brand, model, price, hasAbs, forkType, helmetIncluded, vehicleService);
+        guiEditMotorcycle.setVisible(true);
+    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -317,6 +376,12 @@ public class MotorcycleController implements ActionListener{
         }
         if (guiCalculateIsuranceMotorcycle != null && e.getSource() == guiCalculateIsuranceMotorcycle.getBtnCalculateInsurance()) {
             getMotorcycleInsurance();
+        }
+        if (guiUpdateMotorcycle != null && e.getSource() == guiUpdateMotorcycle.getBtnUpdate()) {
+            updateMotorcycle();
+        }
+        if (guiUpdateMotorcycle != null && e.getSource() == guiUpdateMotorcycle.getBtnSearch()) {
+            updateMotorcycleTableUpdate();
         }
     }
 }
