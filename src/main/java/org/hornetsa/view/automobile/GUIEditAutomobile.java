@@ -2,6 +2,7 @@ package org.hornetsa.view.automobile;
 
 import org.hornetsa.model.Automobile;
 import org.hornetsa.model.Bodywork;
+import org.hornetsa.services.BodyworkService;
 import org.hornetsa.services.VehicleService;
 
 import javax.swing.*;
@@ -18,13 +19,13 @@ public class GUIEditAutomobile extends JFrame {
     private JComboBox<String> jListBodyWork;
     private JButton jBtnSave;
     private VehicleService vehicleService;
-    private ArrayList<Bodywork> bodyworks;
+    private BodyworkService bodyworkService;
     private int idAutomobile;
 
-    public GUIEditAutomobile(int idAutomobile, String brand, String model, double price, boolean hasAbs, String bodywork, int doorCount, int airbagCount, VehicleService vehicleService, ArrayList<Bodywork> bodyworks) {
+    public GUIEditAutomobile(int idAutomobile, String brand, String model, double price, boolean hasAbs, String bodywork, int doorCount, int airbagCount, VehicleService vehicleService, BodyworkService bodyworkService) {
         this.idAutomobile = idAutomobile;
         this.vehicleService = vehicleService;
-        this.bodyworks = bodyworks;
+        this.bodyworkService = bodyworkService;
 
         initComponents();
 
@@ -56,7 +57,7 @@ public class GUIEditAutomobile extends JFrame {
         jListBodyWork = new JComboBox<>();
         jBtnSave = new JButton("Save");
 
-        for (Bodywork bodywork : bodyworks) {
+        for (Bodywork bodywork : bodyworkService.getBodyworks()) {
             jListBodyWork.addItem(bodywork.getDescription());
         }
 
@@ -209,7 +210,7 @@ public class GUIEditAutomobile extends JFrame {
 
     // Método para buscar Bodywork por descripción
     private Bodywork findBodyworkByDescription(String description) {
-        for (Bodywork bodywork : bodyworks) {
+        for (Bodywork bodywork : bodyworkService.getBodyworks()) {
             if (bodywork.getDescription().equals(description)) {
                 return bodywork;
             }

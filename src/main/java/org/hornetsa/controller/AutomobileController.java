@@ -26,7 +26,6 @@ public class AutomobileController implements ActionListener {
     private GUISearchAutomobile guiSearchAutomobile;
     private GUICalculateInsuranceAutomobile guiCalculateInsuranceAutomobile;
     private GUIUpdateAutomobile guiUpdateAutomobile;
-    private ArrayList<Bodywork> bodyworks;
 
 
     public AutomobileController(GUIAddAutomobile guiAddAutomobile, VehicleService vehicleService, BodyworkService bodyworkService) {
@@ -66,10 +65,10 @@ public class AutomobileController implements ActionListener {
         this.guiCalculateInsuranceAutomobile.getBtnCalculateInsurance().addActionListener(this);
     }
 
-    public AutomobileController(GUIUpdateAutomobile guiUpdateAutomobile, VehicleService vehicleService, ArrayList<Bodywork> bodyworks) {
+    public AutomobileController(GUIUpdateAutomobile guiUpdateAutomobile, VehicleService vehicleService, BodyworkService bodyworkService) {
         this.guiUpdateAutomobile = guiUpdateAutomobile;
         this.vehicleService = vehicleService;
-        this.bodyworks = bodyworks;
+        this.bodyworkService = bodyworkService;
         this.guiUpdateAutomobile.getBtnSearch().addActionListener(this);
         this.guiUpdateAutomobile.getBtnUpdate().addActionListener(this);
     }
@@ -295,7 +294,7 @@ public class AutomobileController implements ActionListener {
         int airbagCount = (int) guiUpdateAutomobile.getjTableUpdateAutomobile().getValueAt(selectedRow, 7);
 
         // Crear y mostrar la nueva GUI para editar el automóvil
-        GUIEditAutomobile guiEditAutomobile = new GUIEditAutomobile(idAutomobile, brand, model, price, hasAbs, bodywork, doorCount, airbagCount, vehicleService, bodyworks);
+        GUIEditAutomobile guiEditAutomobile = new GUIEditAutomobile(idAutomobile, brand, model, price, hasAbs, bodywork, doorCount, airbagCount, vehicleService, bodyworkService);
         guiEditAutomobile.setVisible(true);
     }
 
