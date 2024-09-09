@@ -73,7 +73,7 @@ public class AutomobileController implements ActionListener {
         this.guiUpdateAutomobile.getBtnUpdate().addActionListener(this);
     }
 
-    private void    addAutomobile() {
+    private void addAutomobile() {
 
         guiAddAutomobile.getjListBodyWork().removeAllItems();
         guiAddAutomobile.getjListBodyWork().addItem("Select");

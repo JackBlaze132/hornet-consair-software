@@ -91,6 +91,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jMenuItemAddBodywork = new javax.swing.JMenuItem();
         jMenuItemListBodywork = new javax.swing.JMenuItem();
         jMenuItemSearchBodywork = new javax.swing.JMenuItem();
+        jMenuItemUpdateBodywork = new javax.swing.JMenuItem();
         jMenuItemDeleteBodywork = new javax.swing.JMenuItem();
         mnuHelp = new javax.swing.JMenu();
 
@@ -99,7 +100,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Principal");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -256,12 +256,22 @@ public class GUIPrincipal extends javax.swing.JFrame {
                 jMenuItemListBodyworkActionPerformed(evt);
             }
         });
+
         jMenuBodywork.add(jMenuItemListBodywork);
 
         jMenuItemDeleteBodywork.setText("Delete Bodywork");
         jMenuItemDeleteBodywork.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 setjMenuItemDeleteBodyworkActionPerformed(evt);
+            }
+        });
+
+        jMenuBodywork.add(jMenuItemUpdateBodywork);
+
+        jMenuItemUpdateBodywork.setText("Update Bodywork");
+        jMenuItemUpdateBodywork.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setjMenuItemUpdateBodyworkActionPerformed(evt);
             }
         });
         jMenuBodywork.add(jMenuItemDeleteBodywork);
@@ -420,6 +430,13 @@ public class GUIPrincipal extends javax.swing.JFrame {
         guiSearchBodywork.setVisible(true);
     }
 
+    private void setjMenuItemUpdateBodyworkActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+        GUIUpdateBodywork guiUpdateBodywork = new GUIUpdateBodywork();
+        BodyworkController bodyworkController = new BodyworkController(guiUpdateBodywork, bodyworkService);
+        guiUpdateBodywork.setVisible(true);
+    }
+
     private void jMenuItemListBodyworkActionPerformed(java.awt.event.ActionEvent evt) {
         GUIListBodywork guiListBodywork = new GUIListBodywork(bodyworkService);
         BodyworkController bodyworkController = new BodyworkController(guiListBodywork, bodyworkService);
@@ -450,6 +467,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemAddBodywork;
     private javax.swing.JMenuItem jMenuItemSearchBodywork;
     private javax.swing.JMenuItem jMenuItemListBodywork;
+    private javax.swing.JMenuItem jMenuItemUpdateBodywork;
     private javax.swing.JMenuItem jMenuItemDeleteBodywork;
     private javax.swing.JMenuItem jMenuItemAddMotorcylce;
     private javax.swing.JMenuItem jMenuItemDeleteAutomobile;

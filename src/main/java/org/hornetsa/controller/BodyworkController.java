@@ -1,14 +1,11 @@
 package org.hornetsa.controller;
 
+import org.hornetsa.model.*;
 import org.hornetsa.model.Bodywork;
 import org.hornetsa.model.Bodywork;
-import org.hornetsa.model.Bodywork;
-import org.hornetsa.model.Vehicle;
-import org.hornetsa.view.bodywork.GUIAddBodywork;
-import org.hornetsa.view.bodywork.GUIDeleteBodywork;
-import org.hornetsa.view.bodywork.GUIListBodywork;
+import org.hornetsa.view.bodywork.*;
 import org.hornetsa.services.BodyworkService;
-import org.hornetsa.view.bodywork.GUISearchBodywork;
+
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -23,6 +20,8 @@ public class BodyworkController implements ActionListener {
     private GUIListBodywork guiListBodywork;
     private GUISearchBodywork guiSearchBodywork;
     private GUIDeleteBodywork guiDeleteBodywork;
+    
+    private GUIUpdateBodywork guiUpdateBodywork;
 
     // Constructor para GUIAddBodywork
     public BodyworkController(GUIAddBodywork guiAddBodywork, BodyworkService bodyworkService) {
@@ -49,6 +48,13 @@ public class BodyworkController implements ActionListener {
         this.bodyworkService = bodyworkService;
         this.guiDeleteBodywork.getBtnSearch().addActionListener(this);
         this.guiDeleteBodywork.getBtnDelete().addActionListener(this);
+    }
+
+    public BodyworkController(GUIUpdateBodywork guiUpdateBodywork, BodyworkService bodyworkService) {
+        this.guiUpdateBodywork = guiUpdateBodywork;
+        this.bodyworkService = bodyworkService;
+        this.guiUpdateBodywork.getBtnSearch().addActionListener(this);
+        this.guiUpdateBodywork.getBtnUpdate().addActionListener(this);
     }
 
     private void addBodywork() {
@@ -93,6 +99,20 @@ public class BodyworkController implements ActionListener {
         for (Bodywork bodywork : bodyworkService.getBodyworks()) {
             model.addRow(new Object[]{bodywork.getIdBody(), bodywork.getDescription()});
         }
+    }
+
+    private void updateBodywork() {
+        int selectedRow = guiUpdateBodywork.getjTableUpdateBodywork().getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(guiUpdateBodywork, "Please select a row to update.");
+            return;
+        }
+
+        int idBodywork = (int) guiUpdateBodywork.getjTableUpdateBodywork().getValueAt(selectedRow, 0);
+        String description = (String) guiUpdateBodywork.getjTableUpdateBodywork().getValueAt(selectedRow, 1);
+
+        GUIEditBodywork guiEditBodywork = new GUIEditBodywork(idBodywork, description, bodyworkService);
+        guiEditBodywork.setVisible(true);
     }
 
     private void updateBodyworkTableSearch(){
@@ -143,6 +163,31 @@ public class BodyworkController implements ActionListener {
         }
     }
 
+    private void updateBodyworkTableUpdate() {
+        DefaultTableModel model = (DefaultTableModel) guiUpdateBodywork.getjTableUpdateBodywork().getModel();
+        model.setRowCount(0);
+
+        if (guiUpdateBodywork.getTxtIdBodywork().getText().isEmpty()){
+            JOptionPane.showMessageDialog(guiUpdateBodywork, "Please enter a valid number.","Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            try {
+                int idBody = Integer.parseInt(guiUpdateBodywork.getTxtIdBodywork().getText());
+                Bodywork bodywork = bodyworkService.getBodywork(idBody);
+
+                if(bodywork != null) {
+                    model.addRow(new Object[]{
+                            bodywork.getIdBody(),
+                            bodywork.getDescription()
+                    });
+                } else {
+                    JOptionPane.showMessageDialog(guiUpdateBodywork, "Bodywork not found.");
+                }
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(guiUpdateBodywork, "Invalid vehicle number format.");
+            }
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (guiAddBodywork != null && e.getSource() == guiAddBodywork.getBtnAdd()) {
@@ -159,6 +204,12 @@ public class BodyworkController implements ActionListener {
         }
         if (guiDeleteBodywork != null && e.getSource() == guiDeleteBodywork.getBtnSearch()) {
             updateBodyworkTableDelete();
+        }
+        if (guiUpdateBodywork != null && e.getSource() == guiUpdateBodywork.getBtnSearch()) {
+            updateBodyworkTableUpdate();
+        }
+        if (guiUpdateBodywork != null && e.getSource() == guiUpdateBodywork.getBtnUpdate()) {
+            updateBodywork();
         }
     }
 
