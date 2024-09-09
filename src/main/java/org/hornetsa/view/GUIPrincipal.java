@@ -9,11 +9,14 @@ import org.hornetsa.controller.AutomobileController;
 import org.hornetsa.controller.BodyworkController;
 import org.hornetsa.controller.MotorcycleController;
 import org.hornetsa.model.Bodywork;
+import org.hornetsa.model.Company;
 import org.hornetsa.services.BodyworkService;
 import org.hornetsa.services.VehicleService;
 import org.hornetsa.view.automobile.*;
 import org.hornetsa.view.bodywork.GUIAddBodywork;
+import org.hornetsa.view.bodywork.GUIDeleteBodywork;
 import org.hornetsa.view.bodywork.GUIListBodywork;
+import org.hornetsa.view.bodywork.GUISearchBodywork;
 import org.hornetsa.view.motorcycle.*;
 
 import javax.swing.*;
@@ -24,13 +27,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
+
 /**
  *
  * @author ASUS
  */
 public class GUIPrincipal extends javax.swing.JFrame {
+
     private VehicleService vehicleService;
     private BodyworkService bodyworkService;
+
+    private ArrayList<Bodywork> bodyworks = new ArrayList<>();
+    private VehicleService vehicleService = new VehicleService();
+
+
+    Company company = Company.getEmpresa();
     private ImageIcon icon;
 
     /**
@@ -68,7 +79,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        mnuArchivo = new javax.swing.JMenu();
+        mnuFile = new javax.swing.JMenu();
         mnuSalir = new javax.swing.JMenuItem();
         jMenuAutomobile = new javax.swing.JMenu();
         jMenuItemAddAutomobile = new javax.swing.JMenuItem();
@@ -76,6 +87,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jMenuItemDeleteAutomobile = new javax.swing.JMenuItem();
         jMenuItemListAutomobile = new javax.swing.JMenuItem();
         jMenuItemInsuranceAutomobile = new javax.swing.JMenuItem();
+        jMenuItemUpdateAutomobile = new javax.swing.JMenuItem();
         jMenuMotorcycle = new javax.swing.JMenu();
         jMenuItemAddMotorcylce = new javax.swing.JMenuItem();
         jMenuItemSearchMotorcylce = new javax.swing.JMenuItem();
@@ -83,11 +95,17 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jMenuItemListMotorcylce = new javax.swing.JMenuItem();
         jMenuItemInsuranceMotorcylce = new javax.swing.JMenuItem();
         jMenuItemDiscountMotorcycle = new javax.swing.JMenuItem();
+        jMenuItemUpdateMotorcycle = new javax.swing.JMenuItem();
         jMenuBodywork = new javax.swing.JMenu();
         jMenuItemAddBodywork = new javax.swing.JMenuItem();
         jMenuItemListBodywork = new javax.swing.JMenuItem();
+        jMenuItemSearchBodywork = new javax.swing.JMenuItem();
+        jMenuItemDeleteBodywork = new javax.swing.JMenuItem();
         mnuAyuda = new javax.swing.JMenu();
-        mnuAcercaDe = new javax.swing.JMenuItem();
+
+        mnuAbout = new javax.swing.JMenuItem();
+        mnuContactenos = new javax.swing.JMenuItem();
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Principal");
@@ -97,7 +115,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jLabel1.setVerticalAlignment(SwingConstants.CENTER);
         jLabel1.setText("HORNET CORSAIR");
 
-        mnuArchivo.setText("File");
+        mnuFile.setText("File");
 
         mnuSalir.setText("Close");
         mnuSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -105,9 +123,9 @@ public class GUIPrincipal extends javax.swing.JFrame {
                 mnuSalirActionPerformed(evt);
             }
         });
-        mnuArchivo.add(mnuSalir);
+        mnuFile.add(mnuSalir);
 
-        jMenuBar1.add(mnuArchivo);
+        jMenuBar1.add(mnuFile);
 
         jMenuAutomobile.setText("Automobile");
 
@@ -150,6 +168,14 @@ public class GUIPrincipal extends javax.swing.JFrame {
             }
         });
         jMenuAutomobile.add(jMenuItemInsuranceAutomobile);
+
+        jMenuItemUpdateAutomobile.setText("Update");
+        jMenuItemUpdateAutomobile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemUpdateAutomobileActionPerformed(evt);
+            }
+        });
+        jMenuAutomobile.add(jMenuItemUpdateAutomobile);
 
         jMenuBar1.add(jMenuAutomobile);
 
@@ -204,6 +230,15 @@ public class GUIPrincipal extends javax.swing.JFrame {
         });
         jMenuMotorcycle.add(jMenuItemDiscountMotorcycle);
 
+
+        jMenuItemUpdateMotorcycle.setText("Update");
+        jMenuItemUpdateMotorcycle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemUpdateMotorcycleActionPerformed(evt);
+            }
+        });
+        jMenuMotorcycle.add(jMenuItemUpdateMotorcycle);
+
         jMenuBar1.add(jMenuMotorcycle);
 
         jMenuBodywork.setText("Bodywork");
@@ -216,6 +251,14 @@ public class GUIPrincipal extends javax.swing.JFrame {
         });
         jMenuBodywork.add(jMenuItemAddBodywork);
 
+        jMenuItemSearchBodywork.setText("Search Bodywork");
+        jMenuItemSearchBodywork.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSearchBodyworkActionPerformed(evt);
+            }
+        });
+        jMenuBodywork.add(jMenuItemSearchBodywork);
+
         jMenuItemListBodywork.setText("List Bodywork");
         jMenuItemListBodywork.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -224,17 +267,33 @@ public class GUIPrincipal extends javax.swing.JFrame {
         });
         jMenuBodywork.add(jMenuItemListBodywork);
 
+        jMenuItemDeleteBodywork.setText("Delete Bodywork");
+        jMenuItemDeleteBodywork.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setjMenuItemDeleteBodyworkActionPerformed(evt);
+            }
+        });
+        jMenuBodywork.add(jMenuItemDeleteBodywork);
+
         jMenuBar1.add(jMenuBodywork);
 
         mnuAyuda.setText("Help");
 
-        mnuAcercaDe.setText("About...");
-        mnuAcercaDe.addActionListener(new java.awt.event.ActionListener() {
+        mnuAbout.setText("About...");
+        mnuAbout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuAcercaDeActionPerformed(evt);
             }
         });
-        mnuAyuda.add(mnuAcercaDe);
+        mnuAyuda.add(mnuAbout);
+
+        mnuContactenos.setText("Contactenos...");
+        mnuContactenos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuContactenosActionPerformed(evt);
+            }
+        });
+        mnuAyuda.add(mnuContactenos);
 
         jMenuBar1.add(mnuAyuda);
 
@@ -267,6 +326,11 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private void mnuAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {
         ImageIcon about = createIcon("src/main/resources/img/favicon.png");
         JOptionPane.showMessageDialog(this, "Desarrollado por:\n\n Eder Martínez\n Jaime Rodriguez\n Jhon Cardenas \n\nHornet©2024", "About", JOptionPane.INFORMATION_MESSAGE, about);
+    }
+
+    private void mnuContactenosActionPerformed(java.awt.event.ActionEvent evt) {
+        ImageIcon about = createIcon("src/main/resources/img/favicon.png");
+        JOptionPane.showMessageDialog(this,  company.getName() + "\n Nit: " + company.getNit() + "\n Ubicada en: " + company.getAddress() + "\n Número: " + company.getPhone() + "\n Correo: " + company.getEmail() + "\n\nHornet©2024", "Contactenos", JOptionPane.INFORMATION_MESSAGE, about);
     }
 
     private void jMenuItemListAutomobileActionPerformed(java.awt.event.ActionEvent evt) {
@@ -317,6 +381,13 @@ public class GUIPrincipal extends javax.swing.JFrame {
         guiCalculateInsuranceAutomobile.setVisible(true);
     }
 
+    private void jMenuItemUpdateAutomobileActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+        GUIUpdateAutomobile guiUpdateAutomobile = new GUIUpdateAutomobile();
+        AutomobileController automobileController = new AutomobileController(guiUpdateAutomobile, vehicleService, bodyworks);
+        guiUpdateAutomobile.setVisible(true);
+    }
+
     private void jMenuItemSearchMotorcylceActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         GUISearchMotorcycle guiSearchMotorcycle = new GUISearchMotorcycle();
@@ -338,10 +409,25 @@ public class GUIPrincipal extends javax.swing.JFrame {
         guiCalculateInsuranceMotorcycle.setVisible(true);
     }
 
+    private void jMenuItemUpdateMotorcycleActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+        GUIUpdateMotorcycle guiUpdateMotorcycle = new GUIUpdateMotorcycle();
+        MotorcycleController MotorcycleController = new MotorcycleController(guiUpdateMotorcycle, vehicleService);
+        guiUpdateMotorcycle.setVisible(true);
+    }
+
     private void jMenuItemAddBodyworkActionPerformed(java.awt.event.ActionEvent evt) {
         GUIAddBodywork guiAddBodywork = new GUIAddBodywork();
         BodyworkController bodyworkController = new BodyworkController(guiAddBodywork, bodyworkService);
         guiAddBodywork.setVisible(true);
+    }
+
+    private void jMenuItemSearchBodyworkActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+        GUISearchBodywork guiSearchBodywork = new GUISearchBodywork();
+        BodyworkService bodyworkService = new BodyworkService(bodyworks);
+        BodyworkController bodyworkController = new BodyworkController(guiSearchBodywork, bodyworkService);
+        guiSearchBodywork.setVisible(true);
     }
 
     private void jMenuItemListBodyworkActionPerformed(java.awt.event.ActionEvent evt) {
@@ -350,6 +436,12 @@ public class GUIPrincipal extends javax.swing.JFrame {
         guiListBodywork.setVisible(true);
     }
 
+    private void setjMenuItemDeleteBodyworkActionPerformed(java.awt.event.ActionEvent evt) {
+        GUIDeleteBodywork guiDeleteBodywork = new GUIDeleteBodywork();
+        BodyworkService bodyworkService = new BodyworkService(bodyworks);
+        BodyworkController bodyworkController = new BodyworkController(guiDeleteBodywork, bodyworkService);
+        guiDeleteBodywork.setVisible(true);
+    }
 
     private void jMenuItemDiscountMotorcycleActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
@@ -367,20 +459,29 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuBodywork;
     private javax.swing.JMenuItem jMenuItemAddAutomobile;
     private javax.swing.JMenuItem jMenuItemAddBodywork;
+    private javax.swing.JMenuItem jMenuItemSearchBodywork;
+    private javax.swing.JMenuItem jMenuItemListBodywork;
+    private javax.swing.JMenuItem jMenuItemDeleteBodywork;
     private javax.swing.JMenuItem jMenuItemAddMotorcylce;
     private javax.swing.JMenuItem jMenuItemDeleteAutomobile;
     private javax.swing.JMenuItem jMenuItemDeleteMotorcylce;
     private javax.swing.JMenuItem jMenuItemInsuranceAutomobile;
+    private javax.swing.JMenuItem jMenuItemUpdateAutomobile;
     private javax.swing.JMenuItem jMenuItemInsuranceMotorcylce;
     private javax.swing.JMenuItem jMenuItemListAutomobile;
-    private javax.swing.JMenuItem jMenuItemListBodywork;
     private javax.swing.JMenuItem jMenuItemListMotorcylce;
     private javax.swing.JMenuItem jMenuItemSearchAutomobile;
     private javax.swing.JMenuItem jMenuItemSearchMotorcylce;
     private javax.swing.JMenuItem jMenuItemDiscountMotorcycle;
+    private javax.swing.JMenuItem jMenuItemUpdateMotorcycle;
     private javax.swing.JMenu jMenuMotorcycle;
-    private javax.swing.JMenuItem mnuAcercaDe;
-    private javax.swing.JMenu mnuArchivo;
+
+    private javax.swing.JMenuItem mnuAbout;
+    private javax.swing.JMenu mnuFile;
+
+
+    private javax.swing.JMenuItem mnuContactenos;
+
     private javax.swing.JMenu mnuAyuda;
     private javax.swing.JMenuItem mnuSalir;
     // End of variables declaration

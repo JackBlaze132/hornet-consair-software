@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author jaime
+ * @author jhon
  */
 public class GUIAddAutomobile extends javax.swing.JFrame {
 
