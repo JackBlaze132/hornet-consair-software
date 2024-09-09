@@ -23,6 +23,7 @@ public class AutomobileController implements ActionListener {
     private GUIDeleteAutomobile guiDeleteAutomobile;
     private GUISearchAutomobile guiSearchAutomobile;
     private GUICalculateInsuranceAutomobile guiCalculateInsuranceAutomobile;
+    private GUIUpdateAutomobile guiUpdateAutomobile;
     private ArrayList<Bodywork> bodyworks;
 
 
@@ -63,8 +64,15 @@ public class AutomobileController implements ActionListener {
         this.guiCalculateInsuranceAutomobile.getBtnCalculateInsurance().addActionListener(this);
     }
 
+    public AutomobileController(GUIUpdateAutomobile guiUpdateAutomobile, VehicleService vehicleService, ArrayList<Bodywork> bodyworks) {
+        this.guiUpdateAutomobile = guiUpdateAutomobile;
+        this.vehicleService = vehicleService;
+        this.bodyworks = bodyworks;
+        this.guiUpdateAutomobile.getBtnSearch().addActionListener(this);
+        this.guiUpdateAutomobile.getBtnUpdate().addActionListener(this);
+    }
 
-    private void addAutomobile() {
+    private void    addAutomobile() {
 
         guiAddAutomobile.getjListBodyWork().removeAllItems();
         guiAddAutomobile.getjListBodyWork().addItem("Select");
@@ -236,6 +244,59 @@ public class AutomobileController implements ActionListener {
         }
     }
 
+    private void updateAutomobileTableUpdate(){
+        DefaultTableModel model = (DefaultTableModel) guiUpdateAutomobile.getjTableUpdateAutomobile().getModel();
+        model.setRowCount(0);
+
+        if (guiUpdateAutomobile.getTxtIdAutomobile().getText().isEmpty()){
+            JOptionPane.showMessageDialog(guiUpdateAutomobile, "Please enter a valid number.","Error", JOptionPane.ERROR_MESSAGE);
+        }else try {
+            int vehicleNumber = Integer.parseInt(guiUpdateAutomobile.getTxtIdAutomobile().getText());
+            Vehicle vehicle = vehicleService.getAutomobile(vehicleNumber);
+
+            if(vehicle instanceof Automobile automobile) {
+                Object[] rowData = {
+                        automobile.getIdVehicle(),
+                        automobile.getBrand(),
+                        automobile.getModel(),
+                        automobile.getPrice(),
+                        automobile.isAbs(),
+                        automobile.getBodywork().getDescription(),
+                        automobile.getDoorCount(),
+                        automobile.getAirbagCount()
+
+                };
+                model.addRow(rowData);
+            } else {
+                JOptionPane.showMessageDialog(guiSearchAutomobile, "Automobile not found.");
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(guiSearchAutomobile, "Invalid vehicle number format.");
+        }
+    }
+
+    private void updateAutomobile() {
+        int selectedRow = guiUpdateAutomobile.getjTableUpdateAutomobile().getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(guiUpdateAutomobile, "Please select a row to update.");
+            return;
+        }
+
+        // Obtener los datos de la fila seleccionada
+        int idAutomobile = (int) guiUpdateAutomobile.getjTableUpdateAutomobile().getValueAt(selectedRow, 0);
+        String brand = (String) guiUpdateAutomobile.getjTableUpdateAutomobile().getValueAt(selectedRow, 1);
+        String model = (String) guiUpdateAutomobile.getjTableUpdateAutomobile().getValueAt(selectedRow, 2);
+        double price = (double) guiUpdateAutomobile.getjTableUpdateAutomobile().getValueAt(selectedRow, 3);
+        boolean hasAbs = (boolean) guiUpdateAutomobile.getjTableUpdateAutomobile().getValueAt(selectedRow, 4);
+        String bodywork = (String) guiUpdateAutomobile.getjTableUpdateAutomobile().getValueAt(selectedRow, 5);
+        int doorCount = (int) guiUpdateAutomobile.getjTableUpdateAutomobile().getValueAt(selectedRow, 6);
+        int airbagCount = (int) guiUpdateAutomobile.getjTableUpdateAutomobile().getValueAt(selectedRow, 7);
+
+        // Crear y mostrar la nueva GUI para editar el automóvil
+        GUIEditAutomobile guiEditAutomobile = new GUIEditAutomobile(idAutomobile, brand, model, price, hasAbs, bodywork, doorCount, airbagCount, vehicleService, bodyworks);
+        guiEditAutomobile.setVisible(true);
+    }
+
     private void deleteAutomobile() {
         int selectedRow = guiDeleteAutomobile.getjTableDeleteAutomobile().getSelectedRow();
         if (selectedRow == -1) {
@@ -290,6 +351,12 @@ public class AutomobileController implements ActionListener {
         }
         if (guiCalculateInsuranceAutomobile != null && e.getSource() == guiCalculateInsuranceAutomobile.getBtnCalculateInsurance()) {
             getAutomobileInsurance();
+        }
+        if (guiUpdateAutomobile != null && e.getSource() == guiUpdateAutomobile.getBtnUpdate()) {
+            updateAutomobile();
+        }
+        if (guiUpdateAutomobile != null && e.getSource() == guiUpdateAutomobile.getBtnSearch()) {
+            updateAutomobileTableUpdate();
         }
     }
 }

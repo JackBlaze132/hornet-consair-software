@@ -76,6 +76,44 @@ public class VehicleService {
         }
     }
 
+    public void updateVehicle(Automobile updatedAutomobile) {
+        // Buscar el automóvil existente por su ID
+        Vehicle existingVehicle = getAutomobile(updatedAutomobile.getIdVehicle());
+
+        if (existingVehicle != null && existingVehicle instanceof Automobile) {
+            // Actualizar los atributos del automóvil
+            Automobile automobile = (Automobile) existingVehicle;
+            automobile.setBrand(updatedAutomobile.getBrand());
+            automobile.setModel(updatedAutomobile.getModel());
+            automobile.setPrice(updatedAutomobile.getPrice());
+            automobile.setAbs(updatedAutomobile.isAbs());
+            automobile.setDoorCount(updatedAutomobile.getDoorCount());
+            automobile.setAirbagCount(updatedAutomobile.getAirbagCount());
+            automobile.setBodywork(updatedAutomobile.getBodywork());
+        } else {
+            throw new IllegalArgumentException("Automobile with ID " + updatedAutomobile.getIdVehicle() + " not found.");
+        }
+    }
+
+    public void updateMotorcycle(Motorcycle updatedMotorcycle) {
+        // Buscar la motocicleta existente por su ID
+        Vehicle existingVehicle = getMotorcycle(updatedMotorcycle.getIdVehicle());
+
+        if (existingVehicle != null && existingVehicle instanceof Motorcycle) {
+            // Actualizar los atributos de la motocicleta
+            Motorcycle motorcycle = (Motorcycle) existingVehicle;
+            motorcycle.setBrand(updatedMotorcycle.getBrand());
+            motorcycle.setModel(updatedMotorcycle.getModel());
+            motorcycle.setPrice(updatedMotorcycle.getPrice());
+            motorcycle.setAbs(updatedMotorcycle.isAbs());
+            motorcycle.setForkType(updatedMotorcycle.getForkType());
+            motorcycle.setHelmetIncluded(updatedMotorcycle.isHelmetIncluded());
+        } else {
+            throw new IllegalArgumentException("Motorcycle with ID " + updatedMotorcycle.getIdVehicle() + " not found.");
+        }
+    }
+
+
     public List<Automobile> getAutomobiles() {
         List<Automobile> automobiles = new ArrayList<>();
         for (Vehicle vehicle : vehicles) {
