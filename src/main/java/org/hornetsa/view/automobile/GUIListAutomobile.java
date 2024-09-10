@@ -5,10 +5,9 @@
 
 package org.hornetsa.view.automobile;
 
-import org.hornetsa.IIntersetedGUI;
+import org.hornetsa.view.IIntersetedGUI;
 import org.hornetsa.Main;
 import org.hornetsa.model.Automobile;
-import org.hornetsa.services.BodyworkService;
 import org.hornetsa.services.VehicleService;
 
 import javax.swing.*;
@@ -154,5 +153,11 @@ public class GUIListAutomobile extends javax.swing.JFrame implements IInterseted
                     automobile.getAirbagCount()
             });
         }
+    }
+
+    @Override
+    public void dispose() {
+        vehicleService.removeGUIInterested(this);
+        super.dispose();
     }
 }

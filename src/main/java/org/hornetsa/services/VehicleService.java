@@ -1,6 +1,6 @@
 package org.hornetsa.services;
 
-import org.hornetsa.IIntersetedGUI;
+import org.hornetsa.view.IIntersetedGUI;
 import org.hornetsa.model.Automobile;
 import org.hornetsa.model.Motorcycle;
 import org.hornetsa.model.Vehicle;
@@ -95,6 +95,7 @@ public class VehicleService {
             automobile.setDoorCount(updatedAutomobile.getDoorCount());
             automobile.setAirbagCount(updatedAutomobile.getAirbagCount());
             automobile.setBodywork(updatedAutomobile.getBodywork());
+            notifyGUI();
         } else {
             throw new IllegalArgumentException("Automobile with ID " + updatedAutomobile.getIdVehicle() + " not found.");
         }
@@ -113,6 +114,7 @@ public class VehicleService {
             motorcycle.setAbs(updatedMotorcycle.isAbs());
             motorcycle.setForkType(updatedMotorcycle.getForkType());
             motorcycle.setHelmetIncluded(updatedMotorcycle.isHelmetIncluded());
+            notifyGUI();
         } else {
             throw new IllegalArgumentException("Motorcycle with ID " + updatedMotorcycle.getIdVehicle() + " not found.");
         }

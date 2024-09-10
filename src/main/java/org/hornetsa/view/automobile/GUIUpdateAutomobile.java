@@ -4,24 +4,34 @@
  */
 package org.hornetsa.view.automobile;
 
+import org.hornetsa.model.Automobile;
+import org.hornetsa.model.Vehicle;
+import org.hornetsa.services.VehicleService;
+import org.hornetsa.view.IIntersetedGUI;
+
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 /**
  *
  * @author jhon
  */
-public class GUIUpdateAutomobile extends JFrame {
+public class GUIUpdateAutomobile extends JFrame implements IIntersetedGUI {
 
     /**
      * Creates new form GUISearchMotorcycle
      */
-    public GUIUpdateAutomobile() {
+
+    VehicleService vehicleService;
+    public GUIUpdateAutomobile(VehicleService vehicleService) {
         initComponents();
         setLocationRelativeTo(this);
         setSize(800,500);
         setIconImage(new ImageIcon(getClass().getClassLoader().getResource("img/favicon.png")).getImage());
         setTitle("Hornet Corsair |  Update Automobile");
+        this.vehicleService = vehicleService;
+        vehicleService.addGUIInterested(this);
     }
 
     /**
@@ -185,4 +195,39 @@ public class GUIUpdateAutomobile extends JFrame {
     public JTable getjTableUpdateAutomobile() {
         return jTableUpdateAutomobile;
     }
+
+    @Override
+    public void changeTable() {
+        DefaultTableModel model = (DefaultTableModel) jTableUpdateAutomobile.getModel();
+        model.setRowCount(0);
+        if (!getTxtIdAutomobile().getText().isEmpty()){
+            int vehicleNumber = Integer.parseInt(getTxtIdAutomobile().getText());
+            Vehicle vehicle = vehicleService.getAutomobile(vehicleNumber);
+
+            if(vehicle instanceof Automobile automobile) {
+                Object[] rowData = {
+                        automobile.getIdVehicle(),
+                        automobile.getBrand(),
+                        automobile.getModel(),
+                        automobile.getPrice(),
+                        automobile.isAbs(),
+                        automobile.getBodywork().getDescription(),
+                        automobile.getDoorCount(),
+                        automobile.getAirbagCount()
+
+                };
+                model.addRow(rowData);
+            } else {
+                JOptionPane.showMessageDialog(this, "Automobile not found.");
+            }
+        }
+    }
+
+    @Override
+    public void dispose() {
+        vehicleService.removeGUIInterested(this);
+        super.dispose();
+    }
+
+
 }

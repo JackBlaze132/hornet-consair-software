@@ -384,7 +384,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemUpdateAutomobileActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        GUIUpdateAutomobile guiUpdateAutomobile = new GUIUpdateAutomobile();
+        GUIUpdateAutomobile guiUpdateAutomobile = new GUIUpdateAutomobile(vehicleService);
         AutomobileController automobileController = new AutomobileController(guiUpdateAutomobile, vehicleService,bodyworkService);
         guiUpdateAutomobile.setVisible(true);
     }
@@ -412,7 +412,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemUpdateMotorcycleActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        GUIUpdateMotorcycle guiUpdateMotorcycle = new GUIUpdateMotorcycle();
+        GUIUpdateMotorcycle guiUpdateMotorcycle = new GUIUpdateMotorcycle(vehicleService);
         MotorcycleController MotorcycleController = new MotorcycleController(guiUpdateMotorcycle, vehicleService);
         guiUpdateMotorcycle.setVisible(true);
     }
@@ -432,7 +432,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
     private void setjMenuItemUpdateBodyworkActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        GUIUpdateBodywork guiUpdateBodywork = new GUIUpdateBodywork();
+        GUIUpdateBodywork guiUpdateBodywork = new GUIUpdateBodywork(bodyworkService);
         BodyworkController bodyworkController = new BodyworkController(guiUpdateBodywork, bodyworkService);
         guiUpdateBodywork.setVisible(true);
     }

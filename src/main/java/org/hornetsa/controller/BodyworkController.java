@@ -1,7 +1,5 @@
 package org.hornetsa.controller;
 
-import org.hornetsa.model.*;
-import org.hornetsa.model.Bodywork;
 import org.hornetsa.model.Bodywork;
 import org.hornetsa.view.bodywork.*;
 import org.hornetsa.services.BodyworkService;
@@ -11,7 +9,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.util.logging.Logger;
 
 public class BodyworkController implements ActionListener {
 
@@ -70,6 +68,7 @@ public class BodyworkController implements ActionListener {
                 clearAddBodyworkFields();
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(guiAddBodywork, "ID must be a valid number");
+                Logger.getLogger(BodyworkController.class.getName()).severe(e.getMessage());
             }
         } else {
             JOptionPane.showMessageDialog(guiAddBodywork, "Please fill in all the fields");
@@ -93,7 +92,7 @@ public class BodyworkController implements ActionListener {
         model.setRowCount(0);
     }
 
-    private void updateBodyworkTable() {
+    private void refreshBodyworkTable() {
         DefaultTableModel model = (DefaultTableModel) guiListBodywork.getjTable1().getModel();
         model.setRowCount(0); // Clear existing rows
         for (Bodywork bodywork : bodyworkService.getBodyworks()) {
@@ -115,7 +114,7 @@ public class BodyworkController implements ActionListener {
         guiEditBodywork.setVisible(true);
     }
 
-    private void updateBodyworkTableSearch(){
+    private void refreshBodyworkTableSearch(){
         DefaultTableModel model = (DefaultTableModel) guiSearchBodywork.getjTableSearchBodywork().getModel();
         model.setRowCount(0);
 
@@ -140,7 +139,7 @@ public class BodyworkController implements ActionListener {
 
     }
 
-    private void updateBodyworkTableDelete() {
+    private void refreshBodyworkTableDelete() {
         DefaultTableModel model = (DefaultTableModel) guiDeleteBodywork.getTableDeleteBodywork().getModel();
         model.setRowCount(0);
 
@@ -163,7 +162,7 @@ public class BodyworkController implements ActionListener {
         }
     }
 
-    private void updateBodyworkTableUpdate() {
+    private void refreshBodyworkTableUpdate() {
         DefaultTableModel model = (DefaultTableModel) guiUpdateBodywork.getjTableUpdateBodywork().getModel();
         model.setRowCount(0);
 
@@ -194,19 +193,19 @@ public class BodyworkController implements ActionListener {
             addBodywork();
         }
         if (guiListBodywork != null && e.getSource() == guiListBodywork.getBtnList()) {
-            updateBodyworkTable();
+            refreshBodyworkTable();
         }
         if (guiSearchBodywork != null && e.getSource() == guiSearchBodywork.getBtnSearch()) {
-            updateBodyworkTableSearch();
+            refreshBodyworkTableSearch();
         }
         if (guiDeleteBodywork != null && e.getSource() == guiDeleteBodywork.getBtnDelete()) {
             deleteBodywork();
         }
         if (guiDeleteBodywork != null && e.getSource() == guiDeleteBodywork.getBtnSearch()) {
-            updateBodyworkTableDelete();
+            refreshBodyworkTableDelete();
         }
         if (guiUpdateBodywork != null && e.getSource() == guiUpdateBodywork.getBtnSearch()) {
-            updateBodyworkTableUpdate();
+            refreshBodyworkTableUpdate();
         }
         if (guiUpdateBodywork != null && e.getSource() == guiUpdateBodywork.getBtnUpdate()) {
             updateBodywork();

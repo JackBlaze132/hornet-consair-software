@@ -1,9 +1,14 @@
 package org.hornetsa.view.bodywork;
 
+import org.hornetsa.model.Bodywork;
+import org.hornetsa.services.BodyworkService;
+import org.hornetsa.view.IIntersetedGUI;
+
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
-public class GUIUpdateBodywork extends JFrame {
+public class GUIUpdateBodywork extends JFrame implements IIntersetedGUI {
 
     private JLabel LblTitle;
     private JButton btnSearch;
@@ -12,13 +17,16 @@ public class GUIUpdateBodywork extends JFrame {
     private JTextField jTxtIdBodywork;
     private JScrollPane jScrollPane1;
     private JTable jTableUpdateBodywork;
+    BodyworkService bodyworkService;
 
-    public GUIUpdateBodywork() {
+    public GUIUpdateBodywork(BodyworkService bodyworkService) {
         initComponents();
         setLocationRelativeTo(this);
         setSize(800,500);
         setIconImage(new ImageIcon(getClass().getClassLoader().getResource("img/favicon.png")).getImage());
         setTitle("Hornet Corsair | Update Bodywork");
+        this.bodyworkService = bodyworkService;
+        bodyworkService.addGUIInterested(this);
     }
 
     private void initComponents() {
@@ -126,5 +134,25 @@ public class GUIUpdateBodywork extends JFrame {
 
     public JTable getjTableUpdateBodywork() {
         return jTableUpdateBodywork;
+    }
+
+    @Override
+    public void changeTable() {
+        DefaultTableModel model = (DefaultTableModel) jTableUpdateBodywork.getModel();
+        model.setRowCount(0);
+        if (!getTxtIdBodywork().getText().isEmpty()){
+            int idBody = Integer.parseInt(getTxtIdBodywork().getText());
+            Bodywork bodywork = bodyworkService.getBodywork(idBody);
+            model.addRow(new Object[]{
+                    bodywork.getIdBody(),
+                    bodywork.getDescription()
+            });
+        }
+    }
+
+    @Override
+    public void dispose() {
+        bodyworkService.removeGUIInterested(this);
+        super.dispose();
     }
 }
