@@ -1,9 +1,15 @@
 package org.hornetsa.view.motorcycle;
 
+import org.hornetsa.model.Motorcycle;
+import org.hornetsa.model.Vehicle;
+import org.hornetsa.services.VehicleService;
+import org.hornetsa.view.IIntersetedGUI;
+
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
-public class GUIUpdateMotorcycle extends JFrame {
+public class GUIUpdateMotorcycle extends JFrame implements IIntersetedGUI {
 
     private JLabel LblTitle;
     private JButton btnSearch;
@@ -12,13 +18,16 @@ public class GUIUpdateMotorcycle extends JFrame {
     private JTextField jTxtIdMotorcycle;
     private JScrollPane jScrollPane1;
     private JTable jTableUpdateMotorcycle;
+    VehicleService vehicleService;
 
-    public GUIUpdateMotorcycle() {
+    public GUIUpdateMotorcycle(VehicleService vehicleService) {
         initComponents();
         setLocationRelativeTo(this);
         setSize(800,500);
         setIconImage(new ImageIcon(getClass().getClassLoader().getResource("img/favicon.png")).getImage());
         setTitle("Hornet Corsair | Update Motorcycle");
+        this.vehicleService = vehicleService;
+        vehicleService.addGUIInterested(this);
     }
 
     private void initComponents() {
@@ -126,5 +135,34 @@ public class GUIUpdateMotorcycle extends JFrame {
 
     public JTable getjTableUpdateMotorcycle() {
         return jTableUpdateMotorcycle;
+    }
+
+    @Override
+    public void changeTable() {
+        DefaultTableModel model = (DefaultTableModel) jTableUpdateMotorcycle.getModel();
+        model.setRowCount(0);
+        if(!getTxtIdMotorcycle().getText().isEmpty()){
+            int vehicleNumber = Integer.parseInt(getTxtIdMotorcycle().getText());
+            Vehicle vehicle = vehicleService.getMotorcycle(vehicleNumber);
+            if(vehicle instanceof Motorcycle motorcycle) {
+                model.addRow(new Object[]{
+                        motorcycle.getIdVehicle(),
+                        motorcycle.getBrand(),
+                        motorcycle.getModel(),
+                        motorcycle.getPrice(),
+                        motorcycle.isAbs(),
+                        motorcycle.getForkType(),
+                        motorcycle.isHelmetIncluded()
+                });
+            } else {
+                JOptionPane.showMessageDialog(this, "Motorcycle not found.");
+            }
+        }
+    }
+
+    @Override
+    public void dispose() {
+        vehicleService.removeGUIInterested(this);
+        super.dispose();
     }
 }

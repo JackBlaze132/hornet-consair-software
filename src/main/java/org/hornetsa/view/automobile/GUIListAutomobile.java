@@ -154,4 +154,10 @@ public class GUIListAutomobile extends javax.swing.JFrame implements IInterseted
             });
         }
     }
+
+    @Override
+    public void dispose() {
+        vehicleService.removeGUIInterested(this);
+        super.dispose();
+    }
 }
