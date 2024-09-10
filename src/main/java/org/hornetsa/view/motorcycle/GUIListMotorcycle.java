@@ -4,7 +4,7 @@
  */
 package org.hornetsa.view.motorcycle;
 
-import org.hornetsa.IIntersetedGUI;
+import org.hornetsa.view.IIntersetedGUI;
 import org.hornetsa.Main;
 import org.hornetsa.model.Motorcycle;
 import org.hornetsa.services.VehicleService;

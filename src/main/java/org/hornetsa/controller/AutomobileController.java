@@ -12,7 +12,6 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.NumberFormat;
-import java.util.ArrayList;
 
 public class AutomobileController implements ActionListener {
 
@@ -131,7 +130,7 @@ public class AutomobileController implements ActionListener {
     }
 
 
-    private void updateAutomobileTable() {
+    private void refreshAutomobileTable() {
         DefaultTableModel model = (DefaultTableModel) guiListAutomobile.getjTable1().getModel();
         model.setRowCount(0);
 
@@ -149,7 +148,7 @@ public class AutomobileController implements ActionListener {
         }
     }
 
-    private void updateAutomobileTableDelete() {
+    private void refreshAutomobileTableDelete() {
         DefaultTableModel model = (DefaultTableModel) guiDeleteAutomobile.getjTableDeleteAutomobile().getModel();
         model.setRowCount(0);
 
@@ -184,7 +183,7 @@ public class AutomobileController implements ActionListener {
         model.setRowCount(0);
     }
 
-    private void updateAutomobileTableSearch(){
+    private void refreshAutomobileTableSearch(){
         DefaultTableModel model = (DefaultTableModel) guiSearchAutomobile.getjTableSearchAutomobile().getModel();
         model.setRowCount(0);
 
@@ -214,7 +213,7 @@ public class AutomobileController implements ActionListener {
 
     }
 
-    private void updateAutomobileTableCalculateInsurance(){
+    private void refreshAutomobileTableCalculateInsurance(){
         DefaultTableModel model = (DefaultTableModel) guiCalculateInsuranceAutomobile.getjTableCalculateInsuranceAutomobile().getModel();
         model.setRowCount(0);
 
@@ -245,7 +244,7 @@ public class AutomobileController implements ActionListener {
         }
     }
 
-    private void updateAutomobileTableUpdate(){
+    private void refreshAutomobileTableUpdate(){
         DefaultTableModel model = (DefaultTableModel) guiUpdateAutomobile.getjTableUpdateAutomobile().getModel();
         model.setRowCount(0);
 
@@ -344,19 +343,19 @@ public class AutomobileController implements ActionListener {
         }
         if (guiListAutomobile != null && e.getSource() == guiListAutomobile.getBtnList()) {
             System.out.println("List button clicked");
-            updateAutomobileTable();
+            refreshAutomobileTable();
         }
         if (guiDeleteAutomobile != null && e.getSource() == guiDeleteAutomobile.getjBtnDelete()) {
             deleteAutomobile();
         }
         if (guiDeleteAutomobile != null && e.getSource() == guiDeleteAutomobile.getBtnSearch()) {
-            updateAutomobileTableDelete();
+            refreshAutomobileTableDelete();
         }
         if (guiSearchAutomobile != null && e.getSource() == guiSearchAutomobile.getBtnSearch()) {
-            updateAutomobileTableSearch();
+            refreshAutomobileTableSearch();
         }
         if (guiCalculateInsuranceAutomobile != null && e.getSource() == guiCalculateInsuranceAutomobile.getBtnSearch()) {
-            updateAutomobileTableCalculateInsurance();
+            refreshAutomobileTableCalculateInsurance();
         }
         if (guiCalculateInsuranceAutomobile != null && e.getSource() == guiCalculateInsuranceAutomobile.getBtnCalculateInsurance()) {
             getAutomobileInsurance();
@@ -365,7 +364,7 @@ public class AutomobileController implements ActionListener {
             updateAutomobile();
         }
         if (guiUpdateAutomobile != null && e.getSource() == guiUpdateAutomobile.getBtnSearch()) {
-            updateAutomobileTableUpdate();
+            refreshAutomobileTableUpdate();
         }
     }
 }

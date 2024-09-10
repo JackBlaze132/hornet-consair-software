@@ -3,7 +3,6 @@ package org.hornetsa.controller;
 import org.hornetsa.model.Motorcycle;
 import org.hornetsa.model.Vehicle;
 import org.hornetsa.services.VehicleService;
-import org.hornetsa.view.automobile.GUIUpdateAutomobile;
 import org.hornetsa.view.motorcycle.*;
 
 import javax.swing.*;
@@ -107,7 +106,7 @@ public class MotorcycleController implements ActionListener{
         guiAddMotorcycle.getjBoxHelmet().setSelected(false);
     }
 
-    private void updateMotorcycleTable() {
+    private void refreshMotorcycleTable() {
         DefaultTableModel model = (DefaultTableModel) guiListMotorcycle.getTable().getModel();
         model.setRowCount(0);
         List<Motorcycle> motorcycles = vehicleService.getMotorcyclesList();
@@ -126,7 +125,7 @@ public class MotorcycleController implements ActionListener{
         }
     }
 
-    private void updateMotorcycleDeleteTable() {
+    private void refreshMotorcycleDeleteTable() {
         DefaultTableModel model = (DefaultTableModel) guiDeleteMotorcycle.getjTableDeleteMotorcycle().getModel();
         model.setRowCount(0);
 
@@ -172,7 +171,7 @@ public class MotorcycleController implements ActionListener{
         JOptionPane.showMessageDialog(guiDeleteMotorcycle, "Motorbike deleted successfully.");
     }
 
-    private void updateMotorcycleTableSearch(){
+    private void refreshMotorcycleTableSearch(){
         DefaultTableModel model = (DefaultTableModel) guiSearchMotorcycle.getjTableSearchMotorcyvle().getModel();
         model.setRowCount(0);
 
@@ -201,7 +200,7 @@ public class MotorcycleController implements ActionListener{
         }
     }
 
-    private void updateMotorcycleTableCalculateDiscount(){
+    private void refreshMotorcycleTableCalculateDiscount(){
         DefaultTableModel model = (DefaultTableModel) guiCalculateDiscountMotorcycle.getTableCalculateDiscountMotorcycle().getModel();
         model.setRowCount(0);
 
@@ -230,7 +229,7 @@ public class MotorcycleController implements ActionListener{
         }
     }
 
-    private void updateMotorcycleTableCalculateInsurance(){
+    private void refreshMotorcycleTableCalculateInsurance(){
         DefaultTableModel model = (DefaultTableModel) guiCalculateIsuranceMotorcycle.getjTableCalculateInsuranceMotorcycle().getModel();
         model.setRowCount(0);
 
@@ -296,7 +295,7 @@ public class MotorcycleController implements ActionListener{
         }
         JOptionPane.showMessageDialog(null, message.toString(), "Motorcycle Insurance", JOptionPane.INFORMATION_MESSAGE);
     }
-    private void updateMotorcycleTableUpdate() {
+    private void refreshMotorcycleTableUpdate() {
         DefaultTableModel model = (DefaultTableModel) guiUpdateMotorcycle.getjTableUpdateMotorcycle().getModel();
         model.setRowCount(0);
 
@@ -354,22 +353,22 @@ public class MotorcycleController implements ActionListener{
 
         }
         if (guiListMotorcycle != null && e.getSource() == guiListMotorcycle.getBtnList()) {
-            updateMotorcycleTable();
+            refreshMotorcycleTable();
         }
         if (guiDeleteMotorcycle != null && e.getSource() == guiDeleteMotorcycle.getjBtnDelete()) {
             DeleteMotorcycle();
         }
         if (guiDeleteMotorcycle != null && e.getSource() == guiDeleteMotorcycle.getBtnSearch()) {
-            updateMotorcycleDeleteTable();
+            refreshMotorcycleDeleteTable();
         }
         if (guiSearchMotorcycle != null && e.getSource() == guiSearchMotorcycle.getBtnSearch()) {
-            updateMotorcycleTableSearch();
+            refreshMotorcycleTableSearch();
         }
         if (guiCalculateDiscountMotorcycle != null && e.getSource() == guiCalculateDiscountMotorcycle.getBtnSearch()) {
-            updateMotorcycleTableCalculateDiscount();
+            refreshMotorcycleTableCalculateDiscount();
         }
         if (guiCalculateIsuranceMotorcycle != null && e.getSource() == guiCalculateIsuranceMotorcycle.getBtnSearch()) {
-            updateMotorcycleTableCalculateInsurance();
+            refreshMotorcycleTableCalculateInsurance();
         }
         if (guiCalculateDiscountMotorcycle != null && e.getSource() == guiCalculateDiscountMotorcycle.getBtnCalculateDiscount()) {
             getMotorcycleDiscount();
@@ -381,7 +380,7 @@ public class MotorcycleController implements ActionListener{
             updateMotorcycle();
         }
         if (guiUpdateMotorcycle != null && e.getSource() == guiUpdateMotorcycle.getBtnSearch()) {
-            updateMotorcycleTableUpdate();
+            refreshMotorcycleTableUpdate();
         }
     }
 }

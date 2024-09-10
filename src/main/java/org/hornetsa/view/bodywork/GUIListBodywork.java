@@ -4,7 +4,7 @@
  */
 package org.hornetsa.view.bodywork;
 
-import org.hornetsa.IIntersetedGUI;
+import org.hornetsa.view.IIntersetedGUI;
 import org.hornetsa.Main;
 import org.hornetsa.model.Bodywork;
 import org.hornetsa.services.BodyworkService;
